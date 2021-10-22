@@ -1,0 +1,20 @@
+{
+    "creates": {
+        "addTeamBtn": "div.page--title button.btn",
+        "addTeamHeaderContainsText": "div.page--title h1",
+        "teamName": "#name",
+        "addUsersMultipleSelect": {
+            "dropdown": "div.app-select-dropdown__indicator .accordion-button",
+            "input": "#userIds",
+            "options": "div.app-select-dropdown__option"
+        }, 
+        "description": "#description",
+        "saveBtn": "button.btn.btn__success",
+        "@createTeam": 200
+    },
+    "details": {
+        "teamName": "div.teams-details--main-header h4",
+        "description": "ul.teams-details--main-body li:nth-child(2)",
+        "addedUsersBeVisible": "ul.teams-details--main-body li:nth-child(4)"
+    }
+}

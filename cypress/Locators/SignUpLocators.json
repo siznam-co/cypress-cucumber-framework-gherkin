@@ -1,0 +1,10 @@
+{
+    "signUpLogo": ".signUpLogo",
+    "nameField": "[name='name']",
+    "emailField": "[name='email']",
+    "phoneField": "[name='phone']",
+    "passwordField": "#standard-adornment-password",
+    "submitButton": "#submit-login",
+    "passwordError": "span.MuiListItemText-primary",
+    "okBtn": ".submitConfirmAction button"
+}

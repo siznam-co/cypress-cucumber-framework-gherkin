@@ -1,0 +1,12 @@
+{
+    "creates": {
+        "addTeamHeaderContainsText": "New Team",
+        "teamName": "qabot+Team6",
+        "addUsersMultipleSelect": "qabot+User",
+        "description": "This team is created by QA Bot."
+    },
+    "details": {
+        "teamName": "qabot+Team6",
+        "description": "This team is created by QA Bot."
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "creates": {
+        "runChecklistBtn": "div.menu-section--nodes-header button.btn--quick-run",
+        "addChecklistHeaderContainsText": "div.modal-header div.modal-title",
+        "checklistName": "[id='quickRunForm.Name']",
+        "addTemplateSingleSelect": {
+            "dropdown": "div.app-select-dropdown__indicator .accordion-button",
+            "input": "input[id*='react-select']",
+            "options": "div.app-select-dropdown__option"
+        }, 
+        "saveBtn": "div.modal-body button.btn__blue",
+        "@createChecklist": 200
+    },
+    "details": {
+        "checklistName": "div.checklist-details--overview--details h2",
+        "description": "div.checklist-details--overview--details > div:nth-child(4) div"
+    },
+    "runs": {
+        "activityCheckbox": ".step-instance--wrapper:nth-child(2) label.checkbox-cn .checkbox-text",
+        "cancelBtn": "div.modal-footer button.btn__gray"
+    },
+    "finalize": {
+        "mandatoryFieldLabel": {
+            "mandatorySign": "div.activity-instance--card > div[class*='activity-instance-input'] .activity-instance-input--icon-required",
+            "parentElement": ".activity-instance-input",
+            "fieldLabel": "label.checkbox-cn .checkbox-text"
+        }
+    },
+    "finalizeBtn": "div.finalize-card__wrapper button"
+}

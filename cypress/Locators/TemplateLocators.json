@@ -1,0 +1,37 @@
+{
+    "creates": {
+        "addTemplateBtn": "div.page--title button.btn:nth-child(1)",
+        "addTemplateHeaderContainsText": "div.page--title h1",
+        
+        "addStepBtn": "#btn-add-step",
+        "step1Name": "#name",
+        "addTeamsMultipleSelect": {
+            "dropdown": "label:nth-child(2) div.app-select-dropdown__indicator .accordion-button",
+            "input": "[id='form.selectTeams']",
+            "options": "div.app-select-dropdown__option"
+        }, 
+        "stepDescription": "#description",
+        "stepTaskListBtn": "div.local-step-activities button:nth-child(3)",
+        "activityLabel": "#label",
+        "activityDescription": "div.step-activity #description",
+        "task1": "div.step-activity-tasklist input[title='Label']",
+        "addTask2Btn": "div.step-activity-options--button button",
+        "task2": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) input[title='Label']",
+        "task2IsRequiredBtn": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) span.checkbox-text",
+        "addTask3Btn": "div.step-activity-options--button button",
+        "task3": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) input[title='Label']",
+        "task3IsRequiredBtn": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) span.checkbox-text",
+
+        "saveBtn": "button.btn.btn__success",
+        "@createStep": 200,
+        "templateName": "#name",
+        "summary": "#description",
+        "saveAndPublishBtn": "button.btn.btn__success"
+    },
+    "details": {
+        "@searchTemplate": 200,
+        "templateName": "div.teams-details--main-header h4",
+        "summary": "ul.teams-details--main-body li:nth-child(2)",
+        "addedTeamsBeVisible": "ul.teams-details--main-body li:nth-child(4)"
+    }
+}

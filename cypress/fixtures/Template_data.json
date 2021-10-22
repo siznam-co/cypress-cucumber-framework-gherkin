@@ -1,0 +1,19 @@
+{
+    "creates": {
+        "addTemplateHeaderContainsText": "New Template",
+        "templateName": "qabot+Template2",
+        "summary": "This Template is created by QA Bot.",
+        "step1Name": "QA Bot Step1",
+        "stepDescription": "QA Bot Step1 Description",
+        "addTeamsMultipleSelect": "qabot+Team",
+        "activityLabel": "Activity 1: QA Bot to perform following tasks:",
+        "activityDescription": "Test activity description",
+        "task1": "Perform Smoke Testing",
+        "task2": "Perform Exploratory Testing",
+        "task3": "Perform Regression Testing"
+    },
+    "details": {
+        "templateName": "qabot+Template2",
+        "summary": "This Template is created by QA Bot."
+    }
+}

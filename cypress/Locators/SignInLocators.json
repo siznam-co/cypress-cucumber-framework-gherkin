@@ -1,0 +1,6 @@
+{
+    "emailField": "[type='email']",
+    "passwordField": "[type='password']",
+    "rememberCheckBox": ".checkbox-text",
+    "submitButton": ".btn.btn__blue"
+}
