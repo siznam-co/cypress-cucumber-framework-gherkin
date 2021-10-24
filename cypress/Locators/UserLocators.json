@@ -1,7 +1,5 @@
 {
     "creates": {
-        "addUserBtn": "div.page--title button.btn",
-        "addUserHeaderContainsText": "div.page--title h1",
         "email": "#email",
         "userName": "#userName",
         "password": "#password", 
@@ -11,5 +9,6 @@
     "details": {
         "userName": "div.user-details--main-header h4",
         "email": "div.user-details--main-header h5"    
-    }
+    },
+    "addUserBtn": "div.page--title button.btn"
 }

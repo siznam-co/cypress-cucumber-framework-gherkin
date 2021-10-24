@@ -8,8 +8,8 @@ Feature: Create and run new Checklist.
     Then the "Checklist" should be created successfully.
 
     Scenario: Run a Checklist without submitting mandatory fields.
-    When the user hits "finalize" without submitting mandatory fields at the "Checklist" step.
+    When the user hits "finalize" without submitting mandatory fields at the "Checklist" screen.
 
     Scenario: Run a Checklist without submitting mandatory fields.
     When the user "runs" a "Checklist".
-        And the user hits "finalize" with submitting all mandatory fields at the "Checklist" step.
+        And the user hits "finalize" with submitting all mandatory fields at the "Checklist" screen.

@@ -1,7 +1,5 @@
 {
     "creates": {
-        "addTeamBtn": "div.page--title button.btn",
-        "addTeamHeaderContainsText": "div.page--title h1",
         "teamName": "#name",
         "addUsersMultipleSelect": {
             "dropdown": "div.app-select-dropdown__indicator .accordion-button",
@@ -16,5 +14,6 @@
         "teamName": "div.teams-details--main-header h4",
         "description": "ul.teams-details--main-body li:nth-child(2)",
         "addedUsersBeVisible": "ul.teams-details--main-body li:nth-child(4)"
-    }
+    },
+    "addTeamBtn": "div.page--title button.btn"
 }

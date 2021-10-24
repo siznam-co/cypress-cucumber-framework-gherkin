@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 
 import { Given, When, Then, And } from "cypress-cucumber-preprocessor/steps"
-import 'cypress-file-upload'
+import "cypress-file-upload"
 
 const commonLocators = require("../../Locators/commonLocators.json")
 const UserLocators = require("../../Locators/UserLocators.json")
@@ -35,22 +35,90 @@ function getColor(type) {
     }
 }
 
-function createOperation(operation, fieldsType) {
+function numToWords(num) {
+    var a = ["","one ","two ","three ","four ", "five ","six ","seven ","eight ","nine ","ten ","eleven ","twelve ","thirteen ","fourteen ","fifteen ","sixteen ","seventeen ","eighteen ","nineteen "];
+    var b = ["", "", "twenty","thirty","forty","fifty", "sixty","seventy","eighty","ninety"];
+
+    if ((num = num.toString()).length > 9) return "overflow"
+    let n = ("000000000" + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/)
+    if (!n) return; var str = ""
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + " " + a[n[1][1]]) + "crore " : ""
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + " " + a[n[2][1]]) + "lakh " : ""
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + " " + a[n[3][1]]) + "thousand " : ""
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + " " + a[n[4][1]]) + "hundred " : ""
+    str += (n[5] != 0) ? ((str != "") ? "and " : "") + (a[Number(n[5])] || b[n[5][0]] + " " + a[n[5][1]]) : ""
+    return str.trim()
+}
+
+export function getUniqueName(previousName, role) {   // theqa13119+User1
+    let firstHalf = previousName.split("+")[0]                   // theqa13119
+    let secondHalf = previousName.split("+")[1]                  // User1@gmail.com
+    let uniqueValue = secondHalf.split("@")[0]                    // User1
+    let uniqueNumber = uniqueValue.split(role)[1]                 // 1
+    uniqueNumber = parseInt(uniqueNumber) + 1                     // 1 + 1
+    let newName = firstHalf + "+" + role + uniqueNumber    // theqa13119 + '+' + User + 2 
+    return newName
+}
+
+export function getUniqueEmail(previousEmail, role) { // theqa13119+User1@gmail.com
+    let firstHalf = previousEmail.split("+")[0]                   // theqa13119
+    let secondHalf = previousEmail.split("+")[1]                  // User1@gmail.com
+    let thirdHalf = secondHalf.split("@")[1]                      // gmail.com
+    let uniqueValue = secondHalf.split("@")[0]                    // User1
+    let uniqueNumber = uniqueValue.split(role)[1]                 // 1
+    uniqueNumber = parseInt(uniqueNumber) + 1                     // 1 + 1
+    let newEmail = firstHalf + "+" + role + uniqueNumber + "@" + thirdHalf    // theqa13119 + '+' + User + 2 + '@' + gmail.com
+    return newEmail
+}
+
+export function getAfterValue(selector, pseudo, property) {
+    cy.get(selector)
+        .parent().then($els => {
+            // get Window reference from element
+            const win = $els[0].ownerDocument.defaultView
+            // use getComputedStyle to read the pseudo selector
+            const after = win.getComputedStyle($els[0], pseudo)
+            // read the value of the `content` CSS property
+            const contentValue = after.getPropertyValue(property)
+            // the returned value will have double quotes around it, but this is correct
+            return contentValue
+            // expect(contentValue).to.eq("rgb(229, 57, 53)")
+        })
+}
+
+export function getbBeforeORAfterValue(selector, pseudo, property, expectedColor) {
+    cy.get(selector).then($els => {
+        // get Window reference from element
+        const win = $els[0].ownerDocument.defaultView
+        // use getComputedStyle to read the pseudo selector
+        const cssSelector = win.getComputedStyle($els[0], pseudo)
+        // read the value of the `content` CSS property
+        const contentValue = cssSelector.getPropertyValue(property)
+        // the returned value will have double quotes around it, but this is correct
+        expect(contentValue).to.eq(expectedColor)
+    })
+}
+
+export function createOperation(operation, fieldsType) {
     let locators = getLocators(fieldsType)
     let Locs = locators[operation]
     cy.fixture(fieldsType + "_data").then(returnedData => {
         let data = returnedData[operation]
         for (let loc in Locs) {
             if (loc.includes("Checkbox")) {
-                cy.get(Locs[loc]).each((col, index, list) =>
+                cy.get(Locs[loc]).each((col, index, list) => {
                     cy.wrap(col).click()
-                )
+                })
 
             } else if (loc.includes("MultipleSelect")) {
 
                 cy.get(Locs[loc]["dropdown"]).click()
                 cy.get(Locs[loc]["input"]).type(data[loc])
-                cy.get(Locs[loc]["options"]).click({ multiple: true })
+                cy.get(Locs[loc]["options"]).each((col, index, list) => {
+                    if (index >= 3)
+                        return
+                    cy.wrap(col).click({ force: true })
+                })
                 cy.get(Locs[loc]["dropdown"]).click()
 
             } else if (loc.includes("SingleSelect")) {
@@ -77,8 +145,17 @@ function createOperation(operation, fieldsType) {
             } else if (loc.includes("Radio")) {
                 cy.get(Locs[loc]).check(data[loc])
 
-            } else if (loc.includes("TabButton")) {
-                cy.get(Locs[loc]).click({ force: true })
+            } else if (loc.includes("MultipleClicks")) {
+                var i = data[loc]
+                while (i != 0) {
+                    cy.get(Locs[loc]).click({ force: true, multiple: true })
+                    i = i - 1
+                }
+
+            } else if (loc.includes("MultipleButton")) {
+                cy.get(Locs[loc]).each((col, index, list) => {
+                    cy.wrap(col).click({ force: true })
+                })
 
             } else if (loc.includes("Identifier")) {
                 cy.get(Locs[loc]).contains(data[loc])
@@ -95,17 +172,13 @@ function createOperation(operation, fieldsType) {
                 cy.get(Locs[loc]).should("have.value", data[loc])
 
             } else if (loc.includes("@")) {
-                cy.wait(loc).its('response.statusCode').should('eq', Locs[loc])
+                cy.wait(loc).its("response.statusCode").should("eq", Locs[loc])
 
-            } else if (loc.includes("AppendStart")) {
-                cy.get(Locs[loc])
-                    .type(`{${modifierKey}}{home}`).type(" ")
-                    .type(`{${modifierKey}}{home}`).type("-")
-                    .type(`{${modifierKey}}{home}`).type(" ")
-                    .type(`{${modifierKey}}{home}`).type("d")
-                    .type(`{${modifierKey}}{home}`).type("r")
-                    .type(`{${modifierKey}}{home}`).type("a")
-                    .type(`{${modifierKey}}{home}`).type("k")
+            } else if (loc.includes("MultipleInputs")) {
+                cy.get(Locs[loc]).each((col, index, list) => {
+                    cy.wrap(col).clear()
+                    cy.wrap(col).type(data[loc] + numToWords(index + 1))
+                })
             } else {
                 cy.get(Locs[loc]).clear()
                 cy.get(Locs[loc]).type(data[loc])
@@ -114,40 +187,68 @@ function createOperation(operation, fieldsType) {
     })
 }
 
-function submitOperation(operation, fieldsType, type) {
+export function submitOperation(operation, fieldsType, type) {
     let locators = getLocators(fieldsType)
     let Locs = locators[operation]
     cy.fixture(fieldsType + "_data").then(returnedData => {
         let data = returnedData[operation]
         for (let loc in Locs) {
             if (loc.includes("FieldLabel")) {
-                cy.get(Locs[loc]["mandatorySign"]).each((col, index, list) =>
-                    cy.wrap(col).parents(Locs[loc]["parentElement"]).find(Locs[loc]["fieldLabel"]).should("have.css", "color", getColor(type))
-                )
+                cy.get(Locs[loc]["mandatorySign"]).each((col, index, list) => {
+                    cy.wrap(col)
+                        .parents(Locs[loc]["parentElement"])
+                        .find(Locs[loc]["fieldLabel"])
+                        .should("have.css", "color", getColor(type))
+                })
+
+            } else if (loc.includes("BorderError")) {
+                cy.get(Locs[loc]).each((col, index, list) => {
+                    cy.wrap(col)
+                        .parent()
+                        .should("have.css", "border-color", getColor(type))
+                })
+
+            } else if (loc.includes("TextErrorMessage")) {
+                cy.get(Locs[loc]["field"]).each((col, index, list) => {
+                    cy.wrap(col)
+                        .parents(Locs[loc]["parentElement"])
+                        .find(Locs[loc]["errorMessage"])
+                        .should("have.text", data[loc]["errorMessage"])
+                    expect(index).to.be.lessThan(data[loc]["field"])
+                })
+
+            } else if (loc.includes("@")) {
+                cy.wait(loc).its("response.statusCode").should("eq", Locs[loc])
+
+            } else if (loc.includes("Msg")) {
+                cy.get(Locs[loc]).should("have.text", data[loc])
+
+            } else if (loc.includes("NotInDOM")) {
+                cy.get(Locs[loc]).should("not.exist")
+
+            } else if (loc.includes("BeVisible")) {
+                cy.get(Locs[loc]).should("be.visible")
 
             } else {
-                cy.get(Locs[loc]).clear()
-                cy.get(Locs[loc]).type(data[loc])
+                if (fieldsType == "exceedingCharaterLimits" || fieldsType == "invalidData") {
+                    cy.get(Locs[loc]).parent().parent().find(commonLocators.validationError).invoke("text").then(errorText => {
+                        expect(ChangeThisParam.errorMessages).to.be.include(errorText)
+                        if (fieldsType == "exceedingCharaterLimits") {
+                            cy.get(Locs[loc]).type("{backspace}")
+                        } else {
+                            cy.get(Locs[loc]).clear()
+                            cy.get(Locs[loc]).type(ChangeThisParam["validData"][fields][loc])
+                        }
 
-                // if (fieldsType == "exceedingCharaterLimits" || fieldsType == "invalidData") {
-                //     cy.get(Locs[loc]).parent().parent().find(commonLocators.validationError).invoke("text").then(errorText => {
-                //         expect(ChangeThisParam.errorMessages).to.be.include(errorText)
-                //         if (fieldsType == "exceedingCharaterLimits") {
-                //             cy.get(Locs[loc]).type("{backspace}")
-                //         } else {
-                //             cy.get(Locs[loc]).clear()
-                //             cy.get(Locs[loc]).type(ChangeThisParam["validData"][fields][loc])
-                //         }
-
-                //         cy.get(Locs[loc]).parent().parent().find(commonLocators.validationError).should("not.exist")
-                //     })
-                // }
+                        cy.get(Locs[loc]).parent().parent().find(commonLocators.validationError).should("not.exist")
+                    })
+                }
             }
         }
     })
 }
 
-function readOperation(operation, fieldsType) {
+export function readOperation(operation, fieldsType) {
     let locators = getLocators(fieldsType)
     let Locs = locators[operation]
     cy.fixture(fieldsType + "_data").then(returnedData => {
@@ -179,11 +280,14 @@ function readOperation(operation, fieldsType) {
             } else if (loc.includes("BeVisible")) {
                 cy.get(Locs[loc]).should("be.visible")
 
+            } else if (loc.includes("BeDisabled")) {
+                cy.get(Locs[loc]).should("be.disabled")
+
             } else if (loc.includes("Evaluated")) {
                 cy.get(Locs[loc]).should("have.value", data[loc])
 
             } else if (loc.includes("@")) {
-                cy.wait(loc).its('response.statusCode').should('eq', Locs[loc])
+                cy.wait(loc).its("response.statusCode").should("eq", Locs[loc])
 
             } else {
                 cy.get(Locs[loc]).invoke("text").then(copy => {
@@ -206,13 +310,6 @@ Then("the {string} validation error should appear against phone number field.", 
     cy.get(commonLocators.phoneValidationError).should("have.text", validationError)
 })
 
-Given("The user is on Dashboard.", () => {
-    // cy.wait(5000)
-    cy.visit("/dashboard")
-    // Click Get Started button to open form
-    cy.get(dashboardLocators.dashboardHeading).should("have.text", "Dashboard")
-})
-
 When("the user navigates to the {string} screen via {string}.", (subScreen, screen) => {
     cy.get(commonLocators.menuBtn).contains(screen).click()
     cy.get(commonLocators.subMenuBtn).contains(subScreen).click({ force: true })
@@ -226,46 +323,17 @@ Then("The user should be moved to the {string}.", (screen) => {
     cy.get(commonLocators.pageHeading).should("contain", screen)
 })
 
-When("the user {string} a {string}.", (operation, fieldsType) => {
-    createOperation(operation, fieldsType)
-})
-
-When("the user adds {string} at the {string} screen.", (operation, fieldsType) => {
-    createOperation(operation, fieldsType)
-})
-
-When("the user {string} at the {string}.", (operation, fieldsType) => {
-    // cy.get("textarea#notes").type(`{${modifierKey}}w`)
-    createOperation(operation, fieldsType)
-})
-
-Then("the {string} of the created {string} should be correct.", (operation, fieldsType) => {
-    readOperation(operation, fieldsType)
-})
-
-When("the user hits {string} without submitting mandatory fields at the {string} step.", (operation, fieldsType) => {
-    let locators = getLocators(fieldsType)
-
-    cy.get(locators[operation + "Btn"]).click()
-
-    submitOperation(operation, fieldsType, "invalid")
-})
-
-When("the user hits {string} with submitting all mandatory fields at the {string} step.", (operation, fieldsType) => {
-    let locators = getLocators(fieldsType)
-
-    cy.get(locators[operation + "Btn"]).click()
-
-    submitOperation(operation, fieldsType, "valid")
-})
-
 Then("the {string} should be created successfully.", (fieldsType) => {
     cy.fixture(fieldsType + "_data").then(returnedData => {
         // Storing name for future records create operation
-        cy.getUniqueName(returnedData.creates[fieldsType.toLowerCase() + "Name"], fieldsType).then(newName => {
-            returnedData.creates[fieldsType.toLowerCase() + "Name"] = newName
-            returnedData.details[fieldsType.toLowerCase() + "Name"] = newName
-            cy.writeFile("cypress/fixtures/" + fieldsType + "_data.json", JSON.stringify(returnedData))
-        })
+        let newName = getUniqueName(returnedData.creates[fieldsType.toLowerCase() + "Name"], fieldsType)
+        returnedData.creates[fieldsType.toLowerCase() + "Name"] = newName
+        returnedData.details[fieldsType.toLowerCase() + "Name"] = newName
+        cy.writeFile("cypress/fixtures/" + fieldsType + "_data.json", JSON.stringify(returnedData))
     })
+})
+
+When("the user hits the {string} button at {string} screen.", (btn, btnType) => {
+    let locators = getLocators(btnType)
+    cy.get(locators[btn]).click()
 })

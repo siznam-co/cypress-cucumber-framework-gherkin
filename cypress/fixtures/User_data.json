@@ -1,13 +1,12 @@
 {
     "creates": {
-        "addUserHeaderContainsText": "New User",
-        "email": "thqa13119+User5@gmail.com",
-        "userName": "qabot+User5",
+        "email": "thqa13119+User6@gmail.com",
+        "userName": "qabot+User6",
         "password": "Ampliflow@test-2",
         "confirmPassword": "Ampliflow@test-2"
     },
     "details": {
-        "email": "thqa13119+User5@gmail.com",
-        "userName": "qabot+User5"
+        "email": "thqa13119+User6@gmail.com",
+        "userName": "qabot+User6"
     }
 }

@@ -19,7 +19,14 @@
         "activityCheckbox": ".step-instance--wrapper:nth-child(2) label.checkbox-cn .checkbox-text",
         "cancelBtn": "div.modal-footer button.btn__gray"
     },
-    "finalize": {
+    "finalizeInvalid": {
+        "mandatoryFieldLabel": {
+            "mandatorySign": "div.activity-instance--card > div[class*='activity-instance-input'] .activity-instance-input--icon-required",
+            "parentElement": ".activity-instance-input",
+            "fieldLabel": "label.checkbox-cn .checkbox-text"
+        }
+    },
+    "finalizeValid": {
         "mandatoryFieldLabel": {
             "mandatorySign": "div.activity-instance--card > div[class*='activity-instance-input'] .activity-instance-input--icon-required",
             "parentElement": ".activity-instance-input",

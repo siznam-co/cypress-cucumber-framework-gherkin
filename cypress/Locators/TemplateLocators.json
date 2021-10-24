@@ -1,37 +1,95 @@
 {
     "creates": {
-        "addTemplateBtn": "div.page--title button.btn:nth-child(1)",
-        "addTemplateHeaderContainsText": "div.page--title h1",
-        
+        "templateName": "#name",
+        "summary": "#description"
+    },
+    "saveAndPublishInvalid": {
+        "@createTemplate": 400,
+        "templateNameBorderError": "#name",
+        "templateNameTextErrorMessage": {
+            "field": "#name",
+            "parentElement": "label.text-field",
+            "errorMessage": ".invalid-feedback"
+        }
+    },
+    "saveAndPublishValid": {
+        "@createTemplate": 200,
+        "@publishTemplate": 200,
+        "@searchTemplate": 200
+    },
+    "newStep": {
         "addStepBtn": "#btn-add-step",
-        "step1Name": "#name",
+        "removeEveryoneTeamBtn": "div.app-select-dropdown__multi-value__remove",
+
+        "stepTaskListMultipleClicks": "div.local-step-activities button:nth-child(3)",
+        "addTaskMultipleClicks": "div.step-activity-options--button button"
+    },
+    "stepData": {
+        "stepName": "#name",
         "addTeamsMultipleSelect": {
             "dropdown": "label:nth-child(2) div.app-select-dropdown__indicator .accordion-button",
             "input": "[id='form.selectTeams']",
             "options": "div.app-select-dropdown__option"
         }, 
-        "stepDescription": "#description",
-        "stepTaskListBtn": "div.local-step-activities button:nth-child(3)",
-        "activityLabel": "#label",
-        "activityDescription": "div.step-activity #description",
-        "task1": "div.step-activity-tasklist input[title='Label']",
-        "addTask2Btn": "div.step-activity-options--button button",
-        "task2": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) input[title='Label']",
-        "task2IsRequiredBtn": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) span.checkbox-text",
-        "addTask3Btn": "div.step-activity-options--button button",
-        "task3": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) input[title='Label']",
-        "task3IsRequiredBtn": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) span.checkbox-text",
-
-        "saveBtn": "button.btn.btn__success",
-        "@createStep": 200,
-        "templateName": "#name",
-        "summary": "#description",
-        "saveAndPublishBtn": "button.btn.btn__success"
+        "stepDescription": "#description"
+    },
+    "activities": {
+        "activityLabelMultipleInputs": "div.step-activity #label",
+        "activityDescriptionMultipleInputs": "div.step-activity #description",
+        "task1MultipleInputs": "div.step-activity:nth-child(1) div.step-activity-tasklist--item input[title='Label']",
+        "task2MultipleInputs": "div.step-activity:nth-child(2) div.step-activity-tasklist--item input[title='Label']",
+        "task2IsRequiredMultipleButton": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) span.checkbox-text",
+        "task3MultipleInputs": "div.step-activity:nth-child(3) div.step-activity-tasklist--item input[title='Label']",
+        "task3IsRequiredMultipleButton": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) span.checkbox-text"
+    },
+    "saveStepInvalid": {
+        "@createStep": 400,
+        "stepNameBorderError": "#name",
+        "stepNameTextErrorMessage": {
+            "field": "#name",
+            "parentElement": "label.text-field",
+            "errorMessage": ".invalid-feedback"
+        },
+        "selectTeamTextErrorMessage": {
+            "field": "[id='form.selectTeams']",
+            "parentElement": "div.local-step-form--head label",
+            "errorMessage": ".invalid-feedback"
+        },
+        "activityLabelBorderError": "div.step-activity #label",
+        "activityLabelTextErrorMessage": {
+            "field": "div.step-activity #label",
+            "parentElement": "label.text-field",
+            "errorMessage": ".invalid-feedback"
+        },
+        "task1BorderError": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(1) input[title='Label']",
+        "task1TextErrorMessage": {
+            "field": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(1) input[title='Label']",
+            "parentElement": "label.text-field",
+            "errorMessage": ".invalid-feedback"
+        },
+        "task2BorderError": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(1) input[title='Label']",
+        "task2TextErrorMessage": {
+            "field": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(1) input[title='Label']",
+            "parentElement": "label.text-field",
+            "errorMessage": ".invalid-feedback"
+        },
+        "task3BorderError": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(1) input[title='Label']",
+        "task3TextErrorMessage": {
+            "field": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(1) input[title='Label']",
+            "parentElement": "label.text-field",
+            "errorMessage": ".invalid-feedback"
+        }
+    },
+    "saveStepValid": {
+        "@createStep": 200
     },
     "details": {
         "@searchTemplate": 200,
         "templateName": "div.teams-details--main-header h4",
         "summary": "ul.teams-details--main-body li:nth-child(2)",
         "addedTeamsBeVisible": "ul.teams-details--main-body li:nth-child(4)"
-    }
+    },
+    "addTemplateBtn": "div.page--title button.btn:nth-child(1)",
+    "saveStepBtn": "button.btn.btn__success",
+    "saveAndPublishBtn": "button.btn.btn__success"
 }
