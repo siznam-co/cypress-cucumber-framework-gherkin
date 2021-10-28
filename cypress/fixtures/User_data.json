@@ -1,12 +1,12 @@
 {
     "creates": {
-        "email": "thqa13119+User6@gmail.com",
-        "userName": "qabot+User6",
+        "email_UNIQUE": "thqa13119+User1@gmail.com",
+        "userName_UNIQUE": "User_1",
         "password": "Ampliflow@test-2",
         "confirmPassword": "Ampliflow@test-2"
     },
     "details": {
-        "email": "thqa13119+User6@gmail.com",
-        "userName": "qabot+User6"
+        "email_UNIQUE": "thqa13119+User1@gmail.com",
+        "userName_UNIQUE": "User_1"
     }
 }

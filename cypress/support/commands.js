@@ -66,6 +66,7 @@ Cypress.Commands.add("loginWithUI", (username, password) => {
 
 Cypress.Commands.add("runRoutes", () => {
 
+    cy.intercept("POST", "/api/user").as("createUser")
     cy.intercept("POST", "/api/team2").as("createTeam") 
     cy.intercept("POST", "/api/step/validate").as("createStep")
     cy.intercept("POST", "/api/template/list").as("searchTemplate")
@@ -73,4 +74,5 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/template").as("createTemplate")
     cy.intercept("PUT", "/api/template").as("updateTemplate")    
     cy.intercept("GET", "/api/team/published").as("publishTemplate")
+    cy.intercept("POST", "/api/stepinstance/finalize").as("finalizeStep")
 })

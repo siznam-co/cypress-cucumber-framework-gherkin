@@ -1,0 +1,112 @@
+{
+    "id": "f43c0468-234d-4a58-803c-229ab13671eb",
+    "workflowVersionId": "cea99494-57b7-4843-a99d-188705bba017",
+    "name": "qabot+888d09844281",
+    "description": "This Template is created by QA Bot.",
+    "selectedStepIds": [
+        "960610d5-a88d-4ad6-a50a-e38fb6b798f9"
+    ],
+    "deletedStepIds": [],
+    "replacedIds": {},
+    "index": 0,
+    "saveAsDraft": false,
+    "stepRequests": [
+        {
+            "id": "960610d5-a88d-4ad6-a50a-e38fb6b798f9",
+            "stepVersionId": "a14594e4-eca7-47e6-a169-073ef4dbc383",
+            "name": "QA Bot Step1",
+            "description": "QA Bot Step Description",
+            "type": 0,
+            "isDefaultDeviationStep": false,
+            "isTeamEveryone": false,
+            "activities": [
+                {
+                    "id": "d62cc2be-f079-4e04-b574-14586811dd2d",
+                    "label": "QA Bot: Perform below tasks :: one",
+                    "placeholder": "",
+                    "type": 1,
+                    "attachments": [],
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "description": "Test activity description :: one",
+                    "activityList": [
+                        {
+                            "id": "0dede6bf-4619-4976-a6d0-5603d97e9c46",
+                            "label": "Perform Smoke Testing :: one",
+                            "isRequired": false
+                        },
+                        {
+                            "id": "cf85ed4a-137d-4379-8c3e-f08ddb1fc30c",
+                            "label": "Perform Smoke Testing :: two",
+                            "isRequired": true
+                        },
+                        {
+                            "id": "a5d8ca43-446a-4bd2-b015-44a4233a4e38",
+                            "label": "Perform Smoke Testing :: three",
+                            "isRequired": true
+                        }
+                    ]
+                },
+                {
+                    "id": "faa78b99-d190-40ea-abfe-522f04ea7011",
+                    "label": "QA Bot: Perform below tasks :: two",
+                    "placeholder": "",
+                    "type": 1,
+                    "attachments": [],
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "description": "Test activity description :: two",
+                    "activityList": [
+                        {
+                            "id": "458285a3-d348-4894-a312-ee096504bfcc",
+                            "label": "Perform Exploratory Testing :: one",
+                            "isRequired": false
+                        },
+                        {
+                            "id": "93b935f0-e9ec-499c-b381-652950f39c2f",
+                            "label": "Perform Exploratory Testing :: two",
+                            "isRequired": true
+                        },
+                        {
+                            "id": "57c9d0cd-16f8-481c-bf3c-e2666d62ec6b",
+                            "label": "Perform Exploratory Testing :: three",
+                            "isRequired": true
+                        }
+                    ]
+                },
+                {
+                    "id": "1c23a8d0-82e5-4673-933a-c3c89b59f66d",
+                    "label": "QA Bot: Perform below tasks :: three",
+                    "placeholder": "",
+                    "type": 1,
+                    "attachments": [],
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "description": "Test activity description :: three",
+                    "activityList": [
+                        {
+                            "id": "df31c040-22b9-4155-b4ad-8627cd43b6e8",
+                            "label": "Perform Regression Testing :: one",
+                            "isRequired": false
+                        },
+                        {
+                            "id": "b0282ab8-64b4-4afa-92f1-9b162b0a987b",
+                            "label": "Perform Regression Testing :: two",
+                            "isRequired": true
+                        },
+                        {
+                            "id": "b8837d5b-1980-466b-b8f3-a46dd350c47b",
+                            "label": "Perform Regression Testing :: three",
+                            "isRequired": true
+                        }
+                    ]
+                }
+            ],
+            "teamIds": [
+            ],
+            "equipmentIds": [],
+            "isLocal": true,
+            "saveAsDraft": true
+        }
+    ]
+}

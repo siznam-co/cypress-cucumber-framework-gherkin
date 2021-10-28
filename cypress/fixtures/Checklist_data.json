@@ -1,11 +1,11 @@
 {
     "creates": {
         "addChecklistHeaderContainsText": "Run Checklist",
-        "checklistName": "qabot+Checklist11",
-        "addTemplateSingleSelect": "qabot+Template"
+        "checklistName_UNIQUE": "Checklist_1",
+        "addTemplateMultipleSelect": "Template_1"
     },
     "details": {
-        "checklistName": "qabot+Checklist11",
+        "checklistName_UNIQUE": "Checklist_1",
         "description": "This Template is created by QA Bot."
     }
 }

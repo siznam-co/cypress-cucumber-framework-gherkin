@@ -1,6 +1,6 @@
 {
     "creates": {
-        "templateName": "qabot+Template3",
+        "templateName_UNIQUE": "Template_3",
         "summary": "This Template is created by QA Bot."
     },
     "saveAndPublishInvalid": {
@@ -16,7 +16,7 @@
     },
     "stepData": {
         "stepName": "QA Bot Step1",
-        "addTeamsMultipleSelect": "qabot+Team",
+        "addTeamsMultipleSelect": "Team_",
         "stepDescription": "QA Bot Step Description"
     },
     "activities": {
@@ -54,7 +54,7 @@
     },
     "saveStepValid": {},
     "details": {
-        "templateName": "qabot+Template3",
+        "templateName_UNIQUE": "Template_3",
         "summary": "This Template is created by QA Bot."
     }
 }

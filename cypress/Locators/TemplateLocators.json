@@ -1,6 +1,6 @@
 {
     "creates": {
-        "templateName": "#name",
+        "templateName_UNIQUE": "#name",
         "summary": "#description"
     },
     "saveAndPublishInvalid": {
@@ -13,7 +13,6 @@
         }
     },
     "saveAndPublishValid": {
-        "@createTemplate": 200,
         "@publishTemplate": 200,
         "@searchTemplate": 200
     },
@@ -85,11 +84,11 @@
     },
     "details": {
         "@searchTemplate": 200,
-        "templateName": "div.teams-details--main-header h4",
+        "templateName_UNIQUE": "div.teams-details--main-header h4",
         "summary": "ul.teams-details--main-body li:nth-child(2)",
         "addedTeamsBeVisible": "ul.teams-details--main-body li:nth-child(4)"
     },
     "addTemplateBtn": "div.page--title button.btn:nth-child(1)",
-    "saveStepBtn": "button.btn.btn__success",
+    "saveStepBtn": "div.local-step-form--footer button.btn.btn__success",
     "saveAndPublishBtn": "button.btn.btn__success"
 }

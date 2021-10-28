@@ -1,0 +1,47 @@
+[
+    {
+        "id": "b8b0c214-1fbd-40e2-b4b4-d630fa6aa637",
+        "isArchived": false,
+        "userName": "user_1",
+        "email": "theqa13119+1@gmail.com",
+        "password": "123",
+        "password2": "123",
+        "roleIds": [
+            "be99dedf-cdd5-4fab-9569-63a481fb3715",
+            "690e5c52-5ae9-4a13-9f9f-d9ff73f25294",
+            "a0dc3fca-4ac3-4ffe-a1b5-98731a7d3efb",
+            "26f8ae24-8fbe-4494-9fcb-7165dc0b9c6c"
+        ],
+        "teamIds": []
+    },
+    {
+        "id": "be71ae99-b45d-4187-b5e4-555b8efb337a",
+        "isArchived": false,
+        "userName": "user_2",
+        "email": "theqa13119+2@gmail.com",
+        "password": "123",
+        "password2": "123",
+        "roleIds": [
+            "be99dedf-cdd5-4fab-9569-63a481fb3715",
+            "a0dc3fca-4ac3-4ffe-a1b5-98731a7d3efb",
+            "690e5c52-5ae9-4a13-9f9f-d9ff73f25294",
+            "26f8ae24-8fbe-4494-9fcb-7165dc0b9c6c"
+        ],
+        "teamIds": []
+    },
+    {
+        "id": "426bafa4-762e-4038-848a-8a86a7387c7b",
+        "isArchived": false,
+        "userName": "user_3",
+        "email": "theqa13119+3@gmail.com",
+        "password": "123",
+        "password2": "123",
+        "roleIds": [
+            "be99dedf-cdd5-4fab-9569-63a481fb3715",
+            "a0dc3fca-4ac3-4ffe-a1b5-98731a7d3efb",
+            "690e5c52-5ae9-4a13-9f9f-d9ff73f25294",
+            "26f8ae24-8fbe-4494-9fcb-7165dc0b9c6c"
+        ],
+        "teamIds": []
+    }
+]

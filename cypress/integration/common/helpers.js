@@ -11,6 +11,9 @@ const ChecklistLocators = require("../../Locators/ChecklistLocators.json")
 
 const modifierKey = Cypress.platform === "darwin" ? "meta" : "ctrl";
 
+// Below github uuid is unique during execution globally and use it for all user, team, templates, checklist, inventory etc operations.
+window.uniqueId = generateUUID()
+
 function getLocators(fieldsType) {
     switch (fieldsType) {
         case "User":
@@ -26,6 +29,18 @@ function getLocators(fieldsType) {
     }
 }
 
+function generateUUID() {
+    const uuid = require("uuid")
+    const id = uuid.v4()
+    return id.split("-")[4]
+}
+
+export function generateFullUUID() {
+    const uuid = require("uuid")
+    const id = uuid.v4()
+    return id
+}
+
 function getColor(type) {
     switch (type) {
         case "valid":
@@ -36,8 +51,8 @@ function getColor(type) {
 }
 
 function numToWords(num) {
-    var a = ["","one ","two ","three ","four ", "five ","six ","seven ","eight ","nine ","ten ","eleven ","twelve ","thirteen ","fourteen ","fifteen ","sixteen ","seventeen ","eighteen ","nineteen "];
-    var b = ["", "", "twenty","thirty","forty","fifty", "sixty","seventy","eighty","ninety"];
+    var a = ["", "one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", "nine ", "ten ", "eleven ", "twelve ", "thirteen ", "fourteen ", "fifteen ", "sixteen ", "seventeen ", "eighteen ", "nineteen "];
+    var b = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
     if ((num = num.toString()).length > 9) return "overflow"
     let n = ("000000000" + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/)
@@ -50,24 +65,16 @@ function numToWords(num) {
     return str.trim()
 }
 
-export function getUniqueName(previousName, role) {   // theqa13119+User1
-    let firstHalf = previousName.split("+")[0]                   // theqa13119
-    let secondHalf = previousName.split("+")[1]                  // User1@gmail.com
-    let uniqueValue = secondHalf.split("@")[0]                    // User1
-    let uniqueNumber = uniqueValue.split(role)[1]                 // 1
-    uniqueNumber = parseInt(uniqueNumber) + 1                     // 1 + 1
-    let newName = firstHalf + "+" + role + uniqueNumber    // theqa13119 + '+' + User + 2 
+export function getUniqueName(previousName) {   // theqa13119+User1
+    let firstHalf = previousName.split("_")[0]
+    let newName = firstHalf + "_" + window.uniqueId    // theqa13119 + '+' + asdj23j 
     return newName
 }
 
-export function getUniqueEmail(previousEmail, role) { // theqa13119+User1@gmail.com
+export function getUniqueEmail(previousEmail) { // theqa13119+User1@gmail.com
     let firstHalf = previousEmail.split("+")[0]                   // theqa13119
-    let secondHalf = previousEmail.split("+")[1]                  // User1@gmail.com
-    let thirdHalf = secondHalf.split("@")[1]                      // gmail.com
-    let uniqueValue = secondHalf.split("@")[0]                    // User1
-    let uniqueNumber = uniqueValue.split(role)[1]                 // 1
-    uniqueNumber = parseInt(uniqueNumber) + 1                     // 1 + 1
-    let newEmail = firstHalf + "+" + role + uniqueNumber + "@" + thirdHalf    // theqa13119 + '+' + User + 2 + '@' + gmail.com
+    let secondHalf = previousEmail.split("@")[1]                      // gmail.com
+    let newEmail = firstHalf + "+" + window.uniqueId + "@" + secondHalf    // theqa13119 + '+' + 23jkq3jkbf + '@' + gmail.com
     return newEmail
 }
 
@@ -124,8 +131,13 @@ export function createOperation(operation, fieldsType) {
             } else if (loc.includes("SingleSelect")) {
 
                 cy.get(Locs[loc]["dropdown"]).click()
-                cy.get(Locs[loc]["input"]).type(data[loc])
-                cy.get(Locs[loc]["options"]).click()
+                if (loc.includes("_UNIQUE")) {
+                    cy.get(Locs[loc]["input"]).type(getUniqueName(data[loc]))
+                    cy.get(Locs[loc]["options"]).eq(0).click()
+                } else { 
+                    cy.get(Locs[loc]["input"]).type(data[loc])
+                    cy.get(Locs[loc]["options"]).eq(0).click()
+                }
                 cy.get(Locs[loc]["dropdown"]).click()
 
             } else if (loc.includes("TextButton")) {
@@ -179,6 +191,13 @@ export function createOperation(operation, fieldsType) {
                     cy.wrap(col).clear()
                     cy.wrap(col).type(data[loc] + numToWords(index + 1))
                 })
+            } else if (loc.includes("_UNIQUE")) {
+                cy.get(Locs[loc]).clear()
+                if (loc.includes("Name")) {
+                    cy.get(Locs[loc]).type(getUniqueName(data[loc]))
+                } else {
+                    cy.get(Locs[loc]).type(getUniqueEmail(data[loc]))
+                }
             } else {
                 cy.get(Locs[loc]).clear()
                 cy.get(Locs[loc]).type(data[loc])
@@ -289,6 +308,13 @@ export function readOperation(operation, fieldsType) {
             } else if (loc.includes("@")) {
                 cy.wait(loc).its("response.statusCode").should("eq", Locs[loc])
 
+            } else if (loc.includes("_UNIQUE")) {
+                cy.get(Locs[loc]).invoke("text").then(copy => {
+                    if (loc.includes("Name"))
+                        expect(copy).to.equal(getUniqueName(data[loc]))
+                    else
+                        expect(copy).to.equal(getUniqueEmail(data[loc]))
+                })
             } else {
                 cy.get(Locs[loc]).invoke("text").then(copy => {
                     expect(copy).to.equal(data[loc])
@@ -298,7 +324,7 @@ export function readOperation(operation, fieldsType) {
     })
 }
 
-Given("The user is logged in successfully.", () => {
+Given("the user is logged in successfully.", () => {
     cy.get(commonLocators.sideNavMenu).should("be.visible")
 })
 
@@ -319,18 +345,12 @@ When("the user navigates to the {string} screen.", (screen) => {
     cy.get(commonLocators.menuBtn).contains(screen).click()
 })
 
-Then("The user should be moved to the {string}.", (screen) => {
+Then("the user should be moved to the {string}.", (screen) => {
     cy.get(commonLocators.pageHeading).should("contain", screen)
 })
 
-Then("the {string} should be created successfully.", (fieldsType) => {
-    cy.fixture(fieldsType + "_data").then(returnedData => {
-        // Storing name for future records create operation
-        let newName = getUniqueName(returnedData.creates[fieldsType.toLowerCase() + "Name"], fieldsType)
-        returnedData.creates[fieldsType.toLowerCase() + "Name"] = newName
-        returnedData.details[fieldsType.toLowerCase() + "Name"] = newName
-        cy.writeFile("cypress/fixtures/" + fieldsType + "_data.json", JSON.stringify(returnedData))
-    })
+Then("the {string} operation should be successful for the {string}.", (operation, fieldsType) => {
+    cy.wait("@" + operation).its("response.statusCode").should("eq", 200)
 })
 
 When("the user hits the {string} button at {string} screen.", (btn, btnType) => {

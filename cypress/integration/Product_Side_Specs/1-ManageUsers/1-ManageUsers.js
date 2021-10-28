@@ -8,27 +8,11 @@ When("the user hits {string} button.", (btn) => {
     cy.get(UserLocators[btn]).click()
 })
 
-Then("the new email for the future {string} should be stored.", (fieldsType) => {
-    cy.fixture(fieldsType + "_data").then(returnedData => {
-        // Storing name for future records create operation
-        let newUserName = getUniqueName(returnedData.creates.userName, fieldsType) 
-            returnedData.creates.userName = newUserName
-            returnedData.details.userName = newUserName
-        
-            // Storing email for future records create operation
-            // If the future create operation has email too. 
-        let newEmail = getUniqueEmail(returnedData.creates.email, fieldsType)
-        returnedData.creates.email = newEmail
-        returnedData.details.email = newEmail
-        cy.writeFile("cypress/fixtures/User_data.json", JSON.stringify(returnedData))
-    })
-})
-
 When("the user adds {string} at the {string} screen.", (operation, fieldsType) => {
     createOperation(operation, fieldsType)
 })
 
-When("the user {string} the {string}.", (operation, fieldsType) => {
+When("the user {string} a {string}.", (operation, fieldsType) => {
     createOperation(operation, fieldsType)
 })
 

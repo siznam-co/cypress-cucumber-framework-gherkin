@@ -1,11 +1,11 @@
 {
     "creates": {
-        "teamName": "qabot+Team6",
-        "addUsersMultipleSelect": "qabot+User",
+        "teamName_UNIQUE": "Team_6",
+        "addUsersMultipleSelect": "user_",
         "description": "This team is created by QA Bot."
     },
     "details": {
-        "teamName": "qabot+Team6",
+        "teamName_UNIQUE": "Team_6",
         "description": "This team is created by QA Bot."
     }
 }

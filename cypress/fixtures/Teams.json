@@ -1,0 +1,15 @@
+{
+    "id": "09e3293d-48a0-4df7-ba33-b8573a45809b",
+    "isArchived": false,
+    "archivedByName": "",
+    "description": "Created through Api",
+    "name": "Team_1",
+    "checklistCount": 0,
+    "stepCount": 0,
+    "templateCount": 0,
+    "userIds": [
+        "b7dc1ddb-f72b-48fb-985e-45c32d5a2c5c",
+        "79374641-3fca-4880-8df9-2a2753e978fb",
+        "c923d5d1-5d78-40ff-855f-ddaa9f336c95"
+    ]
+}
