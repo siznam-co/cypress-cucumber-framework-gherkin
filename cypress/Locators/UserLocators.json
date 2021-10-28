@@ -1,15 +1,15 @@
 {
     "creates": {
-        "addUserBtn": "div.page--title button.btn",
-        "addUserHeaderContainsText": "div.page--title h1",
-        "email": "#email",
-        "userName": "#userName",
+        "email_UNIQUE": "#email",
+        "userName_UNIQUE": "#userName",
         "password": "#password", 
         "confirmPassword": "#password2",
         "saveBtn": "button.btn.btn__success"
     },
     "details": {
-        "userName": "div.user-details--main-header h4",
-        "email": "div.user-details--main-header h5"    
-    }
+        "userName_UNIQUE": "div.user-details--main-header h4",
+        "email_UNIQUE": "div.user-details--main-header h5"    
+    },
+    "addUserBtn": "div.page--title button.btn",
+    "@createUser": 200
 }
