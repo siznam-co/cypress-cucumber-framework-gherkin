@@ -4,6 +4,7 @@
         "summary": "This Template is created by QA Bot."
     },
     "saveAndPublishInvalid": {
+        "templateNameBorderError": "invalid",
         "templateNameTextErrorMessage": {
             "field": 1,
             "errorMessage": "The Name field is required."
@@ -27,6 +28,7 @@
         "task3MultipleInputs": "Perform Regression Testing :: "
     },
     "saveStepInvalid": {
+        "stepNameBorderError": "invalid",
         "stepNameTextErrorMessage": {
             "field": 1,
             "errorMessage": "Required"
@@ -35,18 +37,22 @@
             "field": 1,
             "errorMessage": "At least one team is required"
         },
+        "activityLabelBorderError": "invalid",
         "activityLabelTextErrorMessage": {
             "field": 3,
             "errorMessage": "Required"
         },
+        "task1BorderError": "invalid",
         "task1TextErrorMessage": {
             "field": 3,
             "errorMessage": "Required"
         },
+        "task2BorderError": "invalid",
         "task2TextErrorMessage": {
             "field": 3,
             "errorMessage": "Required"
         },
+        "task3BorderError": "invalid",
         "task3TextErrorMessage": {
             "field": 3,
             "errorMessage": "Required"

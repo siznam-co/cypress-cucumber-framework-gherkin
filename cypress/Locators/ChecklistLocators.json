@@ -1,9 +1,8 @@
 {
     "creates": {
-        "runChecklistBtn": "div.menu-section--nodes-header button.btn--quick-run",
         "addChecklistHeaderContainsText": "div.modal-header div.modal-title",
         "checklistName_UNIQUE": "[id='quickRunForm.Name']",
-        "addTemplateMultipleSelect": {
+        "addTemplateSingleSelect": {
             "dropdown": "div.app-select-dropdown__indicator .accordion-button",
             "input": "input[id*='react-select']",
             "options": "div.app-select-dropdown__option"
@@ -37,6 +36,7 @@
         "menuBtn": "div.menu-button__wrapper .icon-bordered",
         "deleteOptionBtn": "div ul.menu-button--menu-list li:nth-child(3)"
     },
+    "runChecklistBtn": "div.menu-section--nodes-header button.btn--quick-run",
     "finalizeBtn": "div.finalize-card__wrapper button",
     "@createChecklist": 200
 }

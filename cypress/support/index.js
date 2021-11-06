@@ -1,25 +1,28 @@
-// ***********************************************************
-// This example support/index.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
-
 // Import commands.js using ES2015 syntax:
 import './commands'
+const commonLocators = require("../Locators/commonLocators.json")
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-Cypress.on('uncaught:exception', (err, runnable) => {
-  // returning false here prevents Cypress from
-  // failing the test
-  return false
+
+before(() => {
+    // Login in to app.
+    cy.log("This is outer before call")
+    // cy.loginWithUI(Cypress.env("Username"), Cypress.env("Password"))
+    // cy.loginWithApi(Cypress.env("Username"), Cypress.env("Password"))
+
+})
+
+after(() => {
+    cy.clearLocalStorage()
+})
+
+beforeEach(() => {
+    cy.restoreLocalStorage()
+    cy.runRoutes()
+    Cypress.Cookies.preserveOnce('ai_session', 'ai_user', "intercom-session-kpptzcy2")
+})
+
+afterEach(() => {
+    cy.saveLocalStorage()
 })
