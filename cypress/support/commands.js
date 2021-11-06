@@ -4,8 +4,171 @@ import 'cypress-mailosaur'
 
 const commonLocators = require("../Locators/commonLocators.json")
 const SignInLocators = require("../Locators/SignInLocators.json")
+const UserLocators = require("../Locators/UserLocators.json")
+const TeamLocators = require("../Locators/TeamLocators.json")
+const TemplateLocators = require("../Locators/TemplateLocators.json")
+const ChecklistLocators = require("../Locators/ChecklistLocators.json")
 
 let LOCAL_STORAGE_MEMORY = {};
+
+const modifierKey = Cypress.platform === "darwin" ? "meta" : "ctrl";
+
+// Below github uuid is unique during execution globally and use it for all user, team, templates, checklist, inventory etc operations.
+window.uniqueId = generateUUID()
+
+function generateUUID() {
+    const uuid = require("uuid")
+    const id = uuid.v4()
+    return id.split("-")[4]
+}
+
+export function generateFullUUID() {
+    const uuid = require("uuid")
+    const id = uuid.v4()
+    return id
+}
+
+function getColor(type) {
+    switch (type) {
+        case "valid":
+            return "rgb(4, 9, 48)"
+        case "invalid":
+            return "rgb(255, 130, 130)"
+    }
+}
+
+function numToWords(num) {
+    var a = ["", "one ", "two ", "three ", "four ", "five ", "six ", "seven ", "eight ", "nine ", "ten ", "eleven ", "twelve ", "thirteen ", "fourteen ", "fifteen ", "sixteen ", "seventeen ", "eighteen ", "nineteen "];
+    var b = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+
+    if ((num = num.toString()).length > 9) return "overflow"
+    let n = ("000000000" + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/)
+    if (!n) return; var str = ""
+    str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + " " + a[n[1][1]]) + "crore " : ""
+    str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + " " + a[n[2][1]]) + "lakh " : ""
+    str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + " " + a[n[3][1]]) + "thousand " : ""
+    str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + " " + a[n[4][1]]) + "hundred " : ""
+    str += (n[5] != 0) ? ((str != "") ? "and " : "") + (a[Number(n[5])] || b[n[5][0]] + " " + a[n[5][1]]) : ""
+    return str.trim()
+}
+
+export function getUniqueName(previousName) {   // theqa13119+User1
+    let firstHalf = previousName.split("_")[0]
+    let newName = firstHalf + "_" + window.uniqueId    // theqa13119 + '+' + asdj23j 
+    return newName
+}
+
+export function getUniqueEmail(previousEmail) { // theqa13119+User1@gmail.com
+    let firstHalf = previousEmail.split("+")[0]                   // theqa13119
+    let secondHalf = previousEmail.split("@")[1]                      // gmail.com
+    let newEmail = firstHalf + "+" + window.uniqueId + "@" + secondHalf    // theqa13119 + '+' + 23jkq3jkbf + '@' + gmail.com
+    return newEmail
+}
+
+export function getAfterValue(selector, pseudo, property) {
+    cy.get(selector)
+        .parent().then($els => {
+            // get Window reference from element
+            const win = $els[0].ownerDocument.defaultView
+            // use getComputedStyle to read the pseudo selector
+            const after = win.getComputedStyle($els[0], pseudo)
+            // read the value of the `content` CSS property
+            const contentValue = after.getPropertyValue(property)
+            // the returned value will have double quotes around it, but this is correct
+            return contentValue
+            // expect(contentValue).to.eq("rgb(229, 57, 53)")
+        })
+}
+
+Cypress.Commands.add("enterUniqueName", (locator, value) => {
+    cy.get(locator).clear()
+    cy.get(locator).type(getUniqueName(value))
+})
+
+Cypress.Commands.add("enterUniqueEmail", (locator, value) => {
+    cy.get(locator).clear()
+    cy.get(locator).type(getUniqueEmail(value))
+})
+
+Cypress.Commands.add("getUniqueName", (locator, value) => {
+    cy.get(locator).invoke("text").then(copy => {
+        expect(copy).to.equal(getUniqueName(value))
+    })
+})
+
+Cypress.Commands.add("getUniqueEmail", (locator, value) => {
+    cy.get(locator).invoke("text").then(copy => {
+        expect(copy).to.equal(getUniqueEmail(value))
+    })
+})
+
+Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
+    
+    if (type.includes("MultipleSelect")) {
+
+        cy.get(dropdown["dropdown"]).click()
+        cy.get(dropdown["input"]).type(value)
+        cy.get(dropdown["options"]).each((col, index, list) => {
+            if (index >= 3)
+                return
+            cy.wrap(col).click({ force: true })
+        })
+        cy.get(dropdown["dropdown"]).click()
+
+    } else {
+
+        cy.get(dropdown["dropdown"]).click()
+        if (type.includes("_UNIQUE")) {
+            cy.get(dropdown["input"]).type(getUniqueName(value))
+            cy.get(dropdown["options"]).eq(0).click()
+        } else { 
+            cy.get(dropdown["input"]).type(value)
+            cy.get(dropdown["options"]).eq(0).click()
+        }
+    }
+})
+
+Cypress.Commands.add("elementMultipleClicks", (selector, i) => {
+    while (i != 0) {
+        cy.get(selector).click({ force: true, multiple: true })
+        i = i - 1
+    }
+})
+
+Cypress.Commands.add("assertTextErrorMessage", (selector, data) => {
+    cy.get(selector["field"]).each((col, index, list) => {
+        cy.wrap(col)
+            .parents(selector["parentElement"])
+            .find(selector["errorMessage"])
+            .should("have.text", data["errorMessage"])
+        expect(index).to.be.lessThan(data["field"])
+    })
+})
+
+Cypress.Commands.add("assertBorderError", (selector, type) => {
+    cy.get(selector).each((col, index, list) => {
+        cy.wrap(col)
+            .parent()
+            .should("have.css", "border-color", getColor(type))
+    })
+})
+
+Cypress.Commands.add("assertMandatoryFieldLabelError", (selector, type) => {
+    cy.get(selector["mandatorySign"]).each((col, index, list) => {
+        cy.wrap(col)
+            .parents(selector["parentElement"])
+            .find(selector["fieldLabel"])
+            .should("have.css", "color", getColor(type))
+    })
+
+})
+
+Cypress.Commands.add("enterMultipleInputs", (selector, data) => {
+    cy.get(selector).each((col, index, list) => {
+        cy.wrap(col).clear()
+        cy.wrap(col).type(data + numToWords(index + 1))
+    })
+})
 
 Cypress.Commands.add("saveLocalStorage", () => {
     Object.keys(localStorage).forEach(key => {
@@ -47,6 +210,7 @@ Cypress.Commands.add("loginWithApi", (username, password) => {
             window.localStorage.setItem("i18nextLng", "en")
             cy.log("The user logged in successfully")
             cy.visit("/login")
+            cy.get(commonLocators.sideNavMenu).should("be.visible")
         })
     })
 })
@@ -62,6 +226,212 @@ Cypress.Commands.add("loginWithUI", (username, password) => {
     cy.get(SignInLocators.rememberCheckBox).click()
 
     cy.get(SignInLocators.submitButton).click()
+})
+
+Cypress.Commands.add("createUsersUsingApi", () => {
+    let userID = generateFullUUID()
+
+    cy.fixture("Users").then(newUser => {
+        for (let user in newUser) {
+            newUser[user]["id"] = userID
+            let name = newUser[user]["userName"]
+            cy.log(newUser[user]["userName"])
+            let profileData = window.localStorage.getItem("profile")
+            let token = JSON.parse(profileData)["token"]
+            let cookiesArr = ""
+            cy.getCookies()
+                .then((cookies) => {
+                    for (let cookie in cookies) {
+                        cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+                    }
+
+                    cy.request({
+                        method: "POST",
+                        url: "/api/User/list",
+                        headers: {
+                            "Host": Cypress.config().baseUrl.split("//")[1],
+                            "Connection": "keep-alive",
+                            "Accept": "application/json, text/plain, */*",
+                            "Authorization": "Bearer " + token,
+                            "Origin": Cypress.config().baseUrl,
+                            "Referer": Cypress.config().baseUrl + "/users",
+                            "cookie": cookiesArr
+                        },
+                        body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+                    }).then((response) => {
+                        expect(response.status).equal(200)
+                        if (response.body.totalCount == 0) {
+                            cy.request({
+                                method: "POST",
+                                url: "/api/user",
+                                headers: {
+                                    "Host": Cypress.config().baseUrl.split("//")[1],
+                                    "Connection": "keep-alive",
+                                    "Accept": "application/json, text/plain, */*",
+                                    "Authorization": "Bearer " + token,
+                                    "Origin": Cypress.config().baseUrl,
+                                    "Referer": Cypress.config().baseUrl + "/templates/add",
+                                    "cookie": cookiesArr
+                                },
+                                body: newUser[user]
+                            }).then((response) => {
+                                expect(response.status).equal(200)
+                            })
+                        } else {
+                            cy.log("This User is already created.")
+                        }
+                    })
+
+                })
+        }
+    })
+})
+
+Cypress.Commands.add("createTeamsUsingApi", () => {
+    let TeamID = generateFullUUID()
+
+    cy.fixture("Teams").then(newTeam => {
+        newTeam.id = TeamID
+        let name = newTeam.name
+        let profileData = window.localStorage.getItem("profile")
+        let token = JSON.parse(profileData)["token"]
+        let cookiesArr = ""
+        cy.getCookies()
+            .then((cookies) => {
+                for (let cookie in cookies) {
+                    cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+                }
+
+                // Create Users if not existed previously.
+                cy.createUsersUsingApi()
+
+                cy.request({
+                    method: "POST",
+                    url: "/api/User/list",
+                    headers: {
+                        "Host": Cypress.config().baseUrl.split("//")[1],
+                        "Connection": "keep-alive",
+                        "Accept": "application/json, text/plain, */*",
+                        "Authorization": "Bearer " + token,
+                        "Origin": Cypress.config().baseUrl,
+                        "Referer": Cypress.config().baseUrl + "/users",
+                        "cookie": cookiesArr
+                    },
+                    body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": "user_" }
+                }).then((response) => {
+                    expect(response.status).equal(200)
+
+                    let allUsers = response.body.items
+                    let selectedUsersIds = []
+
+                    for (let user in allUsers) {
+                        selectedUsersIds[user] = allUsers[user]["id"]
+                    }
+                    newTeam.userIds = selectedUsersIds
+
+                    cy.request({
+                        method: "POST",
+                        url: "/api/team2/list",
+                        headers: {
+                            "Host": Cypress.config().baseUrl.split("//")[1],
+                            "Connection": "keep-alive",
+                            "Accept": "application/json, text/plain, */*",
+                            "Authorization": "Bearer " + token,
+                            "Origin": Cypress.config().baseUrl,
+                            "Referer": Cypress.config().baseUrl + "/teams",
+                            "cookie": cookiesArr
+                        },
+                        body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+                    }).then((response) => {
+                        expect(response.status).equal(200)
+                        if (response.body.totalCount == 0) {
+                            cy.request({
+                                method: "POST",
+                                url: "/api/team2",
+                                headers: {
+                                    "Host": Cypress.config().baseUrl.split("//")[1],
+                                    "Connection": "keep-alive",
+                                    "Accept": "application/json, text/plain, */*",
+                                    "Authorization": "Bearer " + token,
+                                    "Origin": Cypress.config().baseUrl,
+                                    "Referer": Cypress.config().baseUrl + "teams/add",
+                                    "cookie": cookiesArr
+                                },
+                                body: newTeam
+                            }).then((response) => {
+                                expect(response.status).equal(200)
+                            })
+                        } else {
+                            cy.log("This Team is already created.")
+                        }
+                    })
+                })
+            })
+    })
+})
+
+
+Cypress.Commands.add("createTemplateUsingApi",() => {
+    let templateId = generateFullUUID()
+    let workflowVersionId = generateFullUUID()
+    let stepId = generateFullUUID()
+    let name = "Template_1"
+
+    cy.fixture("Templates").then(newTemplate => {
+        newTemplate.id = templateId
+        newTemplate.workflowVersionId = workflowVersionId
+        newTemplate.name = name
+        newTemplate["stepRequests"][0]["id"] = stepId
+
+        let profileData = window.localStorage.getItem("profile")
+        let token = JSON.parse(profileData)["token"]
+        let cookiesArr = ""
+        cy.getCookies()
+            .then((cookies) => {
+                for (let cookie in cookies) {
+                    cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+                }
+
+                cy.request({
+                    method: "POST",
+                    url: "/api/template/list",
+                    headers: {
+                        "Host": Cypress.config().baseUrl.split("//")[1],
+                        "Connection": "keep-alive",
+                        "Accept": "application/json, text/plain, */*",
+                        "Authorization": "Bearer " + token,
+                        "Origin": Cypress.config().baseUrl,
+                        "Referer": Cypress.config().baseUrl + "/templates",
+                        "cookie": cookiesArr
+                    },
+                    body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "showDrafts": true, "keywordSearch": name }
+                }).then((response) => {
+                    expect(response.status).equal(200)
+                    if (response.body.totalCount == 0) {
+                        cy.request({
+                            method: "POST",
+                            url: "/api/template",
+                            headers: {
+                                "Host": Cypress.config().baseUrl.split("//")[1],
+                                "Connection": "keep-alive",
+                                "Accept": "application/json, text/plain, */*",
+                                "Authorization": "Bearer " + token,
+                                "Origin": Cypress.config().baseUrl,
+                                "Referer": Cypress.config().baseUrl + "/templates/add",
+                                "cookie": cookiesArr
+                            },
+                            body: newTemplate
+                        }).then((response) => {
+                            expect(response.status).equal(200)
+                        })
+                    } else {
+                        cy.log("The template is already created.")
+                    }
+                })
+
+            })
+
+    })
 })
 
 Cypress.Commands.add("runRoutes", () => {

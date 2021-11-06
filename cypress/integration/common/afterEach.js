@@ -1,3 +1,0 @@
-afterEach(() => {
-    cy.saveLocalStorage();
-})

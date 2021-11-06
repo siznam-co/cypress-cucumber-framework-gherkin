@@ -11,7 +11,7 @@
     },
     "details": {
         "teamName_UNIQUE": "div.teams-details--main-header h4",
-        "description": "ul.teams-details--main-body li:nth-child(2)",
+        "description": "ul.teams-details--main-body li:nth-child(2) p",
         "addedUsersBeVisible": "ul.teams-details--main-body li:nth-child(4)"
     },
     "addTeamBtn": "div.page--title button.btn"

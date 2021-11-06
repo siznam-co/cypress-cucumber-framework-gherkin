@@ -1,9 +1,14 @@
 {
     "creates": {
-        "addChecklistHeaderContainsText": "Run Checklist",
         "checklistName_UNIQUE": "Checklist_1",
-        "addTemplateMultipleSelect": "Template_1"
+        "addTemplateSingleSelect": "Template_1"
     },
+    "finalizeInvalid": {
+        "mandatoryFieldLabel": "invalid"
+    },
+    "finalizeValid": {
+        "mandatoryFieldLabel": "valid"
+    },    
     "details": {
         "checklistName_UNIQUE": "Checklist_1",
         "description": "This Template is created by QA Bot."

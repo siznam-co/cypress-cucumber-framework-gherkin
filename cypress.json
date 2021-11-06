@@ -3,26 +3,16 @@
   "defaultCommandTimeout": 20000,
   "requestTimeout": 21000,
   "pageLoadTimeout": 60000,
-  "video": false,
   "videoUploadOnPasses": false,
   "chromeWebSecurity": true,
-  "reporter": "mochawesome",
-  "reporterOptions": {
-    "reportDir": "results",
-    "overwrite": false,
-    "html": true,
-    "json": false,
-    "charts": true
-  },
   "viewportHeight": 1080,
   "viewportWidth": 1920,
   "retries": {
     "runMode": 2,
     "openMode": 0
   },
-  "testFiles": "**/*.feature",
+  "testFiles": "**/*.js",
   "ignoreTestFiles": [
-    "*.js",
     "*.ts",
     "*.md"
   ],
@@ -30,5 +20,5 @@
     "Username": "admin1@dev.com",
     "Password": "origin-baseman-flutist"
   },
-  "projectId": "24jzhx"
+  "projectId": "yjbdc6"
 }
