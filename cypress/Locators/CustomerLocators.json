@@ -1,0 +1,30 @@
+{
+    "creates": {
+        "customerId": "#customerId",
+        "vatNumber": "#vatNumber",
+        "customerName_UNIQUE": "#businessName",
+        "address": "#address",
+        "city": "#city",
+        "postalCode": "#postalCode",
+        "phone": "#phone",
+        "customerEmail_UNIQUE": "#email",
+        "website": "#website",
+        "notes": "#notes",
+        "saveBtn": "button.btn.btn__success"
+    },
+    "archiveBtn": ".customer-details--main-footer button.btn__bordered", 
+    "modalConfrimBtn": "div.modal-footer button.btn__blue",
+    "deleteBtn": ".customer-details--main-footer button.btn__danger",
+    
+    "details": {
+        "customerName_UNIQUE": "div.customer-details--main-header h4",
+        "customerId": "div.customer-details--main-header h5",
+        "addressAndCity": "ul.customer-details--main-body li:nth-child(1)",
+        "phone": "ul.customer-details--main-body li:nth-child(2)",
+        "website": "ul.customer-details--main-body li:nth-child(3) a",
+        "customerEmail_UNIQUE": "ul.customer-details--main-body li:nth-child(4)",
+        "postalCode": "ul.customer-details--main-body li:nth-child(5)",
+        "notes": "ul.customer-details--main-body li:nth-child(6)"
+    },
+    "addCustomerBtn": "div.page--title button.btn"
+}

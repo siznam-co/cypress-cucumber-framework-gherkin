@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 import { getUniqueName, convertedDateForm} from "../../support/commands.js"
 
-const equipmentLocators = require("../../Locators/equipmentLocators.json")
+const equipmentLocators = require("../../Locators/EquipmentLocators.json")
 const commonLocators = require("../../Locators/commonLocators.json")
 
 describe("Add new Equipment and add users to it.", () => {
@@ -22,8 +22,8 @@ describe("Add new Equipment and add users to it.", () => {
         cy.get(commonLocators.pageHeading).should("contain", "New Equipment")
 
         cy.fixture("Equipment_data").then(data => {
-            cy.enterUniqueName(equipmentLocators.creates.equipmentName_UNIQUE, "Equip_1")
-            cy.get(equipmentLocators.creates.idNumber).type(window.uniqueId)
+            cy.enterUniqueName(equipmentLocators.creates.equipmentName_UNIQUE, data.creates.equipmentName_UNIQUE)
+            cy.get(equipmentLocators.creates.idNumber).type(window.uniqueId) // Defined in Commands.js
             cy.get(equipmentLocators.creates.nextDate).type(data.creates.nextDate)
             cy.get(equipmentLocators.creates.description).type(data.creates.description)
             cy.get(equipmentLocators.creates.comments).type(data.creates.comments)
@@ -33,7 +33,7 @@ describe("Add new Equipment and add users to it.", () => {
             cy.get(commonLocators.pageHeading).should("contain", "Equipment Details")
 
             cy.readUniqueName(equipmentLocators.details.equipmentName_UNIQUE, data.creates.equipmentName_UNIQUE)
-            cy.get(equipmentLocators.details.idNumber).should("have.text", "#" + window.uniqueId)
+            cy.get(equipmentLocators.details.idNumber).should("have.text", "#" + window.uniqueId) // Defined in Commands.js
             cy.get(equipmentLocators.details.nextDate).should("contain", convertedDateForm(data.creates.nextDate))
             cy.get(equipmentLocators.details.description).should("have.text", data.creates.description)
             cy.get(equipmentLocators.details.comments).should("have.text", data.creates.comments)
