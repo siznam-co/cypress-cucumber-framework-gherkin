@@ -286,6 +286,37 @@ Cypress.Commands.add("createUsersUsingApi", () => {
     })
 })
 
+Cypress.Commands.add("assertUser", (name, operation) => {
+
+    let profileData = window.localStorage.getItem("profile")
+    let token = JSON.parse(profileData)["token"]
+    let cookiesArr = ""
+    cy.getCookies().then((cookies) => {
+        for (let cookie in cookies) {
+            cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+        }
+
+        cy.request({
+            method: "POST",
+            url: "/api/User/list",
+            headers: {
+                "Host": Cypress.config().baseUrl.split("//")[1],
+                "Connection": "keep-alive",
+                "Accept": "application/json, text/plain, */*",
+                "Authorization": "Bearer " + token,
+                "Origin": Cypress.config().baseUrl,
+                "Referer": Cypress.config().baseUrl + "/users",
+                "cookie": cookiesArr
+            },
+            body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            expect(response.body.totalCount).equal(operation)
+        })
+
+    })
+})
+
 Cypress.Commands.add("createTeamsUsingApi", () => {
     let TeamID = generateFullUUID()
 
@@ -369,6 +400,36 @@ Cypress.Commands.add("createTeamsUsingApi", () => {
     })
 })
 
+Cypress.Commands.add("assertTeam", (name, operation) => {
+
+    let profileData = window.localStorage.getItem("profile")
+    let token = JSON.parse(profileData)["token"]
+    let cookiesArr = ""
+    cy.getCookies().then((cookies) => {
+        for (let cookie in cookies) {
+            cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+        }
+
+        cy.request({
+            method: "POST",
+            url: "/api/team2/list",
+            headers: {
+                "Host": Cypress.config().baseUrl.split("//")[1],
+                "Connection": "keep-alive",
+                "Accept": "application/json, text/plain, */*",
+                "Authorization": "Bearer " + token,
+                "Origin": Cypress.config().baseUrl,
+                "Referer": Cypress.config().baseUrl + "/teams",
+                "cookie": cookiesArr
+            },
+            body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            expect(response.body.totalCount).equal(operation)
+        })
+
+    })
+})
 
 Cypress.Commands.add("createTemplateUsingApi", () => {
     let templateId = generateFullUUID()
@@ -479,6 +540,7 @@ Cypress.Commands.add("createTemplateUsingApi", () => {
 Cypress.Commands.add("runRoutes", () => {
 
     cy.intercept("POST", "/api/user").as("createUser")
+    cy.intercept("POST", "/api/user/archive").as("disableUser")
     cy.intercept("POST", "/api/team2").as("createTeam")
     cy.intercept("POST", "/api/step/validate").as("createStep")
     cy.intercept("POST", "/api/template/list").as("searchTemplate")
@@ -489,4 +551,5 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/stepinstance/finalize").as("finalizeStep")
     cy.intercept("POST", "/api/attachment/validate").as("addAttachment")
     cy.intercept("GET", "/api/step/by-workflow/").as("addTemplateToChecklist")
+    cy.intercept("DELETE", "/api/team2/*").as("deleteTeam")
 })

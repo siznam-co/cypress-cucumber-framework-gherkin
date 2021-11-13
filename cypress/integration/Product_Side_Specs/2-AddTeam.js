@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+import { getUniqueName } from "../../support/commands.js"
 
 const TeamLocators = require("../../Locators/TeamLocators.json")
 const commonLocators = require("../../Locators/commonLocators.json")
@@ -30,10 +31,29 @@ describe("Add new team and add users to it.", () => {
 
             cy.wait("@createTeam").its("response.statusCode").should("eq", 200)
             cy.get(commonLocators.pageHeading).should("contain", "Team Details")
-            
+
             cy.getUniqueName(TeamLocators.details.teamName_UNIQUE, data.creates.teamName_UNIQUE)
             cy.get(TeamLocators.details.description).should("have.text", data.creates.description)
             cy.get(TeamLocators.details.addedUsersBeVisible).should("be.visible")
-        })    
+
+            cy.assertTeam(getUniqueName(data.creates.teamName_UNIQUE), 1)
+
+        })
+    })
+
+    it("Archive and delete the created team.", () => {
+        cy.get(TeamLocators.archiveBtn).click()
+        cy.get(TeamLocators.modalConfrimBtn).click()
+
+        cy.get(TeamLocators.deleteBtn).click()
+        cy.get(TeamLocators.modalConfrimBtn).click()
+
+        cy.wait("@deleteTeam").its("response.statusCode").should("eq", 204)
+
+        // Search and check if the team still exists or deleted properly.
+        cy.fixture("Team_data").then(data => {
+            cy.assertTeam(getUniqueName(data.creates.teamName_UNIQUE), 0)
+        })
+
     })
 })
