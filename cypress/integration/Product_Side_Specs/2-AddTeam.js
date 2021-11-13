@@ -32,7 +32,7 @@ describe("Add new team and add users to it.", () => {
             cy.wait("@createTeam").its("response.statusCode").should("eq", 200)
             cy.get(commonLocators.pageHeading).should("contain", "Team Details")
 
-            cy.getUniqueName(TeamLocators.details.teamName_UNIQUE, data.creates.teamName_UNIQUE)
+            cy.readUniqueName(TeamLocators.details.teamName_UNIQUE, data.creates.teamName_UNIQUE)
             cy.get(TeamLocators.details.description).should("have.text", data.creates.description)
             cy.get(TeamLocators.details.addedUsersBeVisible).should("be.visible")
 

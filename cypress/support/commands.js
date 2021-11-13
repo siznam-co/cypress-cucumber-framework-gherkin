@@ -16,7 +16,7 @@ const modifierKey = Cypress.platform === "darwin" ? "meta" : "ctrl";
 // Below github uuid is unique during execution globally and use it for all user, team, templates, checklist, inventory etc operations.
 window.uniqueId = generateUUID()
 
-function generateUUID() {
+export function generateUUID() {
     const uuid = require("uuid")
     const id = uuid.v4()
     return id.split("-")[4]
@@ -82,6 +82,18 @@ export function getAfterValue(selector, pseudo, property) {
         })
 }
 
+export function convertedDateForm(date) {
+    //  "11/09/2025"
+    let allMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    let month = parseInt(date.split("/")[0])
+    let day = date.split("/")[1]
+    let year = date.split("/")[2]
+
+    let computedMonth = allMonths[month - 1]
+
+    return computedMonth + " " + day + " " + year // Nov 09 2025
+}
+
 Cypress.Commands.add("enterUniqueName", (locator, value) => {
     cy.get(locator).clear()
     cy.get(locator).type(getUniqueName(value))
@@ -92,13 +104,13 @@ Cypress.Commands.add("enterUniqueEmail", (locator, value) => {
     cy.get(locator).type(getUniqueEmail(value))
 })
 
-Cypress.Commands.add("getUniqueName", (locator, value) => {
+Cypress.Commands.add("readUniqueName", (locator, value) => {
     cy.get(locator).invoke("text").then(copy => {
         expect(copy).to.equal(getUniqueName(value))
     })
 })
 
-Cypress.Commands.add("getUniqueEmail", (locator, value) => {
+Cypress.Commands.add("readUniqueEmail", (locator, value) => {
     cy.get(locator).invoke("text").then(copy => {
         expect(copy).to.equal(getUniqueEmail(value))
     })
@@ -431,6 +443,37 @@ Cypress.Commands.add("assertTeam", (name, operation) => {
     })
 })
 
+Cypress.Commands.add("assertEquipment", (name, operation) => {
+
+    let profileData = window.localStorage.getItem("profile")
+    let token = JSON.parse(profileData)["token"]
+    let cookiesArr = ""
+    cy.getCookies().then((cookies) => {
+        for (let cookie in cookies) {
+            cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+        }
+
+        cy.request({
+            method: "POST",
+            url: "/api/equipment2/list",
+            headers: {
+                "Host": Cypress.config().baseUrl.split("//")[1],
+                "Connection": "keep-alive",
+                "Accept": "application/json, text/plain, */*",
+                "Authorization": "Bearer " + token,
+                "Origin": Cypress.config().baseUrl,
+                "Referer": Cypress.config().baseUrl + "/equipment/add",
+                "cookie": cookiesArr
+            },
+            body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            expect(response.body.totalCount).equal(operation)
+        })
+
+    })
+})
+
 Cypress.Commands.add("createTemplateUsingApi", () => {
     let templateId = generateFullUUID()
     let workflowVersionId = generateFullUUID()
@@ -552,4 +595,7 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/attachment/validate").as("addAttachment")
     cy.intercept("GET", "/api/step/by-workflow/").as("addTemplateToChecklist")
     cy.intercept("DELETE", "/api/team2/*").as("deleteTeam")
+    cy.intercept("POST", "/api/equipment2").as("createEquipment")
+    cy.intercept("DELETE", "/api/equipment2/*").as("deleteEquipment")
+
 })

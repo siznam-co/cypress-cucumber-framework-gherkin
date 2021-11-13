@@ -1,0 +1,22 @@
+{
+    "creates": {
+        "equipmentName_UNIQUE": "#name",
+        "idNumber": "#idNumber",
+        "nextDate" : "div.react-datepicker__input-container input",
+        "description": "textarea#description",
+        "comments": "textarea#comment",
+        "saveBtn": "button.btn.btn__success"
+    },
+    "archiveBtn": ".equipment-details--main-footer button.btn__bordered", 
+    "modalConfrimBtn": "div.modal-footer button.btn__blue",
+    "deleteBtn": ".equipment-details--main-footer button.btn__danger",
+    
+    "details": {
+        "equipmentName_UNIQUE": "div.equipment-details--main-header h4:nth-child(1)",
+        "idNumber": "div.equipment-details--main-header h4:nth-child(2)",
+        "nextDate" : "div.equipment-details--main-header h5",
+        "description": "ul.equipment-details--main-body li:nth-child(2) p",
+        "comments": "ul.equipment-details--main-body li:nth-child(4) p"
+    },
+    "addEquipmentBtn": "div.page--title button.btn"
+}

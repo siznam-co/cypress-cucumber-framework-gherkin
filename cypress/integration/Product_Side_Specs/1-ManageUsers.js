@@ -31,8 +31,8 @@ describe("Add a new user", () => {
             cy.wait("@createUser").its("response.statusCode").should("eq", 200)
             cy.get(commonLocators.pageHeading).should("contain", "User Details")
             
-            cy.getUniqueEmail(UserLocators.details.email_UNIQUE, data.creates.email_UNIQUE)
-            cy.getUniqueName(UserLocators.details.userName_UNIQUE, data.creates.userName_UNIQUE)
+            cy.readUniqueEmail(UserLocators.details.email_UNIQUE, data.creates.email_UNIQUE)
+            cy.readUniqueName(UserLocators.details.userName_UNIQUE, data.creates.userName_UNIQUE)
 
             cy.assertUser(getUniqueName(data.creates.userName_UNIQUE), 1)
 
