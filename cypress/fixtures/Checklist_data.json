@@ -1,7 +1,7 @@
 {
     "creates": {
         "checklistName_UNIQUE": "Checklist_1",
-        "addTemplateSingleSelect": "Template_1"
+        "addTemplateSingleSelect": "Template_2"
     },
     "finalizeInvalid": {
         "mandatoryFieldLabel": "invalid"

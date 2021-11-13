@@ -16,16 +16,33 @@
         "addTaskMultipleClicks": 2
     },
     "stepData": {
-        "stepName": "QA Bot Step1",
+        "stepName": "QA Bot Step",
         "addTeamsMultipleSelect": "Team_",
         "stepDescription": "QA Bot Step Description"
     },
-    "activities": {
-        "activityLabelMultipleInputs": "QA Bot: Perform below tasks :: ",
-        "activityDescriptionMultipleInputs": "Test activity description :: ",
-        "task1MultipleInputs": "Perform Smoke Testing :: ",
-        "task2MultipleInputs": "Perform Exploratory Testing :: ",
-        "task3MultipleInputs": "Perform Regression Testing :: "
+    "addActivity": {
+        "activityLabelInput": " :: Perform below tasks",
+        "activityPhotoPlaceHolder": "input[id*='photo-']",
+        "activityDescriptionInput": "Test activity description for :: ",
+        "attachementDropdown": "select.attachment-dropdown-menu",
+        "placeholder": "#placeholder",
+        "addTaskMultipleClicks": 2,
+        "Tasklist": {
+            "activityLabelMultipleInputs": "QA Bot: Perform below tasks :: ",
+            "activityDescriptionMultipleInputs": "Test activity description :: ",
+            "task1MultipleInputs": "Perform Smoke Testing :: ",
+            "task2MultipleInputs": "Perform Exploratory Testing :: ",
+            "task3MultipleInputs": "Perform Regression Testing :: "
+        },
+        "Value": "Total tests",
+        "Text": "Module name being tested",
+        "Photo": "",
+        "Selection": "Smoke, Exploratory, Regression",
+        "Customers": "Enter Customer",
+        "Suppliers": "Enter Supplier",
+        "Items": "Enter Items",
+        "Barcodes": "",
+        "saveActivityBtn": "button.step-activity-save-btn"
     },
     "saveStepInvalid": {
         "stepNameBorderError": "invalid",

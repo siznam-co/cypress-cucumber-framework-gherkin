@@ -28,12 +28,14 @@ export function generateFullUUID() {
     return id
 }
 
-function getColor(type) {
+export function getColor(type) {
     switch (type) {
         case "valid":
             return "rgb(4, 9, 48)"
         case "invalid":
             return "rgb(255, 130, 130)"
+        case "validBorder":
+            return "rgb(219, 220, 221)"
     }
 }
 
@@ -103,7 +105,7 @@ Cypress.Commands.add("getUniqueEmail", (locator, value) => {
 })
 
 Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
-    
+
     if (type.includes("MultipleSelect")) {
 
         cy.get(dropdown["dropdown"]).click()
@@ -121,9 +123,9 @@ Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
         if (type.includes("_UNIQUE")) {
             cy.get(dropdown["input"]).type(getUniqueName(value))
             cy.get(dropdown["options"]).eq(0).click()
-        } else { 
+        } else {
             cy.get(dropdown["input"]).type(value)
-            cy.get(dropdown["options"]).eq(0).click()
+            cy.get(dropdown["options"]).contains(value).click()
         }
     }
 })
@@ -136,13 +138,10 @@ Cypress.Commands.add("elementMultipleClicks", (selector, i) => {
 })
 
 Cypress.Commands.add("assertTextErrorMessage", (selector, data) => {
-    cy.get(selector["field"]).each((col, index, list) => {
-        cy.wrap(col)
-            .parents(selector["parentElement"])
-            .find(selector["errorMessage"])
-            .should("have.text", data["errorMessage"])
-        expect(index).to.be.lessThan(data["field"])
-    })
+    cy.get(selector["field"])
+        .parents(selector["parentElement"])
+        .find(selector["errorMessage"])
+        .should("have.text", data["errorMessage"])
 })
 
 Cypress.Commands.add("assertBorderError", (selector, type) => {
@@ -177,9 +176,9 @@ Cypress.Commands.add("saveLocalStorage", () => {
 })
 
 Cypress.Commands.add("restoreLocalStorage", () => {
-  Object.keys(LOCAL_STORAGE_MEMORY).forEach(key => {
-    localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
-  });
+    Object.keys(LOCAL_STORAGE_MEMORY).forEach(key => {
+        localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
+    });
 });
 
 Cypress.Commands.add("loginWithApi", (username, password) => {
@@ -197,9 +196,9 @@ Cypress.Commands.add("loginWithApi", (username, password) => {
         },
         followRedirect: true,
         form: false,
-        body: { 
-            "email": username, 
-            "password": password, 
+        body: {
+            "email": username,
+            "password": password,
             "localeId": "en"
         }
     }).then((response) => {
@@ -209,7 +208,7 @@ Cypress.Commands.add("loginWithApi", (username, password) => {
             window.localStorage.setItem("profile", JSON.stringify(response.body))
             window.localStorage.setItem("i18nextLng", "en")
             cy.log("The user logged in successfully")
-            cy.visit("/login")
+            cy.visit("/")
             cy.get(commonLocators.sideNavMenu).should("be.visible")
         })
     })
@@ -371,17 +370,24 @@ Cypress.Commands.add("createTeamsUsingApi", () => {
 })
 
 
-Cypress.Commands.add("createTemplateUsingApi",() => {
+Cypress.Commands.add("createTemplateUsingApi", () => {
     let templateId = generateFullUUID()
     let workflowVersionId = generateFullUUID()
-    let stepId = generateFullUUID()
-    let name = "Template_1"
+    // Enable below when asserting the checklish with all steps and activities. Edit the Checklist_data.json file too.
+    // let name = "Unique_Template_Ampliflow"
+    let name = "Template_2"
+    let step1Id = generateFullUUID()
+    let step2Id = generateFullUUID()
+    let step3Id = generateFullUUID()
 
     cy.fixture("Templates").then(newTemplate => {
         newTemplate.id = templateId
         newTemplate.workflowVersionId = workflowVersionId
         newTemplate.name = name
-        newTemplate["stepRequests"][0]["id"] = stepId
+        newTemplate["stepRequests"][0]["id"] = step1Id
+        // newTemplate["stepRequests"][1]["id"] = step2Id
+        // newTemplate["stepRequests"][2]["id"] = step3Id
+        // newTemplate.selectedStepIds = [step1Id, step2Id, step3Id]
 
         let profileData = window.localStorage.getItem("profile")
         let token = JSON.parse(profileData)["token"]
@@ -424,6 +430,42 @@ Cypress.Commands.add("createTemplateUsingApi",() => {
                         }).then((response) => {
                             expect(response.status).equal(200)
                         })
+                        // for (let step in newTemplate.stepRequests) {
+                        //     cy.request({
+                        //         method: "POST",
+                        //         url: "/api/step/validate",
+                        //         headers: {
+                        //             "Host": Cypress.config().baseUrl.split("//")[1],
+                        //             "Connection": "keep-alive",
+                        //             "Accept": "application/json, text/plain, */*",
+                        //             "Authorization": "Bearer " + token,
+                        //             "Origin": Cypress.config().baseUrl,
+                        //             "cookie": cookiesArr
+                        //         },
+                        //         body: newTemplate.stepRequests[step]
+                        //     }).then((response) => {
+                        //         expect(response.status).equal(200)
+                        //         if (step == 2) {
+                        //             cy.wait(5000)
+                        //             cy.request({
+                        //                 method: "POST",
+                        //                 url: "/api/template",
+                        //                 headers: {
+                        //                     "Host": Cypress.config().baseUrl.split("//")[1],
+                        //                     "Connection": "keep-alive",
+                        //                     "Accept": "application/json, text/plain, */*",
+                        //                     "Authorization": "Bearer " + token,
+                        //                     "Origin": Cypress.config().baseUrl,
+                        //                     "Referer": Cypress.config().baseUrl + "/templates/add",
+                        //                     "cookie": cookiesArr
+                        //                 },
+                        //                 body: newTemplate.create
+                        //             }).then((response) => {
+                        //                 expect(response.status).equal(200)
+                        //             })
+                        //         }
+                        //     })
+                        // }
                     } else {
                         cy.log("The template is already created.")
                     }
@@ -437,12 +479,14 @@ Cypress.Commands.add("createTemplateUsingApi",() => {
 Cypress.Commands.add("runRoutes", () => {
 
     cy.intercept("POST", "/api/user").as("createUser")
-    cy.intercept("POST", "/api/team2").as("createTeam") 
+    cy.intercept("POST", "/api/team2").as("createTeam")
     cy.intercept("POST", "/api/step/validate").as("createStep")
     cy.intercept("POST", "/api/template/list").as("searchTemplate")
     cy.intercept("POST", "/api/workflowRun/quick-run").as("createChecklist")
     cy.intercept("POST", "/api/template").as("createTemplate")
-    cy.intercept("PUT", "/api/template").as("updateTemplate")    
+    cy.intercept("PUT", "/api/template").as("updateTemplate")
     cy.intercept("GET", "/api/team/published").as("publishTemplate")
     cy.intercept("POST", "/api/stepinstance/finalize").as("finalizeStep")
+    cy.intercept("POST", "/api/attachment/validate").as("addAttachment")
+    cy.intercept("GET", "/api/step/by-workflow/").as("addTemplateToChecklist")
 })

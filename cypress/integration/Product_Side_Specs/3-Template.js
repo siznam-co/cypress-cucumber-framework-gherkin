@@ -1,7 +1,138 @@
 /// <reference types="Cypress" />
 
+import { getColor } from "../../support/commands.js"
+import 'cypress-file-upload'
+
 const TemplateLocators = require("../../Locators/TemplateLocators.json")
 const commonLocators = require("../../Locators/commonLocators.json")
+
+function addStep(number) {
+    cy.fixture("Template_data").then(data => {
+
+        cy.get(TemplateLocators.newStep.addStepBtn).click()
+        cy.get(TemplateLocators.newStep.removeEveryoneTeamBtn).click({ multiple: true })
+        // Add all activities and verify each step mandatory field assertions
+        addActivity(data, "Value")
+        addActivity(data, "Text")
+        addActivity(data, "Tasklist")
+        addActivity(data, "Photo")
+        addActivity(data, "Selection")
+        addActivity(data, "Customers")
+        addActivity(data, "Suppliers")
+        addActivity(data, "Items")
+        addActivity(data, "Barcodes")
+        
+        // Validating Step mandatory fields.
+        cy.get(TemplateLocators.saveStepBtn).click()
+        cy.wait("@createStep").its("response.statusCode").should("eq", 400)
+
+        cy.assertBorderError(TemplateLocators.saveStepInvalid.stepNameBorderError, data.saveStepInvalid.stepNameBorderError)
+        cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.stepNameTextErrorMessage, data.saveStepInvalid.stepNameTextErrorMessage)
+        cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.selectTeamTextErrorMessage, data.saveStepInvalid.selectTeamTextErrorMessage)
+
+        // Now enter mandatory fields and assert.
+        cy.get(TemplateLocators.stepData.stepName).type(data.stepData.stepName + number)
+        cy.selectFromDropdown(TemplateLocators.stepData.addTeamsMultipleSelect, data.stepData.addTeamsMultipleSelect, "MultipleSelect")
+        cy.get(TemplateLocators.stepData.stepDescription).type(data.stepData.stepDescription)
+
+
+        cy.get(TemplateLocators.saveStepBtn).click()
+        cy.wait("@createStep").its("response.statusCode").should("eq", 200)
+        cy.get(commonLocators.pageHeading).should("contain", "New Template")
+    
+    })
+}
+
+function addActivity(data, activity) {
+    cy.get(TemplateLocators.addActivity.addStepActivityBtn).contains(activity).click()
+    cy.get(TemplateLocators.saveStepBtn).click()
+    cy.wait("@createStep").its("response.statusCode").should("eq", 400)
+
+    cy.get(TemplateLocators.saveStepInvalid.activityLabelBorderError).parent().should("have.css", "border-color", getColor("invalid"))
+    cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.activityLabelTextErrorMessage, data.saveStepInvalid.activityLabelTextErrorMessage)
+
+    // Now filling all fields. 
+    cy.get(TemplateLocators.addActivity.activityLabelInput).type(activity + data.addActivity.activityLabelInput)
+    cy.get(TemplateLocators.addActivity.activityDescriptionInput).type(data.addActivity.activityDescriptionInput + activity)
+    cy.get(TemplateLocators.addActivity.activityPhotoPlaceHolder).attachFile(activity + ".jpg")
+
+    cy.get(TemplateLocators.addActivity.attachementDropdown).select("1")
+    cy.get(TemplateLocators.addActivity.attachementName).type(activity + "_Link")
+    cy.get(TemplateLocators.addActivity.attachementUrl).type("https://www.google.com/search?q=\"" + activity + "\"")
+    cy.get(TemplateLocators.addActivity.saveModalBtn).click()
+    cy.wait("@addAttachment").its("response.statusCode").should("eq", 204)
+
+    cy.get(TemplateLocators.addActivity.attachementDropdown).select("2")
+    cy.get(TemplateLocators.addActivity.attachementName).type(activity + "_File")
+    cy.get(TemplateLocators.addActivity.attachementImage).attachFile(activity + ".jpg")
+    cy.get(TemplateLocators.addActivity.uploadModal).should("contain", activity + ".jpg")
+    cy.get(TemplateLocators.addActivity.saveModalBtn).click()
+    cy.wait("@addAttachment").its("response.statusCode").should("eq", 204)
+
+    fillActitivitySpecificFields(data, activity)
+
+    cy.get(TemplateLocators.saveStepBtn).click()
+    cy.wait("@createStep").its("response.statusCode").should("eq", 400)
+    // Again asserting if the erros are gone or not
+    cy.get(TemplateLocators.addActivity.activityLabelInput).parent().should("have.css", "border-color", getColor("validBorder"))
+
+    cy.get(TemplateLocators.addActivity.saveActivityBtn).click()
+}
+
+function fillActitivitySpecificFields(data, activity) {
+    switch(activity) {
+        case "Value":
+            cy.get(TemplateLocators.addActivity.placeholder).last().type(data.addActivity[activity])
+            break
+        case "Text":
+            cy.get(TemplateLocators.addActivity.textActivityPlaceHolder).type(data.addActivity[activity])
+            break
+        case "Tasklist":
+            cy.elementMultipleClicks(TemplateLocators.addActivity.addTaskMultipleClicks, data.addActivity.addTaskMultipleClicks)
+
+            cy.get(TemplateLocators.saveStepInvalid.task1BorderError).parent().should("have.css", "border-color", getColor("invalid"))
+            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.task1TextErrorMessage, data.saveStepInvalid.task1TextErrorMessage)
+
+            cy.get(TemplateLocators.saveStepInvalid.task2BorderError).parent().should("have.css", "border-color", getColor("invalid"))
+            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.task2TextErrorMessage, data.saveStepInvalid.task2TextErrorMessage)
+
+            cy.get(TemplateLocators.saveStepInvalid.task3BorderError).parent().should("have.css", "border-color", getColor("invalid"))
+            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.task3TextErrorMessage, data.saveStepInvalid.task3TextErrorMessage)
+
+            // Now entering all tasks
+            cy.enterMultipleInputs(TemplateLocators.addActivity.Tasklist.taskMultipleInputs, data.addActivity.Tasklist.task1MultipleInputs)
+            cy.get(TemplateLocators.addActivity.Tasklist.task2IsRequiredMultipleButton).click({ force: true })
+            cy.get(TemplateLocators.addActivity.Tasklist.task3IsRequiredMultipleButton).click({ force: true })
+
+            cy.get(TemplateLocators.saveStepBtn).click()
+            cy.wait("@createStep").its("response.statusCode").should("eq", 400)
+            // Again asserting if the erros are gone or not
+            cy.get(TemplateLocators.saveStepInvalid.task1BorderError).parent().should("have.css", "border-color", getColor("validBorder"))
+            cy.get(TemplateLocators.saveStepInvalid.task2BorderError).parent().should("have.css", "border-color", getColor("validBorder"))
+            cy.get(TemplateLocators.saveStepInvalid.task3BorderError).parent().should("have.css", "border-color", getColor("validBorder"))
+            break
+
+        case "Photo":
+            // This feature is not implemented yet.
+            break
+        case "Selection":
+            cy.get(TemplateLocators.addActivity.textActivityPlaceHolder).last().type(data.addActivity[activity])
+            break
+        case "Customers":
+            cy.get(TemplateLocators.addActivity.placeholder).last().type(data.addActivity[activity])
+            break
+        case "Suppliers":
+            cy.get(TemplateLocators.addActivity.placeholder).last().type(data.addActivity[activity])
+            break
+        case "Items":
+            cy.get(TemplateLocators.addActivity.placeholder).last().type(data.addActivity[activity])
+            break
+        case "Barcodes":
+            // Selecting single barcode 
+            cy.get(TemplateLocators.addActivity.barcodeDropdown).select("false")
+            break
+    }
+}
 
 describe("Add new template.", () => {
     before(() => {
@@ -17,63 +148,13 @@ describe("Add new template.", () => {
         // Add to each "it" 
     })
 
-    it("Validate add step without adding mandatory fields.", () => {
+    it("Validate add steps mandatory fields.", () => {
         cy.get(TemplateLocators.addTemplateBtn).click()
         cy.get(commonLocators.pageHeading).should("contain", "New Template")
 
-        cy.fixture("Template_data").then(data => {
-            cy.get(TemplateLocators.newStep.addStepBtn).click()
-            cy.get(TemplateLocators.newStep.removeEveryoneTeamBtn).click({ multiple: true })
-
-            cy.elementMultipleClicks(TemplateLocators.newStep.stepTaskListMultipleClicks, data.newStep.stepTaskListMultipleClicks)
-            cy.elementMultipleClicks(TemplateLocators.newStep.addTaskMultipleClicks, data.newStep.addTaskMultipleClicks)
-
-            cy.get(TemplateLocators.saveStepBtn).click()
-            cy.wait("@createStep").its("response.statusCode").should("eq", 400)
-
-            cy.assertBorderError(TemplateLocators.saveStepInvalid.stepNameBorderError, data.saveStepInvalid.stepNameBorderError)
-            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.stepNameTextErrorMessage, data.saveStepInvalid.stepNameTextErrorMessage)
-            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.selectTeamTextErrorMessage, data.saveStepInvalid.selectTeamTextErrorMessage)
-
-            cy.assertBorderError(TemplateLocators.saveStepInvalid.activityLabelBorderError, data.saveStepInvalid.activityLabelBorderError)
-            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.activityLabelTextErrorMessage, data.saveStepInvalid.activityLabelTextErrorMessage)
-
-            cy.assertBorderError(TemplateLocators.saveStepInvalid.task1BorderError, data.saveStepInvalid.task1BorderError)
-            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.task1TextErrorMessage, data.saveStepInvalid.task1TextErrorMessage)
-
-            cy.assertBorderError(TemplateLocators.saveStepInvalid.task2BorderError, data.saveStepInvalid.task2BorderError)
-            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.task2TextErrorMessage, data.saveStepInvalid.task2TextErrorMessage)
-
-            cy.assertBorderError(TemplateLocators.saveStepInvalid.task3BorderError, data.saveStepInvalid.task3BorderError)
-            cy.assertTextErrorMessage(TemplateLocators.saveStepInvalid.task3TextErrorMessage, data.saveStepInvalid.task3TextErrorMessage)
-        })
-    })
-
-    it("Validate add step 1 with adding mandatory fields.", () => {
-        // cy.get(TemplateLocators.addTemplateBtn).click()
-        // cy.get(commonLocators.pageHeading).should("contain", "New Template")
-
-        cy.fixture("Template_data").then(data => {
-            // cy.get(TemplateLocators.newStep.removeEveryoneTeamBtn).click({multiple: true})
-            cy.get(TemplateLocators.stepData.stepName).type(data.stepData.stepName)
-            cy.selectFromDropdown(TemplateLocators.stepData.addTeamsMultipleSelect, data.stepData.addTeamsMultipleSelect, "MultipleSelect")
-            cy.get(TemplateLocators.stepData.stepDescription).type(data.stepData.stepDescription)
-
-            // Add activitities and tasks data.
-            cy.enterMultipleInputs(TemplateLocators.activities.activityLabelMultipleInputs, data.activities.activityLabelMultipleInputs)
-            cy.enterMultipleInputs(TemplateLocators.activities.activityDescriptionMultipleInputs, data.activities.activityDescriptionMultipleInputs)
-            cy.enterMultipleInputs(TemplateLocators.activities.task1MultipleInputs, data.activities.task1MultipleInputs)
-            cy.enterMultipleInputs(TemplateLocators.activities.task2MultipleInputs, data.activities.task2MultipleInputs)
-            cy.get(TemplateLocators.activities.task2IsRequiredMultipleButton).click({ force: true, multiple: true })
-
-            cy.enterMultipleInputs(TemplateLocators.activities.task3MultipleInputs, data.activities.task3MultipleInputs)
-            cy.get(TemplateLocators.activities.task3IsRequiredMultipleButton).click({ force: true, multiple: true })
-
-            cy.get(TemplateLocators.saveStepBtn).click()
-            cy.wait("@createStep").its("response.statusCode").should("eq", 200)
-            cy.get(commonLocators.pageHeading).should("contain", "New Template")
-        
-        })
+        addStep(" 1") // step 1
+        addStep(" 2") // step 2
+        addStep(" 3") // step 3
     })
 
     it("Validate Create template without adding mandatory fields.", () => {
