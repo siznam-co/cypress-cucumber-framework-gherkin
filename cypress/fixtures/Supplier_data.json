@@ -1,0 +1,13 @@
+{
+    "creates": {
+        "vatNumber": "US",
+        "supplierName_UNIQUE": "Supplier_1",
+        "address": "401k, Null Town",
+        "city": "New York",
+        "postalCode": "10005",
+        "phone": "+1 111 111 1111",
+        "supplierEmail_UNIQUE": "theqa13119+supplier1@gmail.com",
+        "website": "https://test-2.ampliflow.com",
+        "notes": "This Supplier is Created by QA Bot."
+    }
+}

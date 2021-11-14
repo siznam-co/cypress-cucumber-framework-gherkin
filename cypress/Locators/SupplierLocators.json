@@ -1,0 +1,30 @@
+{
+    "creates": {
+        "supplierId": "#supplierId",
+        "vatNumber": "#vatNumber",
+        "supplierName_UNIQUE": "#businessName",
+        "address": "#address",
+        "city": "#city",
+        "postalCode": "#postalCode",
+        "phone": "#phone",
+        "supplierEmail_UNIQUE": "#email",
+        "website": "#website",
+        "notes": "#notes",
+        "saveBtn": "button.btn.btn__success"
+    },
+    "archiveBtn": ".supplier-details--main-footer button.btn__bordered", 
+    "modalConfrimBtn": "div.modal-footer button.btn__blue",
+    "deleteBtn": ".supplier-details--main-footer button.btn__danger",
+    
+    "details": {
+        "supplierName_UNIQUE": "div.supplier-details--main-header h4",
+        "supplierId": "div.supplier-details--main-header h5",
+        "addressAndCity": "ul.supplier-details--main-body li:nth-child(1)",
+        "phone": "ul.supplier-details--main-body li:nth-child(2)",
+        "website": "ul.supplier-details--main-body li:nth-child(3)",
+        "supplierEmail_UNIQUE": "ul.supplier-details--main-body li:nth-child(4)",
+        "postalCode": "ul.supplier-details--main-body li:nth-child(5)",
+        "notes": "ul.supplier-details--main-body li:nth-child(6)"
+    },
+    "addSupplierBtn": "div.page--title button.btn"
+}

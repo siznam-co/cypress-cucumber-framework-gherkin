@@ -1,0 +1,12 @@
+{
+    "creates": {
+        "equipmentName_UNIQUE": "Equip_1",
+        "nextDate" : "11/09/2025",
+        "description": "This Equipment is created by QA Bot.",
+        "comments": "Bot: Not For Sale."
+    },
+    "details": {
+        "equipmentName_UNIQUE": "Equip_1",
+        "description": "This Equipment is created by QA Bot."
+    }
+}

@@ -1,112 +1,1287 @@
 {
-    "id": "f43c0468-234d-4a58-803c-229ab13671eb",
-    "workflowVersionId": "cea99494-57b7-4843-a99d-188705bba017",
-    "name": "qabot+888d09844281",
+    "id": "74bc67dd-eefe-4304-871d-6622b39d22fe",
+    "workflowVersionId": "68f6a9fe-b17f-4ebb-917b-190222e8ef4c",
+    "name": "Unique_Template_Ampliflow",
     "description": "This Template is created by QA Bot.",
     "selectedStepIds": [
-        "960610d5-a88d-4ad6-a50a-e38fb6b798f9"
+        "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+        "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+        "3a39163a-2325-4ffe-b200-b31d1f83de95"
     ],
     "deletedStepIds": [],
     "replacedIds": {},
-    "index": 0,
+    "index": 421,
     "saveAsDraft": false,
     "stepRequests": [
         {
-            "id": "960610d5-a88d-4ad6-a50a-e38fb6b798f9",
-            "stepVersionId": "a14594e4-eca7-47e6-a169-073ef4dbc383",
-            "name": "QA Bot Step1",
+            "id": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+            "stepVersionId": "2e86c1f3-621c-4060-8028-e4b8ecd7013d",
+            "name": "QA Bot Step 1",
             "description": "QA Bot Step Description",
             "type": 0,
             "isDefaultDeviationStep": false,
-            "isTeamEveryone": false,
+            "isTeamEveryone": true,
+            "isBlocking": false,
             "activities": [
                 {
-                    "id": "d62cc2be-f079-4e04-b574-14586811dd2d",
-                    "label": "QA Bot: Perform below tasks :: one",
-                    "placeholder": "",
-                    "type": 1,
-                    "attachments": [],
+                    "id": "67b2162b-6cd1-4d74-8c89-cc7707ebee11",
+                    "label": "Value :: Perform below tasks",
+                    "placeholder": "Total tests",
+                    "description": "Test activity description for :: Value",
+                    "type": 0,
+                    "index": 1,
                     "isRequired": false,
                     "acceptMultiple": false,
-                    "description": "Test activity description :: one",
+                    "hasImage": true,
+                    "uploadedFileId": "ef711c1a-683c-486d-b823-4c2889990b1d",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "b2715814-3297-4b60-89d1-4258604bf6ba",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Value_Link",
+                            "content": "https://www.google.com/search?q=\"Value\"",
+                            "index": 1,
+                            "activityId": "67b2162b-6cd1-4d74-8c89-cc7707ebee11",
+                            "activity": "67b2162b-6cd1-4d74-8c89-cc7707ebee11"
+                        },
+                        {
+                            "id": "61c61ede-5854-4201-8c53-fdf0449552f9",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Value.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "67b2162b-6cd1-4d74-8c89-cc7707ebee11",
+                            "activity": "67b2162b-6cd1-4d74-8c89-cc7707ebee11"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "37bdd74c-d730-4fee-934b-7c871029d21b",
+                    "label": "Text :: Perform below tasks",
+                    "placeholder": "Module name being tested",
+                    "description": "Test activity description for :: Text",
+                    "type": 3,
+                    "index": 2,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "00f42a8e-6ed6-4d50-ac49-f3160b92635f",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "3a27b073-f3fc-4b4a-8d31-45e3a0b12ade",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Text_Link",
+                            "content": "https://www.google.com/search?q=\"Text\"",
+                            "index": 1,
+                            "activityId": "37bdd74c-d730-4fee-934b-7c871029d21b",
+                            "activity": "37bdd74c-d730-4fee-934b-7c871029d21b"
+                        },
+                        {
+                            "id": "23face1a-3c4a-49a0-a61a-795f2e2d1eb7",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Text.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "37bdd74c-d730-4fee-934b-7c871029d21b",
+                            "activity": "37bdd74c-d730-4fee-934b-7c871029d21b"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "26d39b86-0f05-476b-a7f8-d4add83cadff",
+                    "label": "Tasklist :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Tasklist",
+                    "type": 1,
+                    "index": 3,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "d5c3e2c4-d29d-4011-9dfc-cbc00c9b473c",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "8ede964b-fff9-495c-9d6a-e126845c1be5",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Tasklist_Link",
+                            "content": "https://www.google.com/search?q=\"Tasklist\"",
+                            "index": 1,
+                            "activityId": "26d39b86-0f05-476b-a7f8-d4add83cadff",
+                            "activity": "26d39b86-0f05-476b-a7f8-d4add83cadff"
+                        },
+                        {
+                            "id": "adfa904d-137c-4b25-bc2f-b2b25a6e525c",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Tasklist.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "26d39b86-0f05-476b-a7f8-d4add83cadff",
+                            "activity": "26d39b86-0f05-476b-a7f8-d4add83cadff"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    },
                     "activityList": [
                         {
-                            "id": "0dede6bf-4619-4976-a6d0-5603d97e9c46",
+                            "id": "213a8376-064f-4a4f-b5d3-3b4623289702",
                             "label": "Perform Smoke Testing :: one",
-                            "isRequired": false
+                            "isRequired": false,
+                            "activityId": "26d39b86-0f05-476b-a7f8-d4add83cadff"
                         },
                         {
-                            "id": "cf85ed4a-137d-4379-8c3e-f08ddb1fc30c",
+                            "id": "dee3cbb4-f655-471d-b009-bc8d20136df7",
                             "label": "Perform Smoke Testing :: two",
-                            "isRequired": true
+                            "isRequired": true,
+                            "activityId": "26d39b86-0f05-476b-a7f8-d4add83cadff"
                         },
                         {
-                            "id": "a5d8ca43-446a-4bd2-b015-44a4233a4e38",
+                            "id": "19f0fbc7-d798-44d2-9365-a54d8c19d802",
                             "label": "Perform Smoke Testing :: three",
-                            "isRequired": true
+                            "isRequired": true,
+                            "activityId": "26d39b86-0f05-476b-a7f8-d4add83cadff"
                         }
                     ]
                 },
                 {
-                    "id": "faa78b99-d190-40ea-abfe-522f04ea7011",
-                    "label": "QA Bot: Perform below tasks :: two",
+                    "id": "5a5c9149-5e3f-4ba1-926d-15029d52a4d3",
+                    "label": "Photo :: Perform below tasks",
                     "placeholder": "",
-                    "type": 1,
-                    "attachments": [],
+                    "description": "Test activity description for :: Photo",
+                    "type": 2,
+                    "index": 4,
                     "isRequired": false,
                     "acceptMultiple": false,
-                    "description": "Test activity description :: two",
-                    "activityList": [
+                    "hasImage": true,
+                    "uploadedFileId": "9ffc32d2-30fb-4a34-8cc3-c00cdc9854ab",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
                         {
-                            "id": "458285a3-d348-4894-a312-ee096504bfcc",
-                            "label": "Perform Exploratory Testing :: one",
-                            "isRequired": false
+                            "id": "ab4d5b93-d418-408d-a147-8d95d952acf5",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Photo_Link",
+                            "content": "https://www.google.com/search?q=\"Photo\"",
+                            "index": 1,
+                            "activityId": "5a5c9149-5e3f-4ba1-926d-15029d52a4d3",
+                            "activity": "5a5c9149-5e3f-4ba1-926d-15029d52a4d3"
                         },
                         {
-                            "id": "93b935f0-e9ec-499c-b381-652950f39c2f",
-                            "label": "Perform Exploratory Testing :: two",
-                            "isRequired": true
-                        },
-                        {
-                            "id": "57c9d0cd-16f8-481c-bf3c-e2666d62ec6b",
-                            "label": "Perform Exploratory Testing :: three",
-                            "isRequired": true
+                            "id": "f4cd3f77-5c3a-47ab-a42b-f66d0110c544",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Photo.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "5a5c9149-5e3f-4ba1-926d-15029d52a4d3",
+                            "activity": "5a5c9149-5e3f-4ba1-926d-15029d52a4d3"
                         }
-                    ]
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
                 },
                 {
-                    "id": "1c23a8d0-82e5-4673-933a-c3c89b59f66d",
-                    "label": "QA Bot: Perform below tasks :: three",
-                    "placeholder": "",
-                    "type": 1,
-                    "attachments": [],
+                    "id": "b0faa547-c336-479d-8d31-b3b83f9fc6eb",
+                    "label": "Selection :: Perform below tasks",
+                    "placeholder": "Smoke, Exploratory, Regression",
+                    "description": "Test activity description for :: Selection",
+                    "type": 4,
+                    "index": 5,
                     "isRequired": false,
                     "acceptMultiple": false,
-                    "description": "Test activity description :: three",
-                    "activityList": [
+                    "hasImage": true,
+                    "uploadedFileId": "03b3afa2-3b06-4bd5-9a16-aee2cf414580",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": [
                         {
-                            "id": "df31c040-22b9-4155-b4ad-8627cd43b6e8",
-                            "label": "Perform Regression Testing :: one",
-                            "isRequired": false
+                            "value": "Smoke",
+                            "label": "Smoke"
                         },
                         {
-                            "id": "b0282ab8-64b4-4afa-92f1-9b162b0a987b",
-                            "label": "Perform Regression Testing :: two",
-                            "isRequired": true
+                            "value": "Exploratory",
+                            "label": "Exploratory"
                         },
                         {
-                            "id": "b8837d5b-1980-466b-b8f3-a46dd350c47b",
-                            "label": "Perform Regression Testing :: three",
-                            "isRequired": true
+                            "value": "Regression",
+                            "label": "Regression"
                         }
-                    ]
+                    ],
+                    "attachments": [
+                        {
+                            "id": "9311af15-6c7f-40b8-8535-918ae435bd0f",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Selection_Link",
+                            "content": "https://www.google.com/search?q=\"Selection\"",
+                            "index": 1,
+                            "activityId": "b0faa547-c336-479d-8d31-b3b83f9fc6eb",
+                            "activity": "b0faa547-c336-479d-8d31-b3b83f9fc6eb"
+                        },
+                        {
+                            "id": "da3ae640-2ba5-45a6-ad9b-0a704d31403e",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Selection.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "b0faa547-c336-479d-8d31-b3b83f9fc6eb",
+                            "activity": "b0faa547-c336-479d-8d31-b3b83f9fc6eb"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "b445b80d-401c-45d9-bdf4-27455af21b02",
+                    "label": "Customers :: Perform below tasks",
+                    "placeholder": "Enter Customer",
+                    "description": "Test activity description for :: Customers",
+                    "type": 5,
+                    "index": 6,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "843f2e88-2dfa-4845-9a79-96ba0bd2184c",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "223c6a35-64b0-4c98-8300-f97a5071f02b",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Customers_Link",
+                            "content": "https://www.google.com/search?q=\"Customers\"",
+                            "index": 1,
+                            "activityId": "b445b80d-401c-45d9-bdf4-27455af21b02",
+                            "activity": "b445b80d-401c-45d9-bdf4-27455af21b02"
+                        },
+                        {
+                            "id": "8b611e95-0d58-46e3-be7d-73b97a3f3c99",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Customers.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "b445b80d-401c-45d9-bdf4-27455af21b02",
+                            "activity": "b445b80d-401c-45d9-bdf4-27455af21b02"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "813cea9d-8ed1-47f6-8028-64ea636c6848",
+                    "label": "Suppliers :: Perform below tasks",
+                    "placeholder": "Enter Supplier",
+                    "description": "Test activity description for :: Suppliers",
+                    "type": 6,
+                    "index": 7,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "3cec5c43-152b-4d08-8f46-ca18c8368f67",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "fa6e85c3-78ea-48f0-ac4f-dc23c862f346",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Suppliers_Link",
+                            "content": "https://www.google.com/search?q=\"Suppliers\"",
+                            "index": 1,
+                            "activityId": "813cea9d-8ed1-47f6-8028-64ea636c6848",
+                            "activity": "813cea9d-8ed1-47f6-8028-64ea636c6848"
+                        },
+                        {
+                            "id": "f7577985-c588-48d6-ab92-b29f5ef7584b",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Suppliers.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "813cea9d-8ed1-47f6-8028-64ea636c6848",
+                            "activity": "813cea9d-8ed1-47f6-8028-64ea636c6848"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "62564351-06aa-4c15-84b1-d0460b8ba84d",
+                    "label": "Items :: Perform below tasks",
+                    "placeholder": "Enter Items",
+                    "description": "Test activity description for :: Items",
+                    "type": 7,
+                    "index": 8,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "236ddf2a-2b10-4883-96b2-9cf01fd9b531",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "b1d3de9f-bfff-4c66-a136-37a7db0a7947",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Items_Link",
+                            "content": "https://www.google.com/search?q=\"Items\"",
+                            "index": 1,
+                            "activityId": "62564351-06aa-4c15-84b1-d0460b8ba84d",
+                            "activity": "62564351-06aa-4c15-84b1-d0460b8ba84d"
+                        },
+                        {
+                            "id": "6b547e23-eaae-4344-9ee0-7ae8af68fa16",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Items.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "62564351-06aa-4c15-84b1-d0460b8ba84d",
+                            "activity": "62564351-06aa-4c15-84b1-d0460b8ba84d"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "46a273ba-b1f9-4500-bf60-a2520c6cb3e9",
+                    "label": "Barcodes :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Barcodes",
+                    "type": 8,
+                    "index": 9,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "c18980aa-3e7b-483f-9c07-623f929cedf9",
+                    "stepId": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "step": "ea493e31-f2d0-4ade-8078-a79aaf58af74",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "43ab238f-c822-4424-a4bd-eac5d413f9fe",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Barcodes_Link",
+                            "content": "https://www.google.com/search?q=\"Barcodes\"",
+                            "index": 1,
+                            "activityId": "46a273ba-b1f9-4500-bf60-a2520c6cb3e9",
+                            "activity": "46a273ba-b1f9-4500-bf60-a2520c6cb3e9"
+                        },
+                        {
+                            "id": "fcb75366-5661-4f7e-885d-ab3aa06d447e",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Barcodes.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "46a273ba-b1f9-4500-bf60-a2520c6cb3e9",
+                            "activity": "46a273ba-b1f9-4500-bf60-a2520c6cb3e9"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
                 }
             ],
             "teamIds": [
+                "37a4f6ea-f9ab-4ee3-9b3c-04d35b4e8b0f",
+                "7944043a-f592-487f-a148-0d3f6999acd5",
+                "6732dce7-00b7-4ca6-b9a2-0e8abb800962"
             ],
             "equipmentIds": [],
+            "workflowId": "74bc67dd-eefe-4304-871d-6622b39d22fe",
+            "isLocal": true,
+            "saveAsDraft": true
+        },
+        {
+            "id": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+            "stepVersionId": "ff5ae6da-2198-4546-b971-8ad99e73b7ba",
+            "name": "QA Bot Step 2",
+            "description": "QA Bot Step Description",
+            "type": 0,
+            "isDefaultDeviationStep": false,
+            "isTeamEveryone": true,
+            "isBlocking": false,
+            "activities": [
+                {
+                    "id": "862a6666-efa2-4dd7-ade7-2a66696aedf9",
+                    "label": "Value :: Perform below tasks",
+                    "placeholder": "Total tests",
+                    "description": "Test activity description for :: Value",
+                    "type": 0,
+                    "index": 1,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "9763f643-dffb-4e96-bb4b-03d819d6a102",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "087a6aff-4c3e-4275-bd4a-28fcea0f3f24",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Value_Link",
+                            "content": "https://www.google.com/search?q=\"Value\"",
+                            "index": 1,
+                            "activityId": "862a6666-efa2-4dd7-ade7-2a66696aedf9",
+                            "activity": "862a6666-efa2-4dd7-ade7-2a66696aedf9"
+                        },
+                        {
+                            "id": "9a5d7dcb-07d2-4530-bb74-22a1ece408c4",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Value.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "862a6666-efa2-4dd7-ade7-2a66696aedf9",
+                            "activity": "862a6666-efa2-4dd7-ade7-2a66696aedf9"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "f6b22355-2b23-478d-a172-a8a37133b9ec",
+                    "label": "Text :: Perform below tasks",
+                    "placeholder": "Module name being tested",
+                    "description": "Test activity description for :: Text",
+                    "type": 3,
+                    "index": 2,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "5418f202-68d8-40fc-9fde-6b8f86bd8b9e",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "6941b2ae-7275-4809-acfe-2cba5ba6c446",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Text_Link",
+                            "content": "https://www.google.com/search?q=\"Text\"",
+                            "index": 1,
+                            "activityId": "f6b22355-2b23-478d-a172-a8a37133b9ec",
+                            "activity": "f6b22355-2b23-478d-a172-a8a37133b9ec"
+                        },
+                        {
+                            "id": "5732c1b1-ff34-4ca2-80ff-b9b5fe30c857",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Text.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "f6b22355-2b23-478d-a172-a8a37133b9ec",
+                            "activity": "f6b22355-2b23-478d-a172-a8a37133b9ec"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36",
+                    "label": "Tasklist :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Tasklist",
+                    "type": 1,
+                    "index": 3,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "eae9b870-e96b-4c0b-b298-475add965116",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "8f339104-d42d-4be5-9fed-58aebf7d0040",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Tasklist_Link",
+                            "content": "https://www.google.com/search?q=\"Tasklist\"",
+                            "index": 1,
+                            "activityId": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36",
+                            "activity": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36"
+                        },
+                        {
+                            "id": "ca3b25d1-bdb7-4959-821e-861024075de4",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Tasklist.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36",
+                            "activity": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    },
+                    "activityList": [
+                        {
+                            "id": "3f7172a5-2764-482f-96f6-9edb12ac4812",
+                            "label": "Perform Smoke Testing :: one",
+                            "isRequired": false,
+                            "activityId": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36"
+                        },
+                        {
+                            "id": "ddb2a49c-35b9-41a7-ae01-4d30b0b4b057",
+                            "label": "Perform Smoke Testing :: two",
+                            "isRequired": true,
+                            "activityId": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36"
+                        },
+                        {
+                            "id": "4b5204d2-11d6-43e6-baeb-8d3c73d537e7",
+                            "label": "Perform Smoke Testing :: three",
+                            "isRequired": true,
+                            "activityId": "cc6ff739-0cdb-4fd0-acc6-e6b67aabea36"
+                        }
+                    ]
+                },
+                {
+                    "id": "0a7f42e8-8aa6-459a-b8cc-f4b0206878de",
+                    "label": "Photo :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Photo",
+                    "type": 2,
+                    "index": 4,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "8218380d-1fa6-438a-bc4a-950ce9072758",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "6396eada-1bff-4a3e-a9f1-bd85039b50a3",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Photo_Link",
+                            "content": "https://www.google.com/search?q=\"Photo\"",
+                            "index": 1,
+                            "activityId": "0a7f42e8-8aa6-459a-b8cc-f4b0206878de",
+                            "activity": "0a7f42e8-8aa6-459a-b8cc-f4b0206878de"
+                        },
+                        {
+                            "id": "e482928b-d5c0-4735-95af-4c99d399dc86",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Photo.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "0a7f42e8-8aa6-459a-b8cc-f4b0206878de",
+                            "activity": "0a7f42e8-8aa6-459a-b8cc-f4b0206878de"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "66557df3-5727-4705-b82c-5342776f4812",
+                    "label": "Selection :: Perform below tasks",
+                    "placeholder": "Smoke, Exploratory, Regression",
+                    "description": "Test activity description for :: Selection",
+                    "type": 4,
+                    "index": 5,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "471fbbbb-5e55-4f86-8c41-e7bc3e0ae3e1",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": [
+                        {
+                            "value": "Smoke",
+                            "label": "Smoke"
+                        },
+                        {
+                            "value": "Exploratory",
+                            "label": "Exploratory"
+                        },
+                        {
+                            "value": "Regression",
+                            "label": "Regression"
+                        }
+                    ],
+                    "attachments": [
+                        {
+                            "id": "bbc7a4e3-01c2-4715-8635-77c1947e4593",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Selection_Link",
+                            "content": "https://www.google.com/search?q=\"Selection\"",
+                            "index": 1,
+                            "activityId": "66557df3-5727-4705-b82c-5342776f4812",
+                            "activity": "66557df3-5727-4705-b82c-5342776f4812"
+                        },
+                        {
+                            "id": "116d21e5-fe44-44d4-b23b-639590135545",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Selection.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "66557df3-5727-4705-b82c-5342776f4812",
+                            "activity": "66557df3-5727-4705-b82c-5342776f4812"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "63b42b79-3e6e-4646-932a-15bd36b2cb7d",
+                    "label": "Customers :: Perform below tasks",
+                    "placeholder": "Enter Customer",
+                    "description": "Test activity description for :: Customers",
+                    "type": 5,
+                    "index": 6,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "9a4d3c4d-4e71-4c7f-be94-fce68ae7e4f0",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "10d8f172-8937-4401-92d9-57c5da68e72c",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Customers_Link",
+                            "content": "https://www.google.com/search?q=\"Customers\"",
+                            "index": 1,
+                            "activityId": "63b42b79-3e6e-4646-932a-15bd36b2cb7d",
+                            "activity": "63b42b79-3e6e-4646-932a-15bd36b2cb7d"
+                        },
+                        {
+                            "id": "b9bd92d4-2c10-4d9f-a95d-a390e3bd07c9",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Customers.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "63b42b79-3e6e-4646-932a-15bd36b2cb7d",
+                            "activity": "63b42b79-3e6e-4646-932a-15bd36b2cb7d"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "19bbabf9-bd45-4e73-99ba-1ffb1836b622",
+                    "label": "Suppliers :: Perform below tasks",
+                    "placeholder": "Enter Supplier",
+                    "description": "Test activity description for :: Suppliers",
+                    "type": 6,
+                    "index": 7,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "356ddab2-bb01-413f-94e0-cf289aaad275",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "33ead633-5efc-4172-ab02-b25c15754667",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Suppliers_Link",
+                            "content": "https://www.google.com/search?q=\"Suppliers\"",
+                            "index": 1,
+                            "activityId": "19bbabf9-bd45-4e73-99ba-1ffb1836b622",
+                            "activity": "19bbabf9-bd45-4e73-99ba-1ffb1836b622"
+                        },
+                        {
+                            "id": "c0eeb082-7137-441e-a247-4fde4b3afc3c",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Suppliers.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "19bbabf9-bd45-4e73-99ba-1ffb1836b622",
+                            "activity": "19bbabf9-bd45-4e73-99ba-1ffb1836b622"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "bf934e84-cdef-4645-9a68-1903912e044e",
+                    "label": "Items :: Perform below tasks",
+                    "placeholder": "Enter Items",
+                    "description": "Test activity description for :: Items",
+                    "type": 7,
+                    "index": 8,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "b55a3220-5d8b-4cab-a561-890902277e6b",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "9ac624a8-0b95-49ac-931b-d2ed347f01b4",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Items_Link",
+                            "content": "https://www.google.com/search?q=\"Items\"",
+                            "index": 1,
+                            "activityId": "bf934e84-cdef-4645-9a68-1903912e044e",
+                            "activity": "bf934e84-cdef-4645-9a68-1903912e044e"
+                        },
+                        {
+                            "id": "6178e5cc-03a3-4867-aa47-a44e51adea2c",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Items.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "bf934e84-cdef-4645-9a68-1903912e044e",
+                            "activity": "bf934e84-cdef-4645-9a68-1903912e044e"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "d4537aab-6675-43f1-98df-a2105d1ea570",
+                    "label": "Barcodes :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Barcodes",
+                    "type": 8,
+                    "index": 9,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "e7f58526-1ef3-469e-8cf5-baa89a2f5ef8",
+                    "stepId": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "step": "97a1fca8-1d45-42a9-8870-b413fd0600bb",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "73522491-959e-464e-861e-67384b2f82b2",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Barcodes_Link",
+                            "content": "https://www.google.com/search?q=\"Barcodes\"",
+                            "index": 1,
+                            "activityId": "d4537aab-6675-43f1-98df-a2105d1ea570",
+                            "activity": "d4537aab-6675-43f1-98df-a2105d1ea570"
+                        },
+                        {
+                            "id": "558ea196-8731-4370-85fa-243d69c36773",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Barcodes.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "d4537aab-6675-43f1-98df-a2105d1ea570",
+                            "activity": "d4537aab-6675-43f1-98df-a2105d1ea570"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                }
+            ],
+            "teamIds": [
+                "37a4f6ea-f9ab-4ee3-9b3c-04d35b4e8b0f",
+                "7944043a-f592-487f-a148-0d3f6999acd5",
+                "6732dce7-00b7-4ca6-b9a2-0e8abb800962"
+            ],
+            "equipmentIds": [],
+            "workflowId": "74bc67dd-eefe-4304-871d-6622b39d22fe",
+            "isLocal": true,
+            "saveAsDraft": true
+        },
+        {
+            "id": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+            "stepVersionId": "616e84b9-3801-4cf0-ad01-eb41d3cb5b5c",
+            "name": "QA Bot Step 3",
+            "description": "QA Bot Step Description",
+            "type": 0,
+            "isDefaultDeviationStep": false,
+            "isTeamEveryone": true,
+            "isBlocking": false,
+            "activities": [
+                {
+                    "id": "227bbc59-ed12-40fd-a1e1-a090afa9edcb",
+                    "label": "Value :: Perform below tasks",
+                    "placeholder": "Total tests",
+                    "description": "Test activity description for :: Value",
+                    "type": 0,
+                    "index": 1,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "eb06a3af-47a7-44d3-bf18-0b6da1330950",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "d368449a-3f32-4033-9b98-d0f5da40518d",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Value_Link",
+                            "content": "https://www.google.com/search?q=\"Value\"",
+                            "index": 1,
+                            "activityId": "227bbc59-ed12-40fd-a1e1-a090afa9edcb",
+                            "activity": "227bbc59-ed12-40fd-a1e1-a090afa9edcb"
+                        },
+                        {
+                            "id": "ac946d8d-e822-471c-a1ab-bb22c574506e",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Value.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "227bbc59-ed12-40fd-a1e1-a090afa9edcb",
+                            "activity": "227bbc59-ed12-40fd-a1e1-a090afa9edcb"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "020e84e2-c905-41e8-8a79-7ad5bc995d9f",
+                    "label": "Text :: Perform below tasks",
+                    "placeholder": "Module name being tested",
+                    "description": "Test activity description for :: Text",
+                    "type": 3,
+                    "index": 2,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "b984d6ce-db92-46bc-8861-b56da7902c33",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "796d4706-9c91-4c2b-a3f8-ab157685ec92",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Text_Link",
+                            "content": "https://www.google.com/search?q=\"Text\"",
+                            "index": 1,
+                            "activityId": "020e84e2-c905-41e8-8a79-7ad5bc995d9f",
+                            "activity": "020e84e2-c905-41e8-8a79-7ad5bc995d9f"
+                        },
+                        {
+                            "id": "704c68c1-5794-43c5-aac8-00bcaa909e9a",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Text.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "020e84e2-c905-41e8-8a79-7ad5bc995d9f",
+                            "activity": "020e84e2-c905-41e8-8a79-7ad5bc995d9f"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "8f781d24-0882-4c3b-829a-4519c2547088",
+                    "label": "Tasklist :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Tasklist",
+                    "type": 1,
+                    "index": 3,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "3e583adc-57b8-4720-b413-7358c7667033",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "653c2320-71d0-40c2-a445-816c5e5994c5",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Tasklist_Link",
+                            "content": "https://www.google.com/search?q=\"Tasklist\"",
+                            "index": 1,
+                            "activityId": "8f781d24-0882-4c3b-829a-4519c2547088",
+                            "activity": "8f781d24-0882-4c3b-829a-4519c2547088"
+                        },
+                        {
+                            "id": "5ff0847b-a21e-4882-aaf3-d0b466e2148d",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Tasklist.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "8f781d24-0882-4c3b-829a-4519c2547088",
+                            "activity": "8f781d24-0882-4c3b-829a-4519c2547088"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    },
+                    "activityList": [
+                        {
+                            "id": "bfadff89-9980-4211-bfa4-d30d4ea5a5ca",
+                            "label": "Perform Smoke Testing :: one",
+                            "isRequired": false,
+                            "activityId": "8f781d24-0882-4c3b-829a-4519c2547088"
+                        },
+                        {
+                            "id": "ef10f0d1-f442-42f1-8572-119d8289bb72",
+                            "label": "Perform Smoke Testing :: two",
+                            "isRequired": true,
+                            "activityId": "8f781d24-0882-4c3b-829a-4519c2547088"
+                        },
+                        {
+                            "id": "2bf2b465-2192-48e0-842d-46085d7eb824",
+                            "label": "Perform Smoke Testing :: three",
+                            "isRequired": true,
+                            "activityId": "8f781d24-0882-4c3b-829a-4519c2547088"
+                        }
+                    ]
+                },
+                {
+                    "id": "e06ea993-4598-4400-b9a3-7b17708b81c2",
+                    "label": "Photo :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Photo",
+                    "type": 2,
+                    "index": 4,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "a97407ae-afcf-4ddb-b39f-41b5af211582",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "79e9cad7-fbf5-4032-8621-cd414ef8fb0f",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Photo_Link",
+                            "content": "https://www.google.com/search?q=\"Photo\"",
+                            "index": 1,
+                            "activityId": "e06ea993-4598-4400-b9a3-7b17708b81c2",
+                            "activity": "e06ea993-4598-4400-b9a3-7b17708b81c2"
+                        },
+                        {
+                            "id": "10bfe17c-6729-4b0d-8141-3cfa96a4dc9d",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Photo.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "e06ea993-4598-4400-b9a3-7b17708b81c2",
+                            "activity": "e06ea993-4598-4400-b9a3-7b17708b81c2"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "66ddd805-daca-4875-98ad-ff6dfff6730c",
+                    "label": "Selection :: Perform below tasks",
+                    "placeholder": "Smoke, Exploratory, Regression",
+                    "description": "Test activity description for :: Selection",
+                    "type": 4,
+                    "index": 5,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "37e30fce-877d-4710-ba8b-c3319417bbea",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": [
+                        {
+                            "value": "Smoke",
+                            "label": "Smoke"
+                        },
+                        {
+                            "value": "Exploratory",
+                            "label": "Exploratory"
+                        },
+                        {
+                            "value": "Regression",
+                            "label": "Regression"
+                        }
+                    ],
+                    "attachments": [
+                        {
+                            "id": "e26b23f2-a736-41c3-aef1-af33cd18905f",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Selection_Link",
+                            "content": "https://www.google.com/search?q=\"Selection\"",
+                            "index": 1,
+                            "activityId": "66ddd805-daca-4875-98ad-ff6dfff6730c",
+                            "activity": "66ddd805-daca-4875-98ad-ff6dfff6730c"
+                        },
+                        {
+                            "id": "d65ea5d0-3cf6-4073-b0b8-f91e6dc15157",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Selection.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "66ddd805-daca-4875-98ad-ff6dfff6730c",
+                            "activity": "66ddd805-daca-4875-98ad-ff6dfff6730c"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "0a55100e-8532-4337-8aaa-83c89bf14365",
+                    "label": "Customers :: Perform below tasks",
+                    "placeholder": "Enter Customer",
+                    "description": "Test activity description for :: Customers",
+                    "type": 5,
+                    "index": 6,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "fc3b3670-c6a6-4820-bbe5-740b43adf6e5",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "2b914ffd-ba42-4731-bd40-a34543b21266",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Customers_Link",
+                            "content": "https://www.google.com/search?q=\"Customers\"",
+                            "index": 1,
+                            "activityId": "0a55100e-8532-4337-8aaa-83c89bf14365",
+                            "activity": "0a55100e-8532-4337-8aaa-83c89bf14365"
+                        },
+                        {
+                            "id": "164a1ea4-4ab1-438e-90d8-8c31802b47bb",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Customers.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "0a55100e-8532-4337-8aaa-83c89bf14365",
+                            "activity": "0a55100e-8532-4337-8aaa-83c89bf14365"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "b5cd5835-e9b9-4da4-a007-d56478df60c6",
+                    "label": "Suppliers :: Perform below tasks",
+                    "placeholder": "Enter Supplier",
+                    "description": "Test activity description for :: Suppliers",
+                    "type": 6,
+                    "index": 7,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "b7ecb578-ee29-48d8-ae40-386e0cd8a3cb",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "c84b47b2-20d7-4f80-a89a-0e26305d224f",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Suppliers_Link",
+                            "content": "https://www.google.com/search?q=\"Suppliers\"",
+                            "index": 1,
+                            "activityId": "b5cd5835-e9b9-4da4-a007-d56478df60c6",
+                            "activity": "b5cd5835-e9b9-4da4-a007-d56478df60c6"
+                        },
+                        {
+                            "id": "71beaf45-f937-4d0f-aa9b-a10060e209ad",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Suppliers.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "b5cd5835-e9b9-4da4-a007-d56478df60c6",
+                            "activity": "b5cd5835-e9b9-4da4-a007-d56478df60c6"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "8b74af52-237c-4dc3-9dde-d6917418bad9",
+                    "label": "Items :: Perform below tasks",
+                    "placeholder": "Enter Items",
+                    "description": "Test activity description for :: Items",
+                    "type": 7,
+                    "index": 8,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "9a7a3a55-cb0d-4db6-9797-a83d690b3013",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "1ccd977a-b3e6-4230-afc8-49d500012bff",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Items_Link",
+                            "content": "https://www.google.com/search?q=\"Items\"",
+                            "index": 1,
+                            "activityId": "8b74af52-237c-4dc3-9dde-d6917418bad9",
+                            "activity": "8b74af52-237c-4dc3-9dde-d6917418bad9"
+                        },
+                        {
+                            "id": "340275de-9605-45a0-9d6d-ac608e25af66",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Items.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "8b74af52-237c-4dc3-9dde-d6917418bad9",
+                            "activity": "8b74af52-237c-4dc3-9dde-d6917418bad9"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                },
+                {
+                    "id": "e11631bc-2dc2-4df4-a3f5-074503e2dd61",
+                    "label": "Barcodes :: Perform below tasks",
+                    "placeholder": "",
+                    "description": "Test activity description for :: Barcodes",
+                    "type": 8,
+                    "index": 9,
+                    "isRequired": false,
+                    "acceptMultiple": false,
+                    "hasImage": true,
+                    "uploadedFileId": "df070c79-d5c8-4169-8f07-b849d063f7b7",
+                    "stepId": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "step": "3a39163a-2325-4ffe-b200-b31d1f83de95",
+                    "options": null,
+                    "attachments": [
+                        {
+                            "id": "ef4004f6-34ea-4b24-b647-187aa9b2364f",
+                            "sourceId": null,
+                            "attachmentType": 1,
+                            "name": "Barcodes_Link",
+                            "content": "https://www.google.com/search?q=\"Barcodes\"",
+                            "index": 1,
+                            "activityId": "e11631bc-2dc2-4df4-a3f5-074503e2dd61",
+                            "activity": "e11631bc-2dc2-4df4-a3f5-074503e2dd61"
+                        },
+                        {
+                            "id": "f90da683-727d-40a5-87cb-7ee2da6de302",
+                            "sourceId": null,
+                            "attachmentType": 2,
+                            "name": "Barcodes.jpg",
+                            "content": "",
+                            "index": 2,
+                            "activityId": "e11631bc-2dc2-4df4-a3f5-074503e2dd61",
+                            "activity": "e11631bc-2dc2-4df4-a3f5-074503e2dd61"
+                        }
+                    ],
+                    "photo": {
+                        "isDeleted": false,
+                        "value": ""
+                    }
+                }
+            ],
+            "teamIds": [
+                "37a4f6ea-f9ab-4ee3-9b3c-04d35b4e8b0f",
+                "7944043a-f592-487f-a148-0d3f6999acd5",
+                "6732dce7-00b7-4ca6-b9a2-0e8abb800962"
+            ],
+            "equipmentIds": [],
+            "workflowId": "74bc67dd-eefe-4304-871d-6622b39d22fe",
             "isLocal": true,
             "saveAsDraft": true
         }
-    ]
+    ],
+    "shouldUpgrade": true
 }

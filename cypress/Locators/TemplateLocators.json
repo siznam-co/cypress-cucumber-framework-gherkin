@@ -32,14 +32,30 @@
         }, 
         "stepDescription": "#description"
     },
-    "activities": {
-        "activityLabelMultipleInputs": "div.step-activity #label",
-        "activityDescriptionMultipleInputs": "div.step-activity #description",
-        "task1MultipleInputs": "div.step-activity:nth-child(1) div.step-activity-tasklist--item input[title='Label']",
-        "task2MultipleInputs": "div.step-activity:nth-child(2) div.step-activity-tasklist--item input[title='Label']",
-        "task2IsRequiredMultipleButton": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) span.checkbox-text",
-        "task3MultipleInputs": "div.step-activity:nth-child(3) div.step-activity-tasklist--item input[title='Label']",
-        "task3IsRequiredMultipleButton": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) span.checkbox-text"
+    "addActivity": {
+        "addStepActivityBtn": "div.local-step-activities button",
+        "activityLabelInput": "div.step-activity #label",
+        "activityPhotoPlaceHolder": "input[id*='photo-']",
+        "activityDescriptionInput": "div.step-activity #description",
+        "attachementDropdown": "select.attachment-dropdown-menu",
+        "attachementName": "input[id='form.Name']",
+        "attachementUrl": "input[id='form.Url']",
+        "attachementImage": "#file-attachment-input",
+        "uploadModal": "div.modal-body",
+        "saveModalBtn": "div.modal-footer .btn__blue",
+
+        "placeholder": "input#placeholder",
+        "textActivityPlaceHolder": "textarea#placeholder",
+        "barcodeDropdown": "select.activity-options",
+        "addTaskMultipleClicks": "div.step-activity-options--button button",
+        "Tasklist": {
+            "activityLabelMultipleInputs": "div.step-activity #label",
+            "activityDescriptionMultipleInputs": "div.step-activity #description",
+            "taskMultipleInputs": " div.step-activity div.step-activity-tasklist--item input[title='Label']",
+            "task2IsRequiredMultipleButton": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(2) span.checkbox-text",
+            "task3IsRequiredMultipleButton": "div.step-activity-tasklist div.step-activity-tasklist--item:nth-child(3) span.checkbox-text"
+        },
+        "saveActivityBtn": "button.step-activity-save-btn"
     },
     "saveStepInvalid": {
         "@createStep": 400,

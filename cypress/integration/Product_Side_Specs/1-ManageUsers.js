@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+import { getUniqueName } from "../../support/commands.js"
 
 const UserLocators = require("../../Locators/UserLocators.json")
 const commonLocators = require("../../Locators/commonLocators.json")
@@ -30,9 +31,20 @@ describe("Add a new user", () => {
             cy.wait("@createUser").its("response.statusCode").should("eq", 200)
             cy.get(commonLocators.pageHeading).should("contain", "User Details")
             
-            cy.getUniqueEmail(UserLocators.details.email_UNIQUE, data.creates.email_UNIQUE)
-            cy.getUniqueName(UserLocators.details.userName_UNIQUE, data.creates.userName_UNIQUE)
+            cy.readUniqueEmail(UserLocators.details.email_UNIQUE, data.creates.email_UNIQUE)
+            cy.readUniqueName(UserLocators.details.userName_UNIQUE, data.creates.userName_UNIQUE)
+
+            cy.assertUser(getUniqueName(data.creates.userName_UNIQUE), 1)
 
         })
+    })
+
+    it("Disable the created user.", () => {
+        cy.get(UserLocators.disableBtn).click()
+        cy.get(UserLocators.modalConfrimBtn).click()
+
+        cy.wait("@disableUser").its("response.statusCode").should("eq", 200)
+        cy.get(UserLocators.disableBtn).should("be.disabled")
+
     })
 })

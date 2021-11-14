@@ -21,6 +21,7 @@ describe("Create and run new Checklist.", () => {
         cy.fixture("Checklist_data").then(data => {
             cy.enterUniqueName(ChecklistLocators.creates.checklistName_UNIQUE, data.creates.checklistName_UNIQUE)
             cy.selectFromDropdown(ChecklistLocators.creates.addTemplateSingleSelect, data.creates.addTemplateSingleSelect, "SingleSelect")
+            // cy.wait("@addTemplateToChecklist").its("response.statusCode").should("eq", 200)
             cy.get(ChecklistLocators.creates.saveBtn).click()
 
             cy.wait("@createChecklist").its("response.statusCode").should("eq", 200)
