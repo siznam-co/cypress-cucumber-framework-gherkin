@@ -505,6 +505,37 @@ Cypress.Commands.add("assertCustomer", (name, operation) => {
     })
 })
 
+Cypress.Commands.add("assertSupplier", (name, operation) => {
+
+    let profileData = window.localStorage.getItem("profile")
+    let token = JSON.parse(profileData)["token"]
+    let cookiesArr = ""
+    cy.getCookies().then((cookies) => {
+        for (let cookie in cookies) {
+            cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+        }
+
+        cy.request({
+            method: "POST",
+            url: "/api/supplier/list",
+            headers: {
+                "Host": Cypress.config().baseUrl.split("//")[1],
+                "Connection": "keep-alive",
+                "Accept": "application/json, text/plain, */*",
+                "Authorization": "Bearer " + token,
+                "Origin": Cypress.config().baseUrl,
+                "Referer": Cypress.config().baseUrl + "/suppliers",
+                "cookie": cookiesArr
+            },
+            body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            expect(response.body.totalCount).equal(operation)
+        })
+
+    })
+})
+
 Cypress.Commands.add("createTemplateUsingApi", () => {
     let templateId = generateFullUUID()
     let workflowVersionId = generateFullUUID()
@@ -630,4 +661,6 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("DELETE", "/api/equipment2/*").as("deleteEquipment")
     cy.intercept("POST", "/api/customer").as("createCustomer")
     cy.intercept("DELETE", "/api/customer/*").as("deleteCustomer")
+    cy.intercept("POST", "/api/supplier").as("createSupplier")
+    cy.intercept("DELETE", "/api/supplier/*").as("deleteSupplier")
 })
