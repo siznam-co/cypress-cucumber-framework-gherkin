@@ -57,6 +57,8 @@ describe("Add new team and add users to it.", () => {
             cy.get(TeamLocators.details.teamName_UNIQUE).should("have.text", getUniqueName(data.creates.teamName_UNIQUE) + " up")
             cy.get(TeamLocators.details.description).should("have.text", data.creates.description + " up")
             cy.get(TeamLocators.details.addedUsersBeVisible).should("not.exist")
+
+            cy.assertTeam(getUniqueName(data.creates.teamName_UNIQUE) + " up", 1)
         })
     })
 

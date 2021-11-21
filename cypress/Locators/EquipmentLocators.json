@@ -7,6 +7,7 @@
         "comments": "textarea#comment",
         "saveBtn": "button.btn.btn__success"
     },
+    "editBtn": ".equipment-details--main-footer button.btn-transparent",
     "archiveBtn": ".equipment-details--main-footer button.btn__bordered", 
     "modalConfrimBtn": "div.modal-footer button.btn__blue",
     "deleteBtn": ".equipment-details--main-footer button.btn__danger",

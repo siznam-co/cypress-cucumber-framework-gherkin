@@ -704,6 +704,7 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("GET", "/api/step/by-workflow/").as("addTemplateToChecklist")
     cy.intercept("DELETE", "/api/team2/*").as("deleteTeam")
     cy.intercept("POST", "/api/equipment2").as("createEquipment")
+    cy.intercept("PUT", "/api/equipment2").as("updateEquipment")
     cy.intercept("DELETE", "/api/equipment2/*").as("deleteEquipment")
     cy.intercept("POST", "/api/customer").as("createCustomer")
     cy.intercept("PUT", "/api/customer").as("updateCustomer")

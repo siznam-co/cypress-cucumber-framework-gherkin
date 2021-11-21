@@ -80,7 +80,7 @@ describe("Add new Customer and add users to it.", () => {
             cy.get(customerLocators.details.postalCode).should("have.text", "Postal Code: " + data.creates.postalCode + "9")
             cy.get(customerLocators.details.notes).should("have.text", data.creates.notes + " up")
 
-            cy.assertCustomer(getUniqueName(data.creates.customerName_UNIQUE), 1)
+            cy.assertCustomer(getUniqueName(data.creates.customerName_UNIQUE) + " up", 1)
 
         })
     })
