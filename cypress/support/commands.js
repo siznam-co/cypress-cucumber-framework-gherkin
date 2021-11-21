@@ -692,6 +692,7 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/user").as("createUser")
     cy.intercept("POST", "/api/user/archive").as("disableUser")
     cy.intercept("POST", "/api/team2").as("createTeam")
+    cy.intercept("PUT", "/api/team2").as("updateTeam")
     cy.intercept("POST", "/api/step/validate").as("createStep")
     cy.intercept("POST", "/api/template/list").as("searchTemplate")
     cy.intercept("POST", "/api/workflowRun/quick-run").as("createChecklist")
