@@ -1,0 +1,9 @@
+{
+    "creates": {
+        "itemName_UNIQUE": "Item_1",
+        "itemTypeDropdown": "ampliflow_bot",
+        "supplierDropdown": "Unique_Supplier_Ampliflow",
+        "amount": 120,
+        "unitTypeDropdown": "Kg"
+    }
+}

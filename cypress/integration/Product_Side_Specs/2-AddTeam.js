@@ -19,7 +19,7 @@ describe("Add new team and add users to it.", () => {
         // Add to each "it" 
     })
 
-    it("Add new Team screen is opened.", () => {
+    it("Add new Team.", () => {
         cy.get(TeamLocators.addTeamBtn).click()
         cy.get(commonLocators.pageHeading).should("contain", "New Team")
 
@@ -38,6 +38,25 @@ describe("Add new team and add users to it.", () => {
 
             cy.assertTeam(getUniqueName(data.creates.teamName_UNIQUE), 1)
 
+        })
+    })
+
+    it("Edit new created Team.", () => {
+        cy.get(TeamLocators.editBtn).click()
+        cy.get(commonLocators.pageHeading).should("contain", "Edit team")
+
+        cy.fixture("Team_data").then(data => {
+            cy.get(TeamLocators.creates.teamName_UNIQUE).type(" up")
+            cy.get(TeamLocators.removeMultipleUsers).click({ multiple: true })
+            cy.get(TeamLocators.creates.description).type(" up")
+            cy.get(TeamLocators.creates.saveBtn).click()
+
+            cy.wait("@updateTeam").its("response.statusCode").should("eq", 200)
+            cy.get(commonLocators.pageHeading).should("contain", "Team Details")
+
+            cy.get(TeamLocators.details.teamName_UNIQUE).should("have.text", getUniqueName(data.creates.teamName_UNIQUE) + " up")
+            cy.get(TeamLocators.details.description).should("have.text", data.creates.description + " up")
+            cy.get(TeamLocators.details.addedUsersBeVisible).should("not.exist")
         })
     })
 

@@ -142,6 +142,20 @@ Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
     }
 })
 
+Cypress.Commands.add("selectFromInputDropdown", (locatorObject, value) => {
+    cy.get(locatorObject["dropdown"]).click()
+    cy.get(locatorObject["input"]).type(value)
+    cy.get(locatorObject["option"]).each((col, index, list) => {
+        cy.wrap(col).invoke("text").then(optionText => {
+            if (optionText != value && list.length == index + 1) {
+                cy.get(locatorObject["input"]).type("{enter}")
+            } else if (optionText == value) {
+                cy.wrap(col).click()
+            }
+        })
+    })
+})
+
 Cypress.Commands.add("elementMultipleClicks", (selector, i) => {
     while (i != 0) {
         cy.get(selector).click({ force: true, multiple: true })
@@ -536,6 +550,37 @@ Cypress.Commands.add("assertSupplier", (name, operation) => {
     })
 })
 
+Cypress.Commands.add("assertItem", (name, operation) => {
+
+    let profileData = window.localStorage.getItem("profile")
+    let token = JSON.parse(profileData)["token"]
+    let cookiesArr = ""
+    cy.getCookies().then((cookies) => {
+        for (let cookie in cookies) {
+            cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+        }
+
+        cy.request({
+            method: "POST",
+            url: "/api/item/list",
+            headers: {
+                "Host": Cypress.config().baseUrl.split("//")[1],
+                "Connection": "keep-alive",
+                "Accept": "application/json, text/plain, */*",
+                "Authorization": "Bearer " + token,
+                "Origin": Cypress.config().baseUrl,
+                "Referer": Cypress.config().baseUrl + "/items",
+                "cookie": cookiesArr
+            },
+            body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            expect(response.body.totalCount).equal(operation)
+        })
+
+    })
+})
+
 Cypress.Commands.add("createTemplateUsingApi", () => {
     let templateId = generateFullUUID()
     let workflowVersionId = generateFullUUID()
@@ -647,6 +692,7 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/user").as("createUser")
     cy.intercept("POST", "/api/user/archive").as("disableUser")
     cy.intercept("POST", "/api/team2").as("createTeam")
+    cy.intercept("PUT", "/api/team2").as("updateTeam")
     cy.intercept("POST", "/api/step/validate").as("createStep")
     cy.intercept("POST", "/api/template/list").as("searchTemplate")
     cy.intercept("POST", "/api/workflowRun/quick-run").as("createChecklist")
@@ -660,7 +706,12 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/equipment2").as("createEquipment")
     cy.intercept("DELETE", "/api/equipment2/*").as("deleteEquipment")
     cy.intercept("POST", "/api/customer").as("createCustomer")
+    cy.intercept("PUT", "/api/customer").as("updateCustomer")
     cy.intercept("DELETE", "/api/customer/*").as("deleteCustomer")
     cy.intercept("POST", "/api/supplier").as("createSupplier")
+    cy.intercept("PUT", "/api/supplier").as("updateSupplier")
     cy.intercept("DELETE", "/api/supplier/*").as("deleteSupplier")
+    cy.intercept("POST", "/api/item").as("createItem")
+    cy.intercept("DELETE", "/api/item/*").as("deleteItem")
+    cy.intercept("POST", "/api/item/list").as("searchItems")
 })

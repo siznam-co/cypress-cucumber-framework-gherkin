@@ -1,0 +1,41 @@
+{
+    "creates": {
+        "itemName_UNIQUE": "#name",
+        "itemTypeDropdown": {
+            "dropdown": "[for='typeId'] div.app-select-dropdown__value-container",
+            "input": "#typeId",
+            "option": "[for='typeId'] div.app-select-dropdown__option"
+        },
+        "internalID": "#internalID",
+        "externalID": "#externalID",
+        "supplierDropdown": {
+            "dropdown": "[for='supplierId'] div.app-select-dropdown__value-container",
+            "input": "#supplierId",
+            "option": "[for='supplierId'] div.app-select-dropdown__option"
+        },
+        "amount": "#amount",
+        "unitTypeDropdown": {
+            "dropdown": "[for='unitId'] div.app-select-dropdown__value-container",
+            "input": "#unitId",
+            "option": "[for='unitId'] div.app-select-dropdown__option"
+        },
+        "saveBtn": "button.btn.btn__success"
+    },
+    "actionDropdown": "tbody tr td div.menu-button__wrapper",
+
+    "archiveBtn": "li[data-id='archive']",
+    "modalConfrimBtn": "div.modal-footer button.btn__blue",
+    "deleteBtn": "li[data-id='delete']",
+    "deleteConfirmBtn": ".modal-footer button.btn__danger",
+
+    "details": {
+        "itemName_UNIQUE": "tbody tr td:nth-child(3)",
+        "itemTypeDropdown": "tbody tr td:nth-child(5)",
+        "internalID": "tbody tr td:nth-child(1)",
+        "externalID": "tbody tr td:nth-child(2)",
+        "supplierDropdown": "tbody tr td:nth-child(4)",
+        "amount": "tbody tr td:nth-child(6)",
+        "unitTypeDropdown": "tbody tr td:nth-child(7)"
+    },
+    "addItemBtn": "div.page--title button.btn"
+}

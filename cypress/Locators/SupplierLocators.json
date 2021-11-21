@@ -12,6 +12,7 @@
         "notes": "#notes",
         "saveBtn": "button.btn.btn__success"
     },
+    "editBtn": ".supplier-details--main-footer button.btn-transparent",
     "archiveBtn": ".supplier-details--main-footer button.btn__bordered", 
     "modalConfrimBtn": "div.modal-footer button.btn__blue",
     "deleteBtn": ".supplier-details--main-footer button.btn__danger",
