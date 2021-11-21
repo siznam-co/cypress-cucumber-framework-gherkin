@@ -17,7 +17,7 @@ describe("Add new Supplier and add users to it.", () => {
         // Add to each "it" 
     })
 
-    it("Add new Supplier screen is opened.", () => {
+    it("Add new Supplier.", () => {
         cy.get(supplierLocators.addSupplierBtn).click()
         cy.get(commonLocators.pageHeading).should("contain", "New Supplier")
 
@@ -48,6 +48,39 @@ describe("Add new Supplier and add users to it.", () => {
 
             cy.assertSupplier(getUniqueName(data.creates.supplierName_UNIQUE), 1)
 
+        })
+    })
+
+    it("Edit new Supplier.", () => {
+        cy.get(supplierLocators.editBtn).click()
+        cy.get(commonLocators.pageHeading).should("contain", "Edit Supplier")
+
+        cy.fixture("Supplier_data").then(data => {
+            cy.get(supplierLocators.creates.supplierName_UNIQUE).type(" up")
+            cy.get(supplierLocators.creates.supplierId).type(" up")
+            cy.get(supplierLocators.creates.vatNumber).type(" up")
+            cy.get(supplierLocators.creates.address).type(" up")
+            cy.get(supplierLocators.creates.city).type(" up")
+            cy.get(supplierLocators.creates.postalCode).type("9")
+            cy.get(supplierLocators.creates.phone).type("2")
+            cy.get(supplierLocators.creates.supplierEmail_UNIQUE).type("up")
+            cy.get(supplierLocators.creates.website).type("up")
+            cy.get(supplierLocators.creates.notes).type(" up")
+            cy.get(supplierLocators.creates.saveBtn).click()
+
+            cy.wait("@updateSupplier").its("response.statusCode").should("eq", 200)
+            cy.get(commonLocators.pageHeading).should("contain", "Supplier Details")
+
+            cy.get(supplierLocators.details.supplierName_UNIQUE).should("have.text", getUniqueName(data.creates.supplierName_UNIQUE) + " up")
+            cy.get(supplierLocators.details.supplierId).should("have.text", window.uniqueId + " up") // Defined in Commands.js
+            cy.get(supplierLocators.details.addressAndCity).should("have.text", data.creates.address + " up" + ", " + data.creates.city + " up")
+            cy.get(supplierLocators.details.phone).should("have.text", data.creates.phone + "2")
+            cy.get(supplierLocators.details.website).should("have.text", data.creates.website + "up")
+            cy.readUniqueEmail(supplierLocators.details.supplierEmail_UNIQUE, data.creates.supplierEmail_UNIQUE + "up")
+            cy.get(supplierLocators.details.postalCode).should("have.text", "Postal Code: " + data.creates.postalCode + "9")
+            cy.get(supplierLocators.details.notes).should("have.text", data.creates.notes + " up")
+
+            cy.assertSupplier(getUniqueName(data.creates.supplierName_UNIQUE), 1)
         })
     })
 

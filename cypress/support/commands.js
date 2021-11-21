@@ -709,6 +709,7 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("PUT", "/api/customer").as("updateCustomer")
     cy.intercept("DELETE", "/api/customer/*").as("deleteCustomer")
     cy.intercept("POST", "/api/supplier").as("createSupplier")
+    cy.intercept("PUT", "/api/supplier").as("updateSupplier")
     cy.intercept("DELETE", "/api/supplier/*").as("deleteSupplier")
     cy.intercept("POST", "/api/item").as("createItem")
     cy.intercept("DELETE", "/api/item/*").as("deleteItem")
