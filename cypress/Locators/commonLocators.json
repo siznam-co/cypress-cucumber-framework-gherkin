@@ -1,6 +1,8 @@
 {
     "sideNavMenu": "div.menu-section",
     "pageHeading": "div.page--title h1",
+    "modalHeading": "div.modal-title.h4",
     "menuBtn": "div a.menu-node--header",
-    "subMenuBtn": "div.menu-node--options a"
+    "subMenuBtn": "div.menu-node--options a",
+    "searchFilterInput": "input[id='filter.search']"
 }
