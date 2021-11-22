@@ -10,6 +10,7 @@
         "userName_UNIQUE": "div.user-details--main-header h4",
         "email_UNIQUE": "div.user-details--main-header h5"    
     },
+    "editBtn": ".user-details--main-footer button.btn-transparent",
     "disableBtn": ".user-details--main-footer button.btn__danger",
     "modalConfrimBtn": "div.modal-footer button.btn__danger",
     
