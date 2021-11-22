@@ -690,29 +690,39 @@ Cypress.Commands.add("createTemplateUsingApi", () => {
 Cypress.Commands.add("runRoutes", () => {
 
     cy.intercept("POST", "/api/user").as("createUser")
+    cy.intercept("PUT", "/api/user").as("updateUser")
     cy.intercept("POST", "/api/user/archive").as("disableUser")
+
     cy.intercept("POST", "/api/team2").as("createTeam")
     cy.intercept("PUT", "/api/team2").as("updateTeam")
+    cy.intercept("DELETE", "/api/team2/*").as("deleteTeam")
+
     cy.intercept("POST", "/api/step/validate").as("createStep")
-    cy.intercept("POST", "/api/template/list").as("searchTemplate")
-    cy.intercept("POST", "/api/workflowRun/quick-run").as("createChecklist")
+    cy.intercept("POST", "/api/stepinstance/finalize").as("finalizeStep")
+    cy.intercept("POST", "/api/attachment/validate").as("addAttachment")
+
     cy.intercept("POST", "/api/template").as("createTemplate")
     cy.intercept("PUT", "/api/template").as("updateTemplate")
     cy.intercept("GET", "/api/team/published").as("publishTemplate")
-    cy.intercept("POST", "/api/stepinstance/finalize").as("finalizeStep")
-    cy.intercept("POST", "/api/attachment/validate").as("addAttachment")
+    cy.intercept("POST", "/api/template/list").as("searchTemplate")
+
+    cy.intercept("POST", "/api/workflowRun/quick-run").as("createChecklist")
     cy.intercept("GET", "/api/step/by-workflow/").as("addTemplateToChecklist")
-    cy.intercept("DELETE", "/api/team2/*").as("deleteTeam")
+
     cy.intercept("POST", "/api/equipment2").as("createEquipment")
     cy.intercept("PUT", "/api/equipment2").as("updateEquipment")
     cy.intercept("DELETE", "/api/equipment2/*").as("deleteEquipment")
+
     cy.intercept("POST", "/api/customer").as("createCustomer")
     cy.intercept("PUT", "/api/customer").as("updateCustomer")
     cy.intercept("DELETE", "/api/customer/*").as("deleteCustomer")
+
     cy.intercept("POST", "/api/supplier").as("createSupplier")
     cy.intercept("PUT", "/api/supplier").as("updateSupplier")
     cy.intercept("DELETE", "/api/supplier/*").as("deleteSupplier")
+    
     cy.intercept("POST", "/api/item").as("createItem")
+    cy.intercept("PUT", "/api/item").as("updateItem")
     cy.intercept("DELETE", "/api/item/*").as("deleteItem")
     cy.intercept("POST", "/api/item/list").as("searchItems")
 })

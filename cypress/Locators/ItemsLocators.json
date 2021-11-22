@@ -22,7 +22,8 @@
         "saveBtn": "button.btn.btn__success"
     },
     "actionDropdown": "tbody tr td div.menu-button__wrapper",
-
+    
+    "editBtn": "li[data-id='edit']",
     "archiveBtn": "li[data-id='archive']",
     "modalConfrimBtn": "div.modal-footer button.btn__blue",
     "deleteBtn": "li[data-id='delete']",

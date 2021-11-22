@@ -17,7 +17,7 @@ describe("Add new Items and add users to it.", () => {
         // Add to each "it" 
     })
 
-    it("Add new Item screen is opened.", () => {
+    it("Add new Item.", () => {
         cy.get(ItemsLocators.addItemBtn).click()
         cy.get(commonLocators.modalHeading).should("contain", "New Item")
 
@@ -34,7 +34,7 @@ describe("Add new Items and add users to it.", () => {
 
             cy.wait("@createItem").its("response.statusCode").should("eq", 200)
             // cy.get(commonLocators.pageHeading).should("contain", "Item Details")
-
+            cy.get(commonLocators.searchFilterInput).clear()
             cy.get(commonLocators.searchFilterInput).type(getUniqueName(data.creates.itemName_UNIQUE))
             cy.wait("@searchItems").its("response.statusCode").should("eq", 200)
 
@@ -44,8 +44,44 @@ describe("Add new Items and add users to it.", () => {
             cy.get(ItemsLocators.details.supplierDropdown).should("have.text", data.creates.supplierDropdown)
             cy.get(ItemsLocators.details.itemTypeDropdown).should("have.text", data.creates.itemTypeDropdown)
             cy.get(ItemsLocators.details.unitTypeDropdown).should("have.text", data.creates.unitTypeDropdown)
+            cy.get(ItemsLocators.details.amount).should("have.text", data.creates.amount)
 
             cy.assertItem(getUniqueName(data.creates.itemName_UNIQUE), 1)
+
+        })
+    })
+
+    it("Edit new created Item.", () => {
+        cy.get(ItemsLocators.actionDropdown).click()
+        cy.get(ItemsLocators.editBtn).click()
+        cy.get(commonLocators.modalHeading).should("contain", "Edit")
+
+        cy.fixture("Items_data").then(data => {
+            cy.get(ItemsLocators.creates.itemName_UNIQUE).type(" up")
+            cy.selectFromInputDropdown(ItemsLocators.creates.itemTypeDropdown, data.creates.itemTypeDropdown + "Up")
+            cy.get(ItemsLocators.creates.internalID).type("Up") // Defined in Commands.js
+            cy.get(ItemsLocators.creates.externalID).type("Up") // Defined in Commands.js
+            cy.selectFromInputDropdown(ItemsLocators.creates.supplierDropdown, data.creates.supplierDropdown + "Up")
+            cy.get(ItemsLocators.creates.amount).type("2") // Defined in Commands.js
+            cy.selectFromInputDropdown(ItemsLocators.creates.unitTypeDropdown, data.creates.unitTypeDropdown + "Up")
+
+            cy.get(ItemsLocators.creates.saveBtn).click()
+
+            cy.wait("@updateItem").its("response.statusCode").should("eq", 200)
+            // cy.get(commonLocators.pageHeading).should("contain", "Item Details")
+            cy.get(commonLocators.searchFilterInput).clear()
+            cy.get(commonLocators.searchFilterInput).type(getUniqueName(data.creates.itemName_UNIQUE) + " up")
+            cy.wait("@searchItems").its("response.statusCode").should("eq", 200)
+
+            cy.get(ItemsLocators.details.itemName_UNIQUE).should("have.text", getUniqueName(data.creates.itemName_UNIQUE) + " up")
+            cy.get(ItemsLocators.details.internalID).should("have.text", "In_" + window.uniqueId + "Up") // Defined in Commands.js
+            cy.get(ItemsLocators.details.externalID).should("have.text", "Ex_" + window.uniqueId + "Up") // Defined in Commands.js
+            cy.get(ItemsLocators.details.supplierDropdown).should("have.text", data.creates.supplierDropdown + "Up")
+            cy.get(ItemsLocators.details.itemTypeDropdown).should("have.text", data.creates.itemTypeDropdown + "Up")
+            cy.get(ItemsLocators.details.unitTypeDropdown).should("have.text", data.creates.unitTypeDropdown + "Up")
+            cy.get(ItemsLocators.details.amount).should("have.text", data.creates.amount + "2")
+
+            cy.assertItem(getUniqueName(data.creates.itemName_UNIQUE) + " up", 1)
 
         })
     })
