@@ -11,6 +11,7 @@
   "author": "Abdullah",
   "license": "Torque360",
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.0.0",
     "cypress": "^8.7.0",
     "cypress-file-upload": "^5.0.8",
     "cypress-mailosaur": "^2.3.3",

@@ -136,7 +136,7 @@ Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
             cy.get(dropdown["input"]).type(getUniqueName(value))
             cy.get(dropdown["options"]).eq(0).click()
         } else {
-            cy.get(dropdown["input"]).type(value)
+            cy.get(dropdown["input"]).type(value, {force:true})
             cy.get(dropdown["options"]).contains(value).click()
         }
     }
@@ -581,6 +581,37 @@ Cypress.Commands.add("assertItem", (name, operation) => {
     })
 })
 
+Cypress.Commands.add("assertTemplate", (name, operation) => {
+
+    let profileData = window.localStorage.getItem("profile")
+    let token = JSON.parse(profileData)["token"]
+    let cookiesArr = ""
+    cy.getCookies().then((cookies) => {
+        for (let cookie in cookies) {
+            cookiesArr = cookiesArr + cookies[cookie]["name"] + "=" + cookies[cookie]["value"] + "; "
+        }
+
+        cy.request({
+            method: "POST",
+            url: "/api/template/list",
+            headers: {
+                "Host": Cypress.config().baseUrl.split("//")[1],
+                "Connection": "keep-alive",
+                "Accept": "application/json, text/plain, */*",
+                "Authorization": "Bearer " + token,
+                "Origin": Cypress.config().baseUrl,
+                "Referer": Cypress.config().baseUrl + "/items",
+                "cookie": cookiesArr
+            },
+            body: { "page": 1, "pageSize": 10, "sortBy": 1, "sortAsc": true, "keywordSearch": name }
+        }).then((response) => {
+            expect(response.status).equal(200)
+            expect(response.body.totalCount).equal(operation)
+        })
+
+    })
+})
+
 Cypress.Commands.add("createTemplateUsingApi", () => {
     let templateId = generateFullUUID()
     let workflowVersionId = generateFullUUID()
@@ -703,6 +734,7 @@ Cypress.Commands.add("runRoutes", () => {
 
     cy.intercept("POST", "/api/template").as("createTemplate")
     cy.intercept("PUT", "/api/template").as("updateTemplate")
+    cy.intercept("DELETE", "/api/template/*").as("deleteTemplate")
     cy.intercept("GET", "/api/team/published").as("publishTemplate")
     cy.intercept("POST", "/api/template/list").as("searchTemplate")
 
@@ -725,4 +757,7 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("PUT", "/api/item").as("updateItem")
     cy.intercept("DELETE", "/api/item/*").as("deleteItem")
     cy.intercept("POST", "/api/item/list").as("searchItems")
+
+    cy.intercept("POST", "https://api-iam.intercom.io/messenger/web/ping").as("waitForCharts")
+  //  cy.intercept("GET", "/api/deviation/*").as("processChartCount")
 })

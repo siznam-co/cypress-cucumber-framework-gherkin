@@ -95,6 +95,14 @@
             "errorMessage": ".invalid-feedback"
         }
     },
+    "actionDropdown": "tbody tr td div.menu-button__wrapper",
+
+    "editBtn": "li[data-id='edit']",
+    "archiveBtn": "li[data-id='archive']",
+    "modalConfrimBtn": "div.modal-footer button.btn__blue",
+    "deleteBtn": "li[data-id='delete']",
+    "deleteConfirmBtn": ".modal-footer button.btn__danger",
+
     "saveStepValid": {
         "@createStep": 200
     },
