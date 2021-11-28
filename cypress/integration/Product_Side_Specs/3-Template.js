@@ -14,13 +14,13 @@ function addStep(number) {
         // Add all activities and verify each step mandatory field assertions
         addActivity(data, "Value")
         addActivity(data, "Text")
-        // addActivity(data, "Tasklist")
-        // addActivity(data, "Photo")
-        // addActivity(data, "Selection")
-        // addActivity(data, "Customers")
-        // addActivity(data, "Suppliers")
-        // addActivity(data, "Items")
-        // addActivity(data, "Barcodes")
+        addActivity(data, "Tasklist")
+        addActivity(data, "Photo")
+        addActivity(data, "Selection")
+        addActivity(data, "Customers")
+        addActivity(data, "Suppliers")
+        addActivity(data, "Items")
+        addActivity(data, "Barcodes")
 
         // Validating Step mandatory fields.
         cy.get(TemplateLocators.saveStepBtn).click()
@@ -153,11 +153,11 @@ describe("Add new template.", () => {
         cy.get(commonLocators.pageHeading).should("contain", "New Template")
 
         addStep(" 1") // step 1
-        // addStep(" 2") // step 2
-        // addStep(" 3") // step 3
+        addStep(" 2") // step 2
+        addStep(" 3") // step 3
     })
 
-    it("Validate Create template without adding mandatory fields.", () => {
+    it("Validate Create template mandatory fields.", () => {
         cy.get(TemplateLocators.saveAndPublishBtn).click()
         cy.wait("@createTemplate").its("response.statusCode").should("eq", 400)
 

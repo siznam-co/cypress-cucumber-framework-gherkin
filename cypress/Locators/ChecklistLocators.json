@@ -7,7 +7,7 @@
             "input": "input[id*='react-select']",
             "options": "div.app-select-dropdown__option"
         }, 
-        "saveBtn": "div.modal-body button.btn__blue"
+        "saveBtn": "div.form-group button.btn__blue"
     },
     "details": {
         "checklistName_UNIQUE": "div.checklist-details--overview--details h2",
