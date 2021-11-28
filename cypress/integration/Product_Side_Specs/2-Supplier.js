@@ -80,7 +80,7 @@ describe("Add new Supplier and add users to it.", () => {
             cy.get(supplierLocators.details.postalCode).should("have.text", "Postal Code: " + data.creates.postalCode + "9")
             cy.get(supplierLocators.details.notes).should("have.text", data.creates.notes + " up")
 
-            cy.assertSupplier(getUniqueName(data.creates.supplierName_UNIQUE), 1)
+            cy.assertSupplier(getUniqueName(data.creates.supplierName_UNIQUE) + " up", 1)
         })
     })
 

@@ -1,5 +1,5 @@
 /// <reference types="Cypress" />
-import { getUniqueName } from "../../support/commands.js"
+import { getUniqueEmail, getUniqueName } from "../../support/commands.js"
 
 const UserLocators = require("../../Locators/UserLocators.json")
 const commonLocators = require("../../Locators/commonLocators.json")
@@ -35,6 +35,28 @@ describe("Add a new user", () => {
             cy.readUniqueName(UserLocators.details.userName_UNIQUE, data.creates.userName_UNIQUE)
 
             cy.assertUser(getUniqueName(data.creates.userName_UNIQUE), 1)
+
+        })
+    })
+
+    it("Edit created User and verify it's detail.", () => {
+        cy.get(UserLocators.editBtn).click()
+        cy.get(commonLocators.pageHeading).should("contain", "Edit user")
+
+        cy.fixture("User_data").then(data => {
+            cy.get(UserLocators.creates.email_UNIQUE).type("up")
+            cy.get(UserLocators.creates.userName_UNIQUE).type("up")
+            cy.get(UserLocators.creates.password).type("up")
+            cy.get(UserLocators.creates.confirmPassword).type("up")
+            cy.get(UserLocators.creates.saveBtn).click()
+
+            cy.wait("@updateUser").its("response.statusCode").should("eq", 200)
+            cy.get(commonLocators.pageHeading).should("contain", "User Details")
+            
+            cy.get(UserLocators.details.email_UNIQUE).should("have.text", getUniqueEmail(data.creates.email_UNIQUE) + "up")
+            cy.get(UserLocators.details.userName_UNIQUE).should("have.text", getUniqueName(data.creates.userName_UNIQUE) + "up")
+
+            cy.assertUser(getUniqueName(data.creates.userName_UNIQUE) + "up", 1)
 
         })
     })

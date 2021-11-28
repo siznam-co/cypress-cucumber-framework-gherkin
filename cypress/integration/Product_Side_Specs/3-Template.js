@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { getColor } from "../../support/commands.js"
+import { getColor, getUniqueName } from "../../support/commands.js"
 import 'cypress-file-upload'
 
 const TemplateLocators = require("../../Locators/TemplateLocators.json")
@@ -21,7 +21,7 @@ function addStep(number) {
         addActivity(data, "Suppliers")
         addActivity(data, "Items")
         addActivity(data, "Barcodes")
-        
+
         // Validating Step mandatory fields.
         cy.get(TemplateLocators.saveStepBtn).click()
         cy.wait("@createStep").its("response.statusCode").should("eq", 400)
@@ -39,7 +39,7 @@ function addStep(number) {
         cy.get(TemplateLocators.saveStepBtn).click()
         cy.wait("@createStep").its("response.statusCode").should("eq", 200)
         cy.get(commonLocators.pageHeading).should("contain", "New Template")
-    
+
     })
 }
 
@@ -80,7 +80,7 @@ function addActivity(data, activity) {
 }
 
 function fillActitivitySpecificFields(data, activity) {
-    switch(activity) {
+    switch (activity) {
         case "Value":
             cy.get(TemplateLocators.addActivity.placeholder).last().type(data.addActivity[activity])
             break
@@ -157,14 +157,14 @@ describe("Add new template.", () => {
         addStep(" 3") // step 3
     })
 
-    it("Validate Create template without adding mandatory fields.", () => {
+    it("Validate Create template mandatory fields.", () => {
         cy.get(TemplateLocators.saveAndPublishBtn).click()
         cy.wait("@createTemplate").its("response.statusCode").should("eq", 400)
 
         cy.fixture("Template_data").then(data => {
             cy.assertBorderError(TemplateLocators.saveAndPublishInvalid.templateNameBorderError, data.saveAndPublishInvalid.templateNameBorderError)
             cy.assertTextErrorMessage(TemplateLocators.saveAndPublishInvalid.templateNameTextErrorMessage, data.saveAndPublishInvalid.templateNameTextErrorMessage)
-            
+
             // Enter all mandatory fields now. 
             cy.enterUniqueName(TemplateLocators.creates.templateName_UNIQUE, data.creates.templateName_UNIQUE)
             cy.get(TemplateLocators.creates.summary).type(data.creates.summary)
@@ -172,7 +172,35 @@ describe("Add new template.", () => {
 
             cy.wait("@createTemplate").its("response.statusCode").should("eq", 200)
             cy.wait("@publishTemplate").its("response.statusCode").should("eq", 200)
-            cy.wait("@searchTemplate").its("response.statusCode").should("eq", 200)        
+
+            cy.assertTemplate(getUniqueName(data.creates.templateName_UNIQUE), 1)
+
         })
     })
+
+
+    it("Archive and delete the Template.", () => {
+        cy.fixture("Template_data").then(data => {
+            cy.get(commonLocators.searchFilterInput).clear()
+            cy.get(commonLocators.searchFilterInput).type(getUniqueName(data.creates.templateName_UNIQUE))
+            cy.wait("@searchTemplate").its("response.statusCode").should("eq", 200)
+
+
+            cy.get(TemplateLocators.actionDropdown).click()
+            cy.get(TemplateLocators.archiveBtn).click()
+            cy.get(TemplateLocators.modalConfrimBtn).click()
+
+            cy.get(TemplateLocators.actionDropdown).click()
+            cy.get(TemplateLocators.deleteBtn).click()
+            cy.get(TemplateLocators.deleteConfirmBtn).click()
+
+            cy.wait("@deleteTemplate").its("response.statusCode").should("eq", 204)
+
+            // Search and check if the Item still exists or deleted properly.
+            cy.assertTemplate(getUniqueName(data.creates.templateName_UNIQUE), 0)
+
+        })
+    })
+
+
 })
