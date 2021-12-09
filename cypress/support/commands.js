@@ -120,14 +120,14 @@ Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
 
     if (type.includes("MultipleSelect")) {
 
-        cy.get(dropdown["dropdown"]).click()
+        cy.get(dropdown["dropdown"]).click({ force: true })
         cy.get(dropdown["input"]).type(value)
         cy.get(dropdown["options"]).each((col, index, list) => {
             if (index >= 3)
                 return
             cy.wrap(col).click({ force: true })
         })
-        cy.get(dropdown["dropdown"]).click()
+        cy.get(dropdown["dropdown"]).click({ force: true })
 
     } else {
 
@@ -136,7 +136,7 @@ Cypress.Commands.add("selectFromDropdown", (dropdown, value, type) => {
             cy.get(dropdown["input"]).type(getUniqueName(value))
             cy.get(dropdown["options"]).eq(0).click()
         } else {
-            cy.get(dropdown["input"]).type(value, {force:true})
+            cy.get(dropdown["input"]).type(value, { force: true })
             cy.get(dropdown["options"]).contains(value).click()
         }
     }
@@ -752,12 +752,13 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("POST", "/api/supplier").as("createSupplier")
     cy.intercept("PUT", "/api/supplier").as("updateSupplier")
     cy.intercept("DELETE", "/api/supplier/*").as("deleteSupplier")
-    
+
     cy.intercept("POST", "/api/item").as("createItem")
     cy.intercept("PUT", "/api/item").as("updateItem")
     cy.intercept("DELETE", "/api/item/*").as("deleteItem")
     cy.intercept("POST", "/api/item/list").as("searchItems")
 
-    cy.intercept("POST", "https://api-iam.intercom.io/messenger/web/ping").as("waitForCharts")
-  //  cy.intercept("GET", "/api/deviation/*").as("processChartCount")
+    cy.intercept("GET", "/api/user/published-by-team").as("waitForCharts")
+    cy.intercept("GET", "/api/deviation/process-chart-count/*").as("processChartCount")
+    //  cy.get("GET", "/api/deviation/process-chart-count?type=0&parentId=00000000-0000-0000-0000-000000000000&showDraft=true").as("Process")
 })

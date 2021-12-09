@@ -1,0 +1,61 @@
+{
+    "creates": {
+        "subProcessDropdown": {
+            "dropdown": "div.gridbox.col1.row2 div.app-select-dropdown__indicators",
+            "input": "div.gridbox.col1.row2 [id*='react-select-']",
+            "options": "div.app-select-dropdown__option"
+        }
+    },
+
+    "creates1": {
+        "subProcessDropdown": {
+            "dropdown": "div.gridbox div.app-select-dropdown__indicators",
+            "input": "[id='form.users']",
+            "options": "div.app-select-dropdown__option"
+        }
+    },
+    "creates2": {
+        "subProcessDropdown": {
+            "dropdown": "div.app-select-dropdown__indicators ",
+            "input": "input[id*='react-select-']",
+            "options": "div.app-select-dropdown__option"
+        }
+    },
+"EditBtn":"button.btn.btn__blue.btn-transparent.btn-no-min-width",
+"NewSupport1":"div.pc-overview--sup-process div.sup-process--container div.sup-process--item.edit-mode div.sup-process--content input",
+"NewSupport2":"div.sup-process--container>div.sup-process--item:nth-child(2) input",
+"NewSupport3":"div.sup-process--container>div.sup-process--item:nth-child(3) input",
+"NewSupport4":"div.sup-process--container>div.sup-process--item:nth-child(4) input",
+"NewSupport5":"div.sup-process--container>div.sup-process--item:nth-child(5) input",
+"NewSupport6":"div.sup-process--container>div.sup-process--item:nth-child(6) input",
+"ScopeOfManagementSystem" :"button.btn.btn__size--small.btn__success.btn-transparent",
+"What": "#what",
+"Why": "#why",
+"Overview": "#overview",
+"Publish":"button.btn.btn__success.btn-no-min-width",
+"Bold":"div.input-field--preview.bold",
+"Parent":"div.react-flow__node-Process",
+"IdentityRisk":"label.text-field.text-field--bold>div.text-field--box input",
+
+"IdentityRiskBtn":"button.btn.btn__size--small.btn__success.btn-transparent",
+"IdentityTarget":"div.gridbox div.sortable-list--item label.text-field input",
+"InputBtn":"div.justify-right button",
+"Output_to":"div.gridbox .gridbox--label",
+"Btn":"div.justify-right button",
+"Target2":"textarea#purpose",
+"ResponsibleUser": {
+    "RespUser": {
+        "dropdown": "div.gridbox:nth-child(9) div.app-select-dropdown__indicators",
+        "input": "[id='form.users']",
+        "options": "div.app-select-dropdown__option"
+    }
+},
+"InvolvedTeams": {
+    "Teams": {
+        "dropdown": "div.gridbox:nth-child(10) div.app-select-dropdown__indicators",
+        "input": "[id='form.selectTeams']",
+        "options": "div.app-select-dropdown__option"
+    }
+}
+}
+
