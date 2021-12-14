@@ -37,7 +37,8 @@ function addStep(number) {
 
 
         cy.get(TemplateLocators.saveStepBtn).click()
-        cy.wait("@createStep").its("response.statusCode").should("eq", 200)
+        // cy.wait("@createStep").its("response.statusCode").should("eq", 400)
+      cy.wait("@createStep").its("response.statusCode").should("eq", 200)
         cy.get(commonLocators.pageHeading).should("contain", "New Template")
 
     })

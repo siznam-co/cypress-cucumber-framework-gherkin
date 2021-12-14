@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://test-2.ampliflow.com",
-  "defaultCommandTimeout": 20000,
+  "defaultCommandTimeout": 60000,
   "requestTimeout": 120000,
   "pageLoadTimeout": 60000,
   "videoUploadOnPasses": false,

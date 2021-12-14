@@ -16,7 +16,7 @@
     },
     "creates2": {
         "subProcessDropdown": {
-            "dropdown": "div.app-select-dropdown__indicators ",
+            "dropdown": "div.app-select-dropdown__indicators",
             "input": "input[id*='react-select-']",
             "options": "div.app-select-dropdown__option"
         }
@@ -36,7 +36,8 @@
 "Bold":"div.input-field--preview.bold",
 "Parent":"div.react-flow__node-Process",
 "IdentityRisk":"label.text-field.text-field--bold>div.text-field--box input",
-
+"Subprocess":"div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea",
+"Subprocess9":"div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea",
 "IdentityRiskBtn":"button.btn.btn__size--small.btn__success.btn-transparent",
 "IdentityTarget":"div.gridbox div.sortable-list--item label.text-field input",
 "InputBtn":"div.justify-right button",
@@ -54,6 +55,13 @@
     "Teams": {
         "dropdown": "div.gridbox:nth-child(10) div.app-select-dropdown__indicators",
         "input": "[id='form.selectTeams']",
+        "options": "div.app-select-dropdown__option"
+    }
+},
+"AddUser": {
+    "User": {
+        "dropdown": "ul.menu-button--menu-list",
+        "input": "[data-id='48297cb0-1da7-4a87-af17-c50f7d9296b5'].eq(1)",
         "options": "div.app-select-dropdown__option"
     }
 }

@@ -11,6 +11,7 @@ describe("Add new Items and add users to it.", () => {
         cy.get(commonLocators.menuBtn).contains("Lists").click()
         cy.get(commonLocators.subMenuBtn).contains("Items").click({ force: true })
         cy.get(commonLocators.pageHeading).should("contain", "Item Catalog")
+        cy.wait("@searchItems").its("response.statusCode").should("eq", 200)
     })
 
     beforeEach(() => {

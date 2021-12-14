@@ -20,8 +20,8 @@ describe("Create and run new Checklist.", () => {
         // Add to each "it" 
     })
 
-     it("Create a Process chart", () => {
-//cy.get('button.uf-close-button').click()
+    it("Create a Process chart", () => {
+        //cy.get('button.uf-close-button').click()
         cy.get(ProcessChartLocators.EditBtn).click()
         cy.fixture("ProcessChart_data").then(data => {
 
@@ -33,7 +33,7 @@ describe("Create and run new Checklist.", () => {
             cy.get(ProcessChartLocators.NewSupport6).clear().type(data.CreatesAll.NewSupport6)
         })
 
-     
+
         cy.get(ProcessChartLocators.ScopeOfManagementSystem).click()
 
         cy.fixture("ProcessChart_data").then(data => {
@@ -51,7 +51,7 @@ describe("Create and run new Checklist.", () => {
         cy.get(ProcessChartLocators.Publish).click({ force: true })
 
         cy.get(ProcessChartLocators.Bold).contains("Ab process").parents(ProcessChartLocators.Parent).click({ force: true })
-       
+
 
     })
     it("Create a Process chart", () => {
@@ -67,11 +67,11 @@ describe("Create and run new Checklist.", () => {
 
         cy.fixture("ProcessChart_data").then(data => {
 
-          //  cy.get(ProcessChartLocators.IdentityRisk).eq(0).clear().type(data.IdentityRisks.IdentityRisks1)
-          //  cy.get(ProcessChartLocators.IdentityRiskBtn).eq(0).click()
-          //  cy.get(ProcessChartLocators.IdentityRisk).eq(1).clear().type(data.IdentityRisks.IdentityRisks2)
-           // cy.get(ProcessChartLocators.IdentityRiskBtn).eq(0).click()
-          //  cy.get(ProcessChartLocators.IdentityRisk).eq(2).clear().type(data.IdentityRisks.IdentityRisks3)
+            //  cy.get(ProcessChartLocators.IdentityRisk).eq(0).clear().type(data.IdentityRisks.IdentityRisks1)
+            //  cy.get(ProcessChartLocators.IdentityRiskBtn).eq(0).click()
+            //  cy.get(ProcessChartLocators.IdentityRisk).eq(1).clear().type(data.IdentityRisks.IdentityRisks2)
+            // cy.get(ProcessChartLocators.IdentityRiskBtn).eq(0).click()
+            //  cy.get(ProcessChartLocators.IdentityRisk).eq(2).clear().type(data.IdentityRisks.IdentityRisks3)
 
             cy.get(ProcessChartLocators.IdentityTarget).eq(0).clear().type(data.IdentityRisks.IdentityTarget1)
             cy.get(ProcessChartLocators.IdentityRiskBtn).eq(0).click()
@@ -97,53 +97,66 @@ describe("Create and run new Checklist.", () => {
 
             cy.get(ProcessChartLocators.Output_to).contains("Output to").parent().then(parentElement => {
                 cy.wrap(parentElement).find('div.justify-right button').click()
-                cy.wrap(parentElement).find(ProcessChartLocators.creates2.subProcessDropdown["dropdown"]).click()
+                cy.wrap(parentElement).find(ProcessChartLocators.creates2.subProcessDropdown["dropdown"]).click({ force: true })
                 cy.wrap(parentElement).find(ProcessChartLocators.creates2.subProcessDropdown["input"]).type(data.creates.subProcessDropdown, { force: true })
                 cy.wrap(parentElement).find(ProcessChartLocators.creates2.subProcessDropdown["options"]).contains(data.creates.subProcessDropdown).click()
-           
+
                 cy.get('textarea#purpose').clear().type('Identifiy Target 2')
-              
+
             })
 
         })
 
         cy.fixture("ProcessChart_data").then(data => {
             cy.selectFromDropdown(ProcessChartLocators.ResponsibleUser.RespUser, data.ResponsibleUser.addUsersMultipleSelect, "MultipleSelect")
-         
+
             cy.selectFromDropdown(ProcessChartLocators.InvolvedTeams.Teams, data.InvolvedTeams.addUsersMultipleSelectTeam, "MultipleSelect")
-           // cy.wait("@WaitForpopup").its("response.statusCode").should("eq", 400)
-            
+            // cy.wait("@WaitForpopup").its("response.statusCode").should("eq", 400)
+
         })
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(0).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(1).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-       
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(2).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(3).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-  
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(4).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(5).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(6).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
-    cy.get('div.react-flow__nodes div.rf-node div.rf-node--content label.text-field div.text-field--box textarea').eq(7).clear().type('sdflkjskdfljsdaklfjlsdakfjlksadf')
+        cy.fixture("ProcessChart_data").then(data => {
 
-   
 
-    cy.get('div.rf-add-elements--elements > div >div').drag('div > div.react-flow__pane', {
-        source: { deltax: 0, deltay: 0 }, // applies to the element being dragged
-        target: { position: 'center' }, // applies to the drop target
-        force: true, // applied to both the source and target element
-    })
+            cy.get(ProcessChartLocators.Subprocess).eq(0).clear().type(data.Subprocess.Subprocess1)
+            cy.get(ProcessChartLocators.Subprocess).eq(1).clear().type(data.Subprocess.Subprocess2)
 
-    //for other click
-    cy.get('div.rf-add-elements--elements > div >div').drag('div > div.react-flow__pane', {
-        source: { x: -10, y: -10 }, // applies to the element being dragged
-        target: { position: 'left' }, // applies to the drop target
-        force: true, // applied to both the source and target element
-    })
+            cy.get(ProcessChartLocators.Subprocess).eq(3).clear().type(data.Subprocess.Subprocess3)
 
-    cy.get(ProcessChartLocators.Publish).dblclick({ force: true })
-        
-        
-        
+            cy.get(ProcessChartLocators.Subprocess).eq(4).clear().type(data.Subprocess.Subprocess4)
+            cy.get(ProcessChartLocators.Subprocess).eq(5).clear().type(data.Subprocess.Subprocess5)
+            cy.get(ProcessChartLocators.Subprocess).eq(6).clear().type(data.Subprocess.Subprocess6)
+            cy.get(ProcessChartLocators.Subprocess).eq(7).clear().type(data.Subprocess.Subprocess7)
+            cy.get(ProcessChartLocators.Subprocess).eq(2).clear().type(data.Subprocess.Subprocess8)
+            cy.get('div.rf-add-elements--elements > div >div').drag('div > div.react-flow__pane', {
+                source: { deltax: 20, deltay: 20 }, // applies to the element being dragged
+                target: { position: 'right' }, // applies to the drop target
+                force: true, // applied to both the source and target element
+            })
+
+            //for other click
+            cy.get('div.rf-add-elements--elements > div >div').drag('div > div.react-flow__pane', {
+                source: { x: 0, y: 0 }, // applies to the element being dragged
+                target: { position: 'left' }, // applies to the drop target
+                force: true, // applied to both the source and target element
+            })
+            cy.get(ProcessChartLocators.Subprocess9).eq(8).clear().type(data.Subprocess.Subprocess9)
+        })
+
+
+        cy.get('div.menu-button__wrapper.rf-node--users--add').eq(1).click()
+        cy.get('ul.menu-button--menu-list li.with-checkbox').eq(0).click()
+
+        cy.get('div.menu-button__wrapper.rf-node--users--add').eq(1).click()
+        //  cy.get('ul.menu-button--menu-list li.with-checkbox').eq(3).click()
+        cy.get('div > div.react-flow__pane').click({ force: true })
+        //    cy.fixture("ProcessChart_data").then(data => {
+        //    cy.selectFromDropdown(ProcessChartLocators.AddUser.User, data.AddUser.User, "SingleSelect")
+
+        // })
+        cy.get(ProcessChartLocators.Publish).dblclick({ force: true })
+
+
+
     })
 
 })

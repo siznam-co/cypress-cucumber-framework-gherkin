@@ -32,20 +32,20 @@ describe("Create and run new Checklist.", () => {
 
 
         cy.get('div.rf-add-elements--elements > div >div').drag('div > div.react-flow__pane', {
-            source: { deltax: 0, deltay: 0 }, // applies to the element being dragged
+            source: { deltax: 80, deltay: 80 }, // applies to the element being dragged
             target: { position: 'center' }, // applies to the drop target
             force: true, // applied to both the source and target element
         })
 
         //for other click
         cy.get('div.rf-add-elements--elements > div >div').drag('div > div.react-flow__pane', {
-            source: { x: -10, y: -10 }, // applies to the element being dragged
+            source: { x: -80, y: -80 }, // applies to the element being dragged
             target: { position: 'left' }, // applies to the drop target
             force: true, // applied to both the source and target element
         })
       
           cy.get('div.react-flow__node-SubProcess div.react-flow__handle-left')
-             .eq(8)
+             .eq(8).drag('div.react-flow__node-SubProcess div.react-flow__handle-right').eq(8)
             //   .move('div.react-flow__node-SubProcess:nth-child(12) div.react-flow__handle-right')
     
         
