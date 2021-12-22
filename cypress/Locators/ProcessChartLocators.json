@@ -2,7 +2,7 @@
     "creates": {
         "subProcessDropdown": {
             "dropdown": "div.gridbox.col1.row2 div.app-select-dropdown__indicators",
-            "input": "div.gridbox.col1.row2 [id*='react-select-']",
+            "input": "div.gridbox.col1.row2 input[id*='react-select-']",
             "options": "div.app-select-dropdown__option"
         }
     },
@@ -23,7 +23,7 @@
     },
 "EditBtn":"button.btn.btn__blue.btn-transparent.btn-no-min-width",
 "NewSupport1":"div.pc-overview--sup-process div.sup-process--container div.sup-process--item.edit-mode div.sup-process--content input",
-"NewSupport2":"div.sup-process--container>div.sup-process--item:nth-child(2) input",
+"NewSupport2":"div.sup-process--container > div.sup-process--item:nth-child(2) input",
 "NewSupport3":"div.sup-process--container>div.sup-process--item:nth-child(3) input",
 "NewSupport4":"div.sup-process--container>div.sup-process--item:nth-child(4) input",
 "NewSupport5":"div.sup-process--container>div.sup-process--item:nth-child(5) input",
@@ -44,6 +44,21 @@
 "Output_to":"div.gridbox .gridbox--label",
 "Btn":"div.justify-right button",
 "Target2":"textarea#purpose",
+"Deleteicon":"div .delete-icon",
+"ForEmpty":"div.app-select-dropdown__indicator.app-select-dropdown__clear-indicator",
+"FortoDelete":"div.icon-button__wrapper",
+"ForEmpty1":"div.app-select-dropdown__indicator.app-select-dropdown__clear-indicator",
+"Dropdown":"div.justify-right button",
+"IdentifyTarget2":"textarea#purpose",
+"FindElement":"div.justify-right button",
+"MultipleType":"div.rf-node--remove.nodrag svg.close-icon",
+"SubProcessType":"div.chart__delete-node-modal--confirm-body.modal-body label div.text-field--box input",
+"SubProcessClick":"div.modal-footer button",
+"GoBack":"button.btn.btn__size--small.btn__blue.btn-transparent",
+"drag":"div.rf-add-elements--elements > div >div",
+"drop":"div > div.react-flow__pane",
+"visible1":"div.react-flow__node.react-flow__node-Input",
+"EditClick":"div.btn-group > button.btn__blue.btn-transparent",
 "ResponsibleUser": {
     "RespUser": {
         "dropdown": "div.gridbox:nth-child(9) div.app-select-dropdown__indicators",

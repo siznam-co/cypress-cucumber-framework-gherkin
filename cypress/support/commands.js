@@ -761,4 +761,5 @@ Cypress.Commands.add("runRoutes", () => {
     cy.intercept("GET", "/api/user/published-by-team").as("waitForCharts")
     cy.intercept("GET", "/api/deviation/process-chart-count/*").as("processChartCount")
     //  cy.get("GET", "/api/deviation/process-chart-count?type=0&parentId=00000000-0000-0000-0000-000000000000&showDraft=true").as("Process")
+    cy.intercept('GET', '/api/processOverview?showDraft=true').as("processShowDraftTrue")
 })

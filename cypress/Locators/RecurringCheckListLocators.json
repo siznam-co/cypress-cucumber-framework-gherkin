@@ -1,0 +1,9 @@
+{
+    "creates": {
+        "email_UNIQUE": "#email",
+        "userName_UNIQUE": "#userName",
+        "password": "#password", 
+        "confirmPassword": "#password2",
+        "saveBtn": "button.btn.btn__success"
+    }
+}

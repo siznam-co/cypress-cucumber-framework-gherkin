@@ -1,11 +1,15 @@
 {
     "creates": {
-        "subProcessDropdown": "d"
+        "subProcessDropdown": "a"
     },
     "creates1": {
         "addUsersMultipleSelect": "user_"
     },
-    
+    "Identifiy":{
+        "IdentifiyTarget2":"Identifiy Target 2",
+        "SubProcess":"Sub Process"
+
+    },
     "ResponsibleUser": {
         "addUsersMultipleSelect": "qabot"
     },
@@ -37,7 +41,9 @@
     "IdentityRisks": {
         "IdentityRisks1": "Identifiy risk 1",
         "IdentityRisks2": "Identifiy risk 2",
-        "IdentityRisks3": "Identifiy risk 3",
+        "IdentityRisks3": "Identifiy risk 3"
+    },
+    "IdentityTarget":{
         "IdentityTarget1": "Identifiy Target 1",
         "IdentityTarget2": "Identifiy Target 2",
         "IdentityTarget3": "Identifiy Target 3",
@@ -50,15 +56,15 @@
         "Target2": "Identifiy Target 2"
     },
     "Subprocess":{
-        "Subprocess1":"Sub Process 1 details",
-        "Subprocess2":"Sub Process 2 details",
-        "Subprocess3":"Sub Process 3 details",
-        "Subprocess4":"Sub Process 4 details",
-        "Subprocess5":"Sub Process 5 details",
-        "Subprocess6":"Sub Process 6 details",
-        "Subprocess7":"Sub Process 7 details",
-        "Subprocess8":"Sub Process 8 details",
-        "Subprocess9":"Sub Process added for 9th"
+        "Subprocess1":"Sub Process",
+        "Subprocess2":"Sub Process",
+        "Subprocess3":"Sub Process",
+        "Subprocess4":"Sub Process",
+        "Subprocess5":"Sub Process",
+        "Subprocess6":"Sub Process",
+        "Subprocess7":"Sub Process",
+        "Subprocess8":"Sub Process",
+        "Subprocess9":"Sub Process"
 
     }
 }
