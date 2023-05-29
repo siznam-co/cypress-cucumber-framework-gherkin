@@ -15,10 +15,5 @@
   "ignoreTestFiles": [
     "*.ts",
     "*.md"
-  ],
-  "env": {
-    "Username": "admin1@dev.com",
-    "Password": "origin-baseman-flutist"
-  },
-  "projectId": "yjbdc6"
+  ]
 }
